@@ -1,0 +1,33 @@
+.ranking {
+  display: flex;
+  justify-content: center;
+
+  table {
+    width: 70%;
+    border-collapse: separate;
+    border: 2px solid #b2b2b3;
+    border-radius: 20px;
+    overflow: hidden;
+    font-size: 15px;
+
+    td, th {
+      padding: 15px 25px;
+      border-left: 2px solid #b2b2b3;
+      border-top: 2px solid #b2b2b3;
+    }
+
+    th {
+      background-color: #e9e2e2;
+      border-top: none;
+      font-size: 16px;
+    }
+
+    td {
+      background-color: #f7f7f7;
+    }
+
+    td:first-child, th:first-child {
+      border-left: none;
+    }
+  }
+}
