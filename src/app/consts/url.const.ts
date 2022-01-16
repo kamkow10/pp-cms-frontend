@@ -7,4 +7,6 @@ export const GET_USER_COMMENTS_URL = BACKEND_URL + '/comments/find/user';
 export const GET_ARTICLE_BY_ID_URL = BACKEND_URL + '/articles/get';
 export const GET_ARTICLE_BY_COMMENT_ID_URL = BACKEND_URL + '/articles/findbycomment';
 export const ADD_COMMENT_URL = BACKEND_URL + '/comments/add';
-export const EDIT_MAIL_URL = BACKEND_URL + '/user/edit/mail';
+export const USER_EDIT_EMAIL_URL = BACKEND_URL + '/user/edit/mail';
+export const USER_EDIT_PASSWORD_URL = BACKEND_URL + '/user/edit/password';
+export const USER_EDIT_USERNAME_URL = BACKEND_URL + '/user/edit/username';

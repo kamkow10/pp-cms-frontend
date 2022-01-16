@@ -3,6 +3,8 @@ import {ActivatedRoute} from "@angular/router";
 import {UserData} from "../../../models/user-data";
 import {UsersService} from "../../../services/users/users.service";
 import {CommentData} from "../../../models/comment-data";
+import {MatDialog} from "@angular/material/dialog";
+import {UserSettingsModalComponent} from "./user-settings-modal/user-settings-modal.component";
 
 @Component({
   selector: 'app-user-profile-page',
@@ -14,7 +16,8 @@ export class UserProfilePageComponent implements OnInit {
   public comments: CommentData[];
 
   constructor(private route: ActivatedRoute,
-              private usersService: UsersService) {
+              private usersService: UsersService,
+              private matDialog: MatDialog) {
   }
 
   ngOnInit(): void {
@@ -26,6 +29,10 @@ export class UserProfilePageComponent implements OnInit {
         this.user.commentsCount = comments.length;
       }, () => {});
     }, () => {});
+  }
+
+  public openUserSettingsModal(): void {
+    this.matDialog.open(UserSettingsModalComponent, {width: '40%'});
   }
 
 }

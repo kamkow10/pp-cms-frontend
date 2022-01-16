@@ -19,7 +19,7 @@ import {MatDialogModule} from "@angular/material/dialog";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
 import {MatButtonModule} from "@angular/material/button";
-import {HttpClientModule} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {MatSnackBarModule} from "@angular/material/snack-bar";
 import {AlertComponent} from './components/elements/alert/alert.component';
 import {RegisterModalComponent} from './components/elements/navigation-bar/register-modal/register-modal.component';
@@ -29,6 +29,8 @@ import { ArticleListPageComponent } from './components/pages/article-list-page/a
 import { UserListPageComponent } from './components/pages/user-list-page/user-list-page.component';
 import { UserProfilePageComponent } from './components/pages/user-profile-page/user-profile-page.component';
 import { CommentComponent } from './components/elements/comment/comment.component';
+import { UserSettingsModalComponent } from './components/pages/user-profile-page/user-settings-modal/user-settings-modal.component';
+import {BasicAuthInterceptor} from "./interceptors/basic-auth.interceptor";
 
 @NgModule({
   declarations: [
@@ -48,6 +50,7 @@ import { CommentComponent } from './components/elements/comment/comment.componen
     UserListPageComponent,
     UserProfilePageComponent,
     CommentComponent,
+    UserSettingsModalComponent,
   ],
   imports: [
     BrowserModule,
@@ -63,7 +66,9 @@ import { CommentComponent } from './components/elements/comment/comment.componen
     HttpClientModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: BasicAuthInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

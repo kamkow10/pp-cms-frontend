@@ -8,7 +8,7 @@
       <div class="comments-count">Komentarze: {{user.commentsCount}}</div>
     </div>
     <div class="settings-button-container">
-      <button mat-stroked-button>Ustawienia</button>
+      <button (click)="openUserSettingsModal()" mat-stroked-button>Ustawienia</button>
     </div>
   </div>
   <h2>Komentarze użytkownika</h2>

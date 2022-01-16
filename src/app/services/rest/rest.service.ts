@@ -4,7 +4,7 @@ import {Observable} from "rxjs";
 import {UserData} from "../../models/user-data";
 import {
   ADD_COMMENT_URL,
-  EDIT_MAIL_URL,
+  USER_EDIT_EMAIL_URL,
   FIND_USERS_URL, GET_ARTICLE_BY_COMMENT_ID_URL, GET_ARTICLE_BY_ID_URL,
   GET_USER_BY_ID_URL,
   GET_USER_COMMENTS_URL,
@@ -62,8 +62,15 @@ export class RestService {
     });
   }
 
-  // na później
-  public editUserMail(newMail: string): Observable<any> {
-    return this.httpClient.put(EDIT_MAIL_URL, newMail);
+  public editUserMail(newMail: string): Observable<RestResponse> {
+    return this.httpClient.put<RestResponse>(USER_EDIT_EMAIL_URL, newMail);
+  }
+
+  public editUserPassword(oldPassword: string, newPassword: string): Observable<RestResponse> {
+    return this.httpClient.put<RestResponse>(USER_EDIT_EMAIL_URL, {oldPassword, newPassword});
+  }
+
+  public editUserUsername(userName: string): Observable<RestResponse> {
+    return this.httpClient.put<RestResponse>(USER_EDIT_EMAIL_URL, userName);
   }
 }

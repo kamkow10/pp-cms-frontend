@@ -25,7 +25,15 @@ export class UserService {
     return this.restService.register(registerData);
   }
 
-  public editMail(newMail: string): Observable<any> {
+  public editEmail(newMail: string): Observable<RestResponse> {
     return this.restService.editUserMail(newMail);
+  }
+
+  public editPassword(oldPassword: string, newPassword: string): Observable<RestResponse> {
+    return this.restService.editUserPassword(oldPassword, newPassword);
+  }
+
+  public editUsername(newUsername: string): Observable<RestResponse> {
+    return this.restService.editUserUsername(newUsername);
   }
 }
