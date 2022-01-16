@@ -1,0 +1,17 @@
+<div class="comment-container">
+  <div class="user-avatar"></div>
+  <div class="comment-content-container">
+    <div class="main-info-container">
+      <div class="username">{{comment.user.userName}}</div>
+      <a href="#" *ngIf="showArticleTitle" class="article-link">{{article.title}}</a>
+      <div class="manage-comment-options">
+        <button mat-stroked-button color="primary">Edytuj</button>
+        <button mat-stroked-button color="warn">Usuń</button>
+      </div>
+    </div>
+    <div class="publish-date">{{comment.date}}</div>
+    <div class="comment-content">
+      {{comment.content}}
+    </div>
+  </div>
+</div>

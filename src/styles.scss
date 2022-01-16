@@ -5,8 +5,55 @@
 @import "css/magnific-popup.css";
 @import "css/style.css";
 
+@import "src/css/colors";
+
 body {
   //color: #eeeeee;
   //background-color: #444444;
 }
 
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.cms-page {
+  display: grid;
+  $sidebar-width: 20%;
+  grid-template-columns: $sidebar-width (100% - $sidebar-width);
+}
+
+.modal-form {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+
+  .alert-container {
+    margin-bottom: 2rem;
+  }
+
+  p {
+    margin-bottom: 2rem;
+
+    .full-width {
+      width: 100%;
+    }
+  }
+
+}
+
+.page-content-container {
+  min-height: 1000px;
+  padding: 100px 20%;
+}
+
+h2 {
+  font-size: 2rem !important;
+  padding-bottom: 1rem;
+  margin: 0 !important;
+  border-bottom: 2px solid $line-separator;
+}

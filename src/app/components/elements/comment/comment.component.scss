@@ -1,0 +1,57 @@
+@import "src/css/colors";
+
+.comment-container {
+  padding: 1.5rem;
+  border: 1px solid $lightgrey-bg;
+  display: flex;
+
+  .user-avatar {
+    background: url("../../../../assets/user-avatar.svg") no-repeat;
+    $bg-size: 100px;
+    background-size: $bg-size;
+    min-width: $bg-size;
+    height: $bg-size;
+    margin-right: 2%;
+    padding-top: 1rem;
+  }
+
+  .comment-content-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+    .main-info-container {
+      display: flex;
+      align-items: center;
+      position: relative;
+
+      .username, .article-link {
+        margin-right: 1rem;
+      }
+
+      .username {
+        font-size: 1.5rem;
+        font-weight: 600;
+      }
+
+      .manage-comment-options {
+        position: absolute;
+        top: 0;
+        right: 0;
+
+        button:first-of-type {
+          margin-right: 1rem;
+        }
+      }
+    }
+
+    .publish-date {
+      font-weight: 500;
+      margin-bottom: 1rem;
+    }
+
+    .comment-content {
+      font-size: 1.2rem;
+    }
+  }
+}

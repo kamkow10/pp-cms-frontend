@@ -418,6 +418,7 @@ img.mfp-img {
     padding: 0;
   }
 }
+
 @media all and (max-width: 900px) {
   .mfp-arrow {
     -webkit-transform: scale(0.75);
@@ -439,6 +440,7 @@ img.mfp-img {
     padding-right: 6px;
   }
 }
+
 .mfp-ie7 .mfp-img {
   padding: 0;
 }

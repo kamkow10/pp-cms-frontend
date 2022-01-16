@@ -1,0 +1,28 @@
+<app-navigation-bar></app-navigation-bar>
+<div class="page-content-container">
+  <form class="user-search-form" [formGroup]="userSearchForm" (ngSubmit)="searchUser()">
+    <div>
+      <mat-form-field class="user-search-input-container" appearance="fill">
+        <mat-label>Nazwa użytkownika</mat-label>
+        <input class="user-search-input" formControlName="username" autocomplete="off" matInput>
+      </mat-form-field>
+      <mat-error class="user-search-input-error" *ngIf="username?.errors?.required && submitted">
+        Pole jest wymagane
+      </mat-error>
+    </div>
+    <div class="user-search-button-container">
+      <button type="submit" mat-flat-button color="primary">Szukaj</button>
+    </div>
+  </form>
+  <div class="user-list" *ngIf="foundedUsers.length">
+    <h2>Użytkownicy serwisu</h2>
+    <div class="user-list-row" *ngFor="let user of foundedUsers">
+      <div class="user-avatar"></div>
+      <div class="username">{{user.userName}}</div>
+      <div class="comments-count">Komentarze: {{user.commentsCount}}</div>
+      <div class="more-info">
+        <button (click)="goToUserProfile(user.id)" mat-stroked-button color="primary">Przejdź</button>
+      </div>
+    </div>
+  </div>
+</div>

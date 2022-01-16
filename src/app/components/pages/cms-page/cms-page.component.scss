@@ -1,0 +1,42 @@
+@import "src/css/colors";
+
+.cms-top-bar {
+  position: sticky;
+  top: 0;
+  z-index: 99999;
+
+  #header {
+    position: initial;
+    background-color: $top-bar-bg;
+  }
+}
+
+.cms-sidebar {
+  height: 2000px;
+  background-color: $lightgrey-bg;
+
+  mat-button-toggle-group {
+    display: flex;
+    flex-direction: column;
+    border: none;
+
+    mat-button-toggle {
+      border: none;
+      background: $lightgrey-bg;
+
+      &.mat-button-toggle-checked {
+        background: $grey-bg;
+      }
+
+      ::ng-deep button {
+        padding: 0 2rem;
+
+        .mat-button-toggle-label-content {
+          width: 100%;
+          text-align: left;
+          font-size: 1.5rem;
+        }
+      }
+    }
+  }
+}

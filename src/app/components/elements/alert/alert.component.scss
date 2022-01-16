@@ -1,0 +1,22 @@
+@import "src/css/colors";
+
+.alert-container {
+  border: 2px solid;
+  border-radius: 4px;
+  padding: 1rem;
+
+  &.warning {
+    background-color: $alert-warning-bg;
+    border-color: $alert-warning-border;
+  }
+
+  &.success {
+    background-color: $alert-success-bg;
+    border-color: $alert-success-border;
+  }
+
+  &.error {
+    background-color: $alert-error-bg;
+    border-color: $alert-error-border;
+  }
+}

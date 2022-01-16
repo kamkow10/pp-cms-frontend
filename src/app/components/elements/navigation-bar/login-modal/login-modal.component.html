@@ -1,0 +1,35 @@
+<h2 mat-dialog-title>Logowanie</h2>
+<mat-dialog-content class="mat-typography modal-form">
+  <app-alert *ngIf="showMessageServerError" text="Wystąpił nieoczekiwany błąd" alertType="error"></app-alert>
+  <app-alert *ngIf="showMessageBadEmailOrPassword" text="Email lub hasło nieprawidłowe" alertType="error"></app-alert>
+  <form [formGroup]="loginForm" (ngSubmit)="login()">
+    <p>
+      <mat-form-field class="full-width" appearance="fill">
+        <mat-label>Email</mat-label>
+        <input formControlName="email" autocomplete="off" matInput>
+      </mat-form-field>
+      <mat-error *ngIf="email?.errors?.required && submitted">
+        Pole jest wymagane
+      </mat-error>
+      <mat-error
+        *ngIf="!email?.errors?.required && email?.errors?.email && submitted">
+        Nieprawidłowy email
+      </mat-error>
+    </p>
+    <p>
+      <mat-form-field class="full-width" appearance="fill">
+        <mat-label>Hasło</mat-label>
+        <input formControlName="password" [type]="'password'" autocomplete="off" matInput>
+      </mat-form-field>
+      <mat-error *ngIf="password?.errors?.required && submitted">
+        Pole jest wymagane
+      </mat-error>
+    </p>
+    <p>
+      <mat-dialog-actions align="end">
+        <button mat-button mat-dialog-close>Anuluj</button>
+        <button type="submit" mat-flat-button color="primary">Zaloguj</button>
+      </mat-dialog-actions>
+    </p>
+  </form>
+</mat-dialog-content>

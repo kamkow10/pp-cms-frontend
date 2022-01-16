@@ -1,0 +1,15 @@
+.page-container {
+  display: flex;
+
+  app-cms-sidebar {
+    width: 20%;
+  }
+
+  .router {
+    width: 100%;
+  }
+
+  .router-cms {
+    width: 80%;
+  }
+}

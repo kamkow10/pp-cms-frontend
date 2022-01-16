@@ -1,0 +1,50 @@
+@import "src/css/colors";
+
+.user-profile-container {
+  background-color: $very-lightgrey-bg;
+  padding: 1rem;
+  margin-bottom: 6rem;
+  display: flex;
+  position: relative;
+
+  .user-avatar {
+    background: url("../../../../assets/user-avatar.svg") no-repeat;
+    $bg-size: 200px;
+    background-size: $bg-size;
+    width: $bg-size;
+    height: $bg-size;
+    margin-right: 5%;
+  }
+
+  .user-info-container {
+    display: flex;
+    flex-direction: column;
+    font-size: 1.5rem;
+    padding-top: 2rem;
+
+    .username {
+      font-size: 3rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+
+    .email {
+      margin-bottom: 2rem;
+    }
+  }
+
+  .settings-button-container {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    padding: 2rem;
+  }
+}
+
+.user-comment-list {
+  padding: 1rem;
+
+  .comment-element {
+    margin-bottom: 1rem;
+  }
+}

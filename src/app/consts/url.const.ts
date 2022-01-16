@@ -1,0 +1,10 @@
+export const BACKEND_URL = 'https://pp-cms-sem2.herokuapp.com/api';
+export const LOGIN_URL = BACKEND_URL + '/user/login';
+export const REGISTER_URL = BACKEND_URL + '/user/register';
+export const FIND_USERS_URL = BACKEND_URL + '/user/find';
+export const GET_USER_BY_ID_URL = BACKEND_URL + '/user/findbyid';
+export const GET_USER_COMMENTS_URL = BACKEND_URL + '/comments/find/user';
+export const GET_ARTICLE_BY_ID_URL = BACKEND_URL + '/articles/get';
+export const GET_ARTICLE_BY_COMMENT_ID_URL = BACKEND_URL + '/articles/findbycomment';
+export const ADD_COMMENT_URL = BACKEND_URL + '/comments/add';
+export const EDIT_MAIL_URL = BACKEND_URL + '/user/edit/mail';

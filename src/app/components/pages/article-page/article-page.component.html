@@ -1,0 +1,106 @@
+<app-navigation-bar></app-navigation-bar>
+<section class="section">
+  <div class="container" *ngIf="article">
+    <div class="row">
+      <!-- Blog Post -->
+      <div class="col-md-8 col-sm-8">
+        <div class="post-content">
+          <!-- Post Image -->
+          <div class="post-img">
+            <img src="images/blog/blog1.jpg" alt="">
+          </div>
+          <!-- /Post Image-->
+
+          <!-- Post Meta-->
+          <div class="post-meta">
+            <ul class="list-inline">
+              <li><a href="#"><i class="fa fa-calendar"></i>{{article.date}}</a> </li>
+              <li><a href="#"><i class="fa fa-user"></i>{{article.user.userName}}</a></li>
+              <li><a href="#"><i class="fa fa-comments"></i>{{article.comments.length}}</a> </li>
+            </ul>
+          </div>
+          <!-- /Post Meta-->
+
+          <!-- Post Description -->
+          <div class="post-description">
+            <h3>{{article.title}}</h3>
+            <p>{{article.content}}</p>
+          </div>
+          <!-- /Post Description -->
+
+          <!-- Comment list -->
+          <div class="comment-list">
+            <h3>{{article.comments.length}} Komentarzy</h3>
+            <div class="comment-list">
+              <div class="comment-element" *ngFor="let comment of article.comments">
+                <app-comment [comment]="comment"></app-comment>
+              </div>
+            </div>
+          </div>
+          <!-- /newComment List -->
+
+          <!-- Comment Section -->
+          <div *ngIf="loggedIn" class="comments-section">
+            <h3>Zostaw komentarz</h3>
+            <div class="comment-form">
+              <form method="post">
+                <div class="row">
+                  <form [formGroup]="addCommentForm" (ngSubmit)="addComment()">
+                    <div class="col-md-12">
+                      <app-alert *ngIf="showMessageServerError" text="Wystąpił nieoczekiwany błąd" alertType="error"></app-alert>
+                      <textarea formControlName="newComment" class="form-control" rows="7"></textarea>
+                      <mat-error *ngIf="newComment?.errors?.required && submitted">
+                        Pole jest wymagane
+                      </mat-error>
+                    </div>
+                    <div class="col-md-12 text-right">
+                      <button type="submit" class="btn btn-gray-border">Dodaj komentarz</button>
+                    </div>
+                  </form>
+                </div>
+              </form>
+            </div>
+          </div>
+          <!-- /Comment Section -->
+        </div>
+      </div>
+      <!-- /Blog Post -->
+
+      <!-- Right Sidebar -->
+      <div class="col-md-4 col-sm-4">
+
+        <!-- Tags -->
+        <div class="widget-main">
+          <h4>Tags</h4>
+          <div class="tags">
+            <a *ngFor="let tag of article.articleTags" href="">{{tag.name}}</a>
+          </div>
+        </div>
+        <!-- /Tags -->
+
+        <!--Start popular Post -->
+        <div class="widget-main">
+          <h4>Popularne</h4>
+          <div class="sidebar-widget clearfix">
+            <a href="#"><img src="images/blog/blog1.jpg" alt=""></a>
+            <p class="sidebar-widget-title"><a href="#">Lorem ipsum dolor sit amet, consectetur adipiscing elit.  </a></p>
+            <p class="date">8 March, 2014</p>
+          </div>
+          <div class="sidebar-widget clearfix">
+            <a href="#"><img src="images/blog/blog2.jpg" alt=""></a>
+            <p class="sidebar-widget-title"><a href="#">Lorem ipsum dolor sit amet, consectetur adipiscing elit. </a></p>
+            <p class="date">6 Apr, 2014</p>
+          </div>
+          <div class="sidebar-widget clearfix">
+            <a href="#"><img src="images/blog/blog3.jpg" alt=""></a>
+            <p class="sidebar-widget-title"><a href="#">Lorem ipsum dolor sit amet, consectetur adipiscing elit. </a></p>
+            <p class="date">22 May, 2014</p>
+          </div>
+        </div>
+        <!-- / popular Post -->
+
+      </div>
+      <!-- /right Sidebar -->
+    </div> <!-- /row -->
+  </div>
+</section>

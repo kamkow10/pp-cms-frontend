@@ -1,0 +1,38 @@
+<header id="header" #header>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-menu">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="fa fa-bars"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <!--Start Logo -->
+        <div class="logo-nav">
+          <a href="../../../../index.html">
+            <img src="../../../../images/logo.png" alt="Company logo"/>
+          </a>
+        </div>
+        <!--End Logo -->
+        <div class="clear-toggle"></div>
+        <div id="main-menu" class="collapse scroll n avbar-right">
+          <ul class="nav">
+
+            <li class="active"><a href="#home">Strona główna</a></li>
+
+            <li><a [routerLink]="['/article/2']">Artykuły</a></li>
+
+            <li><a [routerLink]="['/users']">Użytkownicy</a></li>
+
+            <li (click)="openLoginModal()"><a>Zaloguj</a></li>
+
+            <li (click)="openRegisterModal()"><a>Zarejestruj</a></li>
+
+
+          </ul>
+        </div><!-- end main-menu -->
+      </div>
+    </div>
+  </div>
+</header>
