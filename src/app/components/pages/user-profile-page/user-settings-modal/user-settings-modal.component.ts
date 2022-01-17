@@ -1,7 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import {AbstractControl, FormBuilder, Validators} from "@angular/forms";
 import {UserService} from "../../../../services/user/user.service";
-import {ERROR_EMAIL_IN_USE, ERROR_NICKNAME_IN_USE, ERROR_OK} from "../../../../consts/error.const";
+import {
+  ERROR_EMAIL_IN_USE,
+  ERROR_NICKNAME_IN_USE,
+  ERROR_OK,
+  ERROR_WRONG_PASSWORD
+} from "../../../../consts/error.const";
 
 @Component({
   selector: 'app-user-settings-modal',
@@ -26,13 +31,13 @@ export class UserSettingsModalComponent implements OnInit {
     updateOn: 'submit'
   });
   public changeEmailFormSubmitted = false;
-  public changeEmailFormSuccessed = false;
+  public changeEmailFormSucceed = false;
   public changeEmailFormEmailInUse = false;
   public changeEmailFormServerError = false;
 
   public changeEmail(): void {
     this.changeEmailFormSubmitted = true;
-    this.changeEmailFormSuccessed = false;
+    this.changeEmailFormSucceed = false;
     this.changeEmailFormEmailInUse = false;
     this.changeEmailFormServerError = false;
     if (this.changeEmailForm.invalid) {
@@ -47,7 +52,7 @@ export class UserSettingsModalComponent implements OnInit {
         }
       } else {
         this.changeEmailFormSubmitted = false;
-        this.changeEmailFormSuccessed = true;
+        this.changeEmailFormSucceed = true;
       }
     }, () => {
       this.changeEmailFormServerError = true;
@@ -70,13 +75,13 @@ export class UserSettingsModalComponent implements OnInit {
     updateOn: 'submit'
   });
   public changeUsernameFormSubmitted = false;
-  public changeUsernameFormSuccessed = false;
+  public changeUsernameFormSucceed = false;
   public changeUsernameFormUsernameInUse = false;
   public changeUsernameFormServerError = false;
 
   public changeUsername(): void {
     this.changeUsernameFormSubmitted = true;
-    this.changeUsernameFormSuccessed = false;
+    this.changeUsernameFormSucceed = false;
     this.changeUsernameFormUsernameInUse = false;
     this.changeUsernameFormServerError = false;
     if (this.changeUsernameForm.invalid) {
@@ -91,7 +96,7 @@ export class UserSettingsModalComponent implements OnInit {
         }
       } else {
         this.changeUsernameFormSubmitted = false;
-        this.changeUsernameFormSuccessed = true;
+        this.changeUsernameFormSucceed = true;
       }
     }, () => {
       this.changeUsernameFormServerError = true;
@@ -113,28 +118,28 @@ export class UserSettingsModalComponent implements OnInit {
     updateOn: 'submit'
   });
   public changePasswordFormSubmitted = false;
-  public changePasswordFormSuccessed = false;
-  public changePasswordFormPasswordInUse = false;
+  public changePasswordFormSucceed = false;
+  public changePasswordFormWrongOldPassword = false;
   public changePasswordFormServerError = false;
 
   public changePassword(): void {
     this.changePasswordFormSubmitted = true;
-    this.changePasswordFormSuccessed = false;
-    this.changePasswordFormPasswordInUse = false;
+    this.changePasswordFormSucceed = false;
+    this.changePasswordFormWrongOldPassword = false;
     this.changePasswordFormServerError = false;
     if (this.changePasswordForm.invalid) {
       return;
     }
     this.userService.editPassword(this.oldPassword?.value, this.newPassword?.value).subscribe((response) => {
       if (response.error != ERROR_OK) {
-        if (response.error == ERROR_EMAIL_IN_USE) {
-          this.changePasswordFormPasswordInUse = true;
+        if (response.error == ERROR_WRONG_PASSWORD) {
+          this.changePasswordFormWrongOldPassword = true;
         } else {
           this.changePasswordFormServerError = true;
         }
       } else {
         this.changePasswordFormSubmitted = false;
-        this.changePasswordFormSuccessed = true;
+        this.changePasswordFormSucceed = true;
       }
     }, () => {
       this.changePasswordFormServerError = true;

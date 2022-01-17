@@ -3,7 +3,7 @@
   <form [formGroup]="changeEmailForm" (ngSubmit)="changeEmail()">
     <h2>Zmiana adresu email</h2>
     <app-alert *ngIf="changeEmailFormServerError" text="Wystąpił nieoczekiwany błąd" alertType="error"></app-alert>
-    <app-alert *ngIf="changeEmailFormSuccessed" text="Udało się zmienić hasło" alertType="success"></app-alert>
+    <app-alert *ngIf="changeEmailFormSucceed" text="Udało się zmienić email" alertType="success"></app-alert>
     <app-alert *ngIf="changeEmailFormEmailInUse" text="Istnieje już konto zarejestrowne na ten email"
                alertType="error"></app-alert>
     <p>
@@ -30,7 +30,7 @@
     </p>
     <p>
       <mat-dialog-actions align="end">
-        <button type="submit" mat-flat-button color="primary">Zmień adres email</button>
+        <button type="submit" mat-flat-button color="primary">Zmień</button>
       </mat-dialog-actions>
     </p>
   </form>
@@ -38,7 +38,7 @@
   <form [formGroup]="changeUsernameForm" (ngSubmit)="changeUsername()">
     <h2>Zmiana nazwy użytkownika</h2>
     <app-alert *ngIf="changeUsernameFormServerError" text="Wystąpił nieoczekiwany błąd" alertType="error"></app-alert>
-    <app-alert *ngIf="changeUsernameFormSuccessed" text="Udało się zmienić nazwę użytkownika" alertType="success"></app-alert>
+    <app-alert *ngIf="changeUsernameFormSucceed" text="Udało się zmienić nazwę użytkownika" alertType="success"></app-alert>
     <app-alert *ngIf="changeUsernameFormUsernameInUse" text="Nazwa użytkownika zajęta" alertType="error"></app-alert>
     <p>
       <mat-form-field class="full-width" appearance="fill">
@@ -51,7 +51,46 @@
     </p>
     <p>
       <mat-dialog-actions align="end">
-        <button type="submit" mat-flat-button color="primary">Zmień nazwę użytkownika</button>
+        <button type="submit" mat-flat-button color="primary">Zmień</button>
+      </mat-dialog-actions>
+    </p>
+  </form>
+
+  <form [formGroup]="changePasswordForm" (ngSubmit)="changePassword()">
+    <h2>Zmiana hasła</h2>
+    <app-alert *ngIf="changePasswordFormServerError" text="Wystąpił nieoczekiwany błąd" alertType="error"></app-alert>
+    <app-alert *ngIf="changePasswordFormWrongOldPassword" text="Nieprawidłowe stare hasło" alertType="error"></app-alert>
+    <app-alert *ngIf="changePasswordFormSucceed" text="Udało się zmienić hasło" alertType="success"></app-alert>
+    <p>
+      <mat-form-field class="full-width" appearance="fill">
+        <mat-label>Stare hasło</mat-label>
+        <input type="password" formControlName="oldPassword" autocomplete="off" matInput>
+      </mat-form-field>
+      <mat-error *ngIf="oldPassword?.errors?.required && changePasswordFormSubmitted">
+        Pole jest wymagane
+      </mat-error>
+    </p>
+    <p>
+      <mat-form-field class="full-width" appearance="fill">
+        <mat-label>Nowe hasło</mat-label>
+        <input type="password" formControlName="newPassword" autocomplete="off" matInput>
+      </mat-form-field>
+      <mat-error *ngIf="newPassword?.errors?.required && changePasswordFormSubmitted">
+        Pole jest wymagane
+      </mat-error>
+    </p>
+    <p>
+      <mat-form-field class="full-width" appearance="fill">
+        <mat-label>Powtórz nowe hasło</mat-label>
+        <input type="password" formControlName="newPasswordConfirm" autocomplete="off" matInput>
+      </mat-form-field>
+      <mat-error *ngIf="newPasswordConfirm?.errors?.required && changePasswordFormSubmitted">
+        Pole jest wymagane
+      </mat-error>
+    </p>
+    <p>
+      <mat-dialog-actions align="end">
+        <button type="submit" mat-flat-button color="primary">Zmień</button>
       </mat-dialog-actions>
     </p>
   </form>
