@@ -1,4 +1,4 @@
-export const BACKEND_URL = 'https://pp-cms-sem2.herokuapp.com/api';
+export const BACKEND_URL = 'http://localhost:8080/api';
 export const LOGIN_URL = BACKEND_URL + '/user/login';
 export const REGISTER_URL = BACKEND_URL + '/user/register';
 export const FIND_USERS_URL = BACKEND_URL + '/user/find';

@@ -32,7 +32,9 @@ export class UserProfilePageComponent implements OnInit {
   }
 
   public openUserSettingsModal(): void {
-    this.matDialog.open(UserSettingsModalComponent, {width: '40%'});
+    this.matDialog.open(UserSettingsModalComponent, {width: '40%'}).afterClosed().subscribe(() => {
+      this.ngOnInit();
+    });
   }
 
 }

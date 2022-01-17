@@ -54,6 +54,9 @@ body {
 h2 {
   font-size: 2rem !important;
   padding-bottom: 1rem;
-  margin: 0 !important;
-  border-bottom: 2px solid $line-separator;
+  margin: 0 0 2rem 0 !important;
+
+  &.bottom-border {
+    border-bottom: 2px solid $line-separator;
+  }
 }

@@ -9,7 +9,7 @@ import {
   GET_USER_BY_ID_URL,
   GET_USER_COMMENTS_URL,
   LOGIN_URL,
-  REGISTER_URL
+  REGISTER_URL, USER_EDIT_USERNAME_URL, USER_EDIT_PASSWORD_URL
 } from "../../consts/url.const";
 import {LoginData} from "../../models/login-data";
 import {RegisterData} from "../../models/register-data";
@@ -63,14 +63,14 @@ export class RestService {
   }
 
   public editUserMail(newMail: string): Observable<RestResponse> {
-    return this.httpClient.put<RestResponse>(USER_EDIT_EMAIL_URL, newMail);
+    return this.httpClient.put<RestResponse>(USER_EDIT_EMAIL_URL, {newMail});
   }
 
   public editUserPassword(oldPassword: string, newPassword: string): Observable<RestResponse> {
-    return this.httpClient.put<RestResponse>(USER_EDIT_EMAIL_URL, {oldPassword, newPassword});
+    return this.httpClient.put<RestResponse>(USER_EDIT_PASSWORD_URL, {oldPassword, newPassword});
   }
 
   public editUserUsername(userName: string): Observable<RestResponse> {
-    return this.httpClient.put<RestResponse>(USER_EDIT_EMAIL_URL, userName);
+    return this.httpClient.put<RestResponse>(USER_EDIT_USERNAME_URL, {userName});
   }
 }

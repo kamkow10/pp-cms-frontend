@@ -11,7 +11,7 @@
       <button (click)="openUserSettingsModal()" mat-stroked-button>Ustawienia</button>
     </div>
   </div>
-  <h2>Komentarze użytkownika</h2>
+  <h2 class="bottom-border">Komentarze użytkownika</h2>
   <div class="user-comment-list">
     <div class="comment-element" *ngFor="let comment of comments">
       <app-comment [comment]="comment" [showArticleTitle]="true"></app-comment>
