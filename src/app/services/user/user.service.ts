@@ -41,6 +41,6 @@ export class UserService {
   }
 
   public isLoggedIn(): boolean {
-    return localStorage.getItem('user') != null;
+    return this.userData != null;
   }
 }

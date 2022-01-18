@@ -4,6 +4,7 @@ import {LoginModalComponent} from "./login-modal/login-modal.component";
 import {RegisterModalComponent} from "./register-modal/register-modal.component";
 import {UserService} from "../../../services/user/user.service";
 import {Router} from "@angular/router";
+import {UserData} from "../../../models/user-data";
 
 @Component({
   selector: 'app-navigation-bar',
@@ -14,7 +15,9 @@ export class NavigationBarComponent implements OnInit, AfterViewInit {
   @Input() public hideOnTop = false;
   @ViewChild('header') header: ElementRef<HTMLElement>;
   public isLoggedIn: boolean;
+  public loggedUser: UserData | null;
   public isCMSUser: boolean;
+  public currentUrl: string;
 
   constructor(private matDialog: MatDialog,
               private userService: UserService,
@@ -23,7 +26,9 @@ export class NavigationBarComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     this.isLoggedIn = this.userService.isLoggedIn();
+    this.loggedUser = this.userService.userData;
     this.isCMSUser = false;
+    this.currentUrl = this.router.url;
   }
 
   ngAfterViewInit() {

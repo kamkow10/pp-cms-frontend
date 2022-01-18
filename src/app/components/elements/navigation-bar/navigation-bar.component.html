@@ -19,11 +19,11 @@
         <div id="main-menu" class="collapse scroll n avbar-right">
           <ul class="nav">
 
-            <li [ngClass]="{'active': true}"><a href="#home">Strona główna</a></li>
+            <li [ngClass]="{'active': currentUrl.includes('home')}" routerLink="/home"><a>Strona główna</a></li>
 
-            <li><a [routerLink]="['/article/2']">Artykuły</a></li>
+            <li [ngClass]="{'active': currentUrl.includes('article')}"><a routerLink="/article/2">Artykuły</a></li>
 
-            <li><a [routerLink]="['/users']">Użytkownicy</a></li>
+            <li [ngClass]="{'active': currentUrl.includes('user')}"><a routerLink="/users">Użytkownicy</a></li>
 
             <li *ngIf="!isLoggedIn" class="login" (click)="openLoginModal()"><a>Zaloguj</a></li>
 
@@ -32,6 +32,13 @@
             <li *ngIf="isCMSUser" class="cms" routerLink="/cms"><a>Panel administratora</a></li>
 
             <li *ngIf="isLoggedIn" class="logout" (click)="logout()"><a>Wyloguj</a></li>
+
+            <li *ngIf="isLoggedIn" class="user-profile" routerLink="/user/{{loggedUser?.id}}">
+              <a>
+                <div class="user-avatar"></div>
+                {{loggedUser?.userName}}
+              </a>
+            </li>
 
           </ul>
         </div><!-- end main-menu -->

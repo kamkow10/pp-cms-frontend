@@ -1,4 +1,10 @@
 #main-menu {
+  a {
+    text-transform: initial;
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+
   .login a {
     color: #bebeff !important;
   }
@@ -10,5 +16,24 @@
   }
   .logout a {
     color: #fcb6b6 !important;
+  }
+
+  .user-profile {
+
+    a {
+      position: relative;
+
+      .user-avatar {
+        background: url("../../../../assets/user-avatar-white.svg") no-repeat;
+        $bg-size: 30px;
+        background-size: $bg-size;
+        width: $bg-size;
+        height: $bg-size;
+        margin-right: 5%;
+        position: absolute;
+        left: 45px;
+        top: 20px;
+      }
+    }
   }
 }
