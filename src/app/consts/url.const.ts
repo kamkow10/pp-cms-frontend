@@ -1,6 +1,7 @@
 export const BACKEND_URL = 'http://localhost:8080/api';
 export const LOGIN_URL = BACKEND_URL + '/user/login';
 export const REGISTER_URL = BACKEND_URL + '/user/register';
+export const LOGOUT_URL = BACKEND_URL + '/user/logout';
 export const FIND_USERS_URL = BACKEND_URL + '/user/find';
 export const GET_USER_BY_ID_URL = BACKEND_URL + '/user/findbyid';
 export const GET_USER_COMMENTS_URL = BACKEND_URL + '/comments/find/user';

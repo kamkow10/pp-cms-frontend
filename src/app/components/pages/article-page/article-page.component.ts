@@ -25,8 +25,7 @@ export class ArticlePageComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.loggedIn = localStorage.getItem('user') != null;
-    console.log(this.loggedIn);
+    this.loggedIn = this.userService.isLoggedIn();
     if (this.loggedIn) {
       this.addCommentForm = this.fb.group({
         newComment: ['', Validators.required]

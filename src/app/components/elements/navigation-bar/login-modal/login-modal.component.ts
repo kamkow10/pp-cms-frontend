@@ -44,9 +44,8 @@ export class LoginModalComponent implements OnInit {
     const loginData = this.getLoginData();
     this.userService.login(loginData).subscribe((userData) => {
       localStorage.setItem('user', JSON.stringify(userData));
+      window.location.href = '#home';
       this.matDialog.closeAll();
-      this.snackBar.open('Udało się zalogować!', 'Zamknij');
-      this.router.navigateByUrl('home');
     }, (error) => {
       if (error.status == 401) {
         this.showMessageBadEmailOrPassword = true;

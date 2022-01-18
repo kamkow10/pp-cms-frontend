@@ -54,7 +54,9 @@ import {BasicAuthInterceptor} from "./interceptors/basic-auth.interceptor";
   ],
   imports: [
     BrowserModule,
-    RouterModule.forRoot(ROUTES),
+    RouterModule.forRoot(ROUTES, {
+      scrollPositionRestoration: 'top'
+    }),
     BrowserAnimationsModule,
     MatSidenavModule,
     MatButtonToggleModule,

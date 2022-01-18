@@ -9,7 +9,7 @@ import {
   GET_USER_BY_ID_URL,
   GET_USER_COMMENTS_URL,
   LOGIN_URL,
-  REGISTER_URL, USER_EDIT_USERNAME_URL, USER_EDIT_PASSWORD_URL
+  REGISTER_URL, USER_EDIT_USERNAME_URL, USER_EDIT_PASSWORD_URL, LOGOUT_URL
 } from "../../consts/url.const";
 import {LoginData} from "../../models/login-data";
 import {RegisterData} from "../../models/register-data";
@@ -33,6 +33,10 @@ export class RestService {
 
   public register(registerData: RegisterData): Observable<UserData> {
     return this.httpClient.post<UserData>(REGISTER_URL, registerData);
+  }
+
+  public logout(): Observable<any> {
+    return this.httpClient.post(LOGOUT_URL, {});
   }
 
   public findUsers(usernameQuery: string): Observable<UserData[]> {

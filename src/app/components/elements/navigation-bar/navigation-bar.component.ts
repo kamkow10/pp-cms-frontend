@@ -2,6 +2,8 @@ import {AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild} from '@a
 import {MatDialog} from "@angular/material/dialog";
 import {LoginModalComponent} from "./login-modal/login-modal.component";
 import {RegisterModalComponent} from "./register-modal/register-modal.component";
+import {UserService} from "../../../services/user/user.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-navigation-bar',
@@ -11,11 +13,17 @@ import {RegisterModalComponent} from "./register-modal/register-modal.component"
 export class NavigationBarComponent implements OnInit, AfterViewInit {
   @Input() public hideOnTop = false;
   @ViewChild('header') header: ElementRef<HTMLElement>;
+  public isLoggedIn: boolean;
+  public isCMSUser: boolean;
 
-  constructor(private matDialog: MatDialog) {
+  constructor(private matDialog: MatDialog,
+              private userService: UserService,
+              private router: Router) {
   }
 
   ngOnInit(): void {
+    this.isLoggedIn = this.userService.isLoggedIn();
+    this.isCMSUser = false;
   }
 
   ngAfterViewInit() {
@@ -30,6 +38,16 @@ export class NavigationBarComponent implements OnInit, AfterViewInit {
 
   public openRegisterModal(): void {
     this.matDialog.open(RegisterModalComponent, {width: '30%'});
+  }
+
+  public logout(): void {
+    this.userService.logout().subscribe(() => {
+      this.userService.userData = null;
+      localStorage.clear();
+      window.location.href = '#home';
+    }, (error) => {
+      console.log(error);
+    });
   }
 
 }

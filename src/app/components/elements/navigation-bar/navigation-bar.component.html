@@ -19,16 +19,19 @@
         <div id="main-menu" class="collapse scroll n avbar-right">
           <ul class="nav">
 
-            <li class="active"><a href="#home">Strona główna</a></li>
+            <li [ngClass]="{'active': true}"><a href="#home">Strona główna</a></li>
 
             <li><a [routerLink]="['/article/2']">Artykuły</a></li>
 
             <li><a [routerLink]="['/users']">Użytkownicy</a></li>
 
-            <li (click)="openLoginModal()"><a>Zaloguj</a></li>
+            <li *ngIf="!isLoggedIn" class="login" (click)="openLoginModal()"><a>Zaloguj</a></li>
 
-            <li (click)="openRegisterModal()"><a>Zarejestruj</a></li>
+            <li *ngIf="!isLoggedIn" class="register" (click)="openRegisterModal()"><a>Zarejestruj</a></li>
 
+            <li *ngIf="isCMSUser" class="cms" routerLink="/cms"><a>Panel administratora</a></li>
+
+            <li *ngIf="isLoggedIn" class="logout" (click)="logout()"><a>Wyloguj</a></li>
 
           </ul>
         </div><!-- end main-menu -->

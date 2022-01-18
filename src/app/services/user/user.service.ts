@@ -10,11 +10,10 @@ import {RestResponse} from "../../models/rest-response";
   providedIn: 'root'
 })
 export class UserService {
-  public userData: UserData = new UserData();
+  public userData: UserData | null;
 
   constructor(private restService: RestService) {
     this.userData = JSON.parse(<string>localStorage.getItem('user'));
-    console.log(this.userData);
   }
 
   public login(loginData: LoginData): Observable<UserData> {
@@ -23,6 +22,10 @@ export class UserService {
 
   public register(registerData: RegisterData): Observable<RestResponse> {
     return this.restService.register(registerData);
+  }
+
+  public logout(): Observable<any> {
+    return this.restService.logout();
   }
 
   public editEmail(newMail: string): Observable<RestResponse> {
@@ -35,5 +38,9 @@ export class UserService {
 
   public editUsername(newUsername: string): Observable<RestResponse> {
     return this.restService.editUserUsername(newUsername);
+  }
+
+  public isLoggedIn(): boolean {
+    return localStorage.getItem('user') != null;
   }
 }
