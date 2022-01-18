@@ -33,7 +33,7 @@
             <h3>{{article.comments.length}} Komentarzy</h3>
             <div class="comment-list">
               <div class="comment-element" *ngFor="let comment of article.comments">
-                <app-comment [comment]="comment"></app-comment>
+                <app-comment [comment]="comment" (commentChanged)="ngOnInit()"></app-comment>
               </div>
             </div>
           </div>

@@ -1,0 +1,10 @@
+<h2 mat-dialog-title>Czy chcesz usunąć ten komentarz?</h2>
+<mat-dialog-content class="mat-typography modal-form">
+  <app-alert *ngIf="showMessageServerError" text="Wystąpił nieoczekiwany błąd" alertType="error"></app-alert>
+  <p>
+    <mat-dialog-actions align="end">
+      <button mat-button mat-dialog-close>Nie</button>
+      <button (click)="deleteComment()" mat-flat-button color="warn">Tak</button>
+    </mat-dialog-actions>
+  </p>
+</mat-dialog-content>

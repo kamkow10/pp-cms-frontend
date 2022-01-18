@@ -24,4 +24,12 @@ export class ArticleService {
   public addComment(articleId: number, comment: string): Observable<RestResponse> {
     return this.restService.addComment(articleId, comment);
   }
+
+  public editComment(commentId: number, content: string): Observable<RestResponse> {
+    return this.restService.editComment(commentId, content);
+  }
+
+  public deleteComment(commentId: number): Observable<RestResponse> {
+    return this.restService.deleteComment(commentId);
+  }
 }

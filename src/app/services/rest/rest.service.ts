@@ -9,7 +9,7 @@ import {
   GET_USER_BY_ID_URL,
   GET_USER_COMMENTS_URL,
   LOGIN_URL,
-  REGISTER_URL, USER_EDIT_USERNAME_URL, USER_EDIT_PASSWORD_URL, LOGOUT_URL
+  REGISTER_URL, USER_EDIT_USERNAME_URL, USER_EDIT_PASSWORD_URL, LOGOUT_URL, EDIT_COMMENT_URL, DELETE_COMMENT_URL
 } from "../../consts/url.const";
 import {LoginData} from "../../models/login-data";
 import {RegisterData} from "../../models/register-data";
@@ -60,10 +60,15 @@ export class RestService {
   }
 
   public addComment(articleId: number, content: string): Observable<RestResponse> {
-    return this.httpClient.post<RestResponse>(ADD_COMMENT_URL, {
-      articleId: articleId,
-      content: content
-    });
+    return this.httpClient.post<RestResponse>(ADD_COMMENT_URL, {articleId, content});
+  }
+
+  public editComment(commentId: number, content: string): Observable<RestResponse> {
+    return this.httpClient.put<RestResponse>(EDIT_COMMENT_URL, {commentId, content});
+  }
+
+  public deleteComment(commentId: number): Observable<RestResponse> {
+    return this.httpClient.delete<RestResponse>(DELETE_COMMENT_URL + `/${commentId}`);
   }
 
   public editUserMail(newMail: string): Observable<RestResponse> {

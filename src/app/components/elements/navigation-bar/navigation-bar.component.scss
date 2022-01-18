@@ -3,6 +3,7 @@
     text-transform: initial;
     padding-left: 1rem !important;
     padding-right: 1rem !important;
+    cursor: pointer;
   }
 
   .login a {
@@ -31,7 +32,7 @@
         height: $bg-size;
         margin-right: 5%;
         position: absolute;
-        left: 45px;
+        right: -30px;
         top: 20px;
       }
     }

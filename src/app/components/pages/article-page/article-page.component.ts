@@ -49,6 +49,7 @@ export class ArticlePageComponent implements OnInit {
         this.showMessageServerError = true;
       } else {
         this.ngOnInit();
+        this.submitted = false;
       }
     }, () => {});
   }

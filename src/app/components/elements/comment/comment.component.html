@@ -3,15 +3,29 @@
   <div class="comment-content-container">
     <div class="main-info-container">
       <div class="username">{{comment.user.userName}}</div>
-      <a href="#" *ngIf="showArticleTitle" class="article-link">{{article.title}}</a>
-      <div class="manage-comment-options">
-        <button mat-stroked-button color="primary">Edytuj</button>
-        <button mat-stroked-button color="warn">Usuń</button>
+      <a href="#" *ngIf="showArticleTitle" class="article-link">{{article?.title}}</a>
+      <div *ngIf="isLoggedUserComment" class="manage-comment-options">
+        <button (click)="enterEditMode()" mat-stroked-button color="primary">Edytuj</button>
+        <button (click)="openDeleteCommentDialog()" mat-stroked-button color="warn">Usuń</button>
       </div>
     </div>
     <div class="publish-date">{{comment.date}}</div>
-    <div class="comment-content">
-      {{comment.content}}
+    <div class="comment-form">
+      <form *ngIf="isEditModeOn else commentContent" [formGroup]="editCommentForm" (ngSubmit)="editComment()">
+        <div>
+          <textarea formControlName="newCommentContent" class="form-control" rows="7"></textarea>
+          <mat-error *ngIf="newCommentContent?.errors?.required && editModeSubmitted">
+            Pole jest wymagane
+          </mat-error>
+        </div>
+        <div class="col-md-12 text-right">
+          <button type="submit" class="btn btn-gray-border">Edytuj komentarz</button>
+        </div>
+      </form>
+      <ng-template #commentContent>{{comment.content}}</ng-template>
+    </div>
+    <div class="alert-container" *ngIf="showMessageServerError">
+      <app-alert text="Wystąpił nieoczekiwany błąd" alertType="error"></app-alert>
     </div>
   </div>
 </div>

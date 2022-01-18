@@ -3,18 +3,18 @@
   <div class="user-profile-container">
     <div class="user-avatar"></div>
     <div class="user-info-container">
-      <div class="username">{{user.userName}}</div>
-      <div class="email">{{user.userMail}}</div>
-      <div class="comments-count">Komentarze: {{user.commentsCount}}</div>
+      <div class="username">{{user?.userName}}</div>
+      <div class="email">{{user?.userMail}}</div>
+      <div class="comments-count">Komentarze: {{user?.commentsCount}}</div>
     </div>
-    <div class="settings-button-container">
+    <div *ngIf="isLoggedUserProfile" class="settings-button-container">
       <button (click)="openUserSettingsModal()" mat-stroked-button>Ustawienia</button>
     </div>
   </div>
   <h2 class="bottom-border">Komentarze użytkownika</h2>
   <div class="user-comment-list">
     <div class="comment-element" *ngFor="let comment of comments">
-      <app-comment [comment]="comment" [showArticleTitle]="true"></app-comment>
+      <app-comment [comment]="comment" (commentChanged)="ngOnInit()" [showArticleTitle]="true"></app-comment>
     </div>
   </div>
 </div>

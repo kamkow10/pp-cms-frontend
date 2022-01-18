@@ -31,6 +31,7 @@ import { UserProfilePageComponent } from './components/pages/user-profile-page/u
 import { CommentComponent } from './components/elements/comment/comment.component';
 import { UserSettingsModalComponent } from './components/pages/user-profile-page/user-settings-modal/user-settings-modal.component';
 import {BasicAuthInterceptor} from "./interceptors/basic-auth.interceptor";
+import { DeleteCommentDialogComponent } from './components/elements/comment/delete-comment-dialog/delete-comment-dialog.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import {BasicAuthInterceptor} from "./interceptors/basic-auth.interceptor";
     UserProfilePageComponent,
     CommentComponent,
     UserSettingsModalComponent,
+    DeleteCommentDialogComponent,
   ],
   imports: [
     BrowserModule,
