@@ -17,6 +17,7 @@ export class ArticlePageComponent implements OnInit {
   public submitted = false;
   public loggedIn: boolean;
   public showMessageServerError = false;
+  public topArticles: Article[];
 
   constructor(private route: ActivatedRoute,
               private articleService: ArticleService,
@@ -36,6 +37,9 @@ export class ArticlePageComponent implements OnInit {
     const articleId = this.route.snapshot.params.id;
     this.articleService.getArticleById(articleId).subscribe((article) => {
       this.article = article;
+    }, () => {});
+    this.articleService.getTopArticles('polish', 3).subscribe(topArticles => {
+      this.topArticles = topArticles;
     }, () => {});
   }
 

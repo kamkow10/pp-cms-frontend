@@ -47,7 +47,7 @@ export class ArticleListPageComponent implements OnInit {
       return;
     }
     let selectedTagNames = this.isAnyTagSelected ? this.selectedTags.map(tag => tag.name) : [];
-    this.articleService.searchArticles(this.articleName?.value, selectedTagNames).subscribe(articles => {
+    this.articleService.searchArticles('polish', this.articleName?.value, selectedTagNames).subscribe(articles => {
       this.foundedArticles = articles;
       this.submitted = false;
     }, () => {});

@@ -77,10 +77,10 @@ export class RestService {
     return this.httpClient.get<Article[]>(GET_TOP_ARTICLE_URL + `/${languageName}/${articlesCount}`);
   }
 
-  public searchArticles(query: string, tagNames: string[]): Observable<Article[]> {
+  public searchArticles(languageName: string, query: string, tagNames: string[]): Observable<Article[]> {
     let requestBody: {name: string}[] = [];
     tagNames.forEach(tagName => requestBody.push({name: tagName}));
-    return this.httpClient.post<Article[]>(SEARCH_ARTICLES_URL + `/${query}`, requestBody);
+    return this.httpClient.post<Article[]>(SEARCH_ARTICLES_URL + `/${languageName}/contains/${query}`, requestBody);
   }
 
   public getArticleById(articleId: number): Observable<Article> {

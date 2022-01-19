@@ -81,20 +81,12 @@
         <!--Start popular Post -->
         <div class="widget-main">
           <h4>Popularne</h4>
-          <div class="sidebar-widget clearfix">
-            <a href="#"><img src="images/blog/blog1.jpg" alt=""></a>
-            <p class="sidebar-widget-title"><a href="#">Lorem ipsum dolor sit amet, consectetur adipiscing elit.  </a></p>
-            <p class="date">8 March, 2014</p>
-          </div>
-          <div class="sidebar-widget clearfix">
-            <a href="#"><img src="images/blog/blog2.jpg" alt=""></a>
-            <p class="sidebar-widget-title"><a href="#">Lorem ipsum dolor sit amet, consectetur adipiscing elit. </a></p>
-            <p class="date">6 Apr, 2014</p>
-          </div>
-          <div class="sidebar-widget clearfix">
-            <a href="#"><img src="images/blog/blog3.jpg" alt=""></a>
-            <p class="sidebar-widget-title"><a href="#">Lorem ipsum dolor sit amet, consectetur adipiscing elit. </a></p>
-            <p class="date">22 May, 2014</p>
+          <div *ngFor="let article of topArticles" class="sidebar-widget clearfix">
+            <a href="/article/{{article.id}}"><img src="images/blog/blog1.jpg" alt=""></a>
+            <p class="sidebar-widget-title"><a href="/article/{{article.id}}">
+              {{article.title}}
+            </a></p>
+            <p class="date">{{article.date}}</p>
           </div>
         </div>
         <!-- / popular Post -->

@@ -21,8 +21,8 @@ export class ArticleService {
     return this.restService.getTopArticles(languageName, articlesCount);
   }
 
-  public searchArticles(query: string, tagNames: string[]): Observable<Article[]> {
-    return this.restService.searchArticles(query, tagNames);
+  public searchArticles(languageName: string, query: string, tagNames: string[]): Observable<Article[]> {
+    return this.restService.searchArticles(languageName, query, tagNames);
   }
 
   public getArticleById(articleId: number): Observable<Article> {
