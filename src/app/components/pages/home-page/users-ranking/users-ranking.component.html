@@ -10,49 +10,13 @@
         <table class="users-table">
           <thead>
           <tr>
-            <th>Użytkownik</th>
-            <th>Wynik</th>
+            <th>Nazwa użytkownika</th>
+            <th>Ilość komentarzy</th>
           </tr>
           </thead>
-          <tr>
-            <td>User</td>
-            <td>1000</td>
-          </tr>
-          <tr>
-            <td>User</td>
-            <td>1000</td>
-          </tr>
-          <tr>
-            <td>User</td>
-            <td>1000</td>
-          </tr>
-          <tr>
-            <td>User</td>
-            <td>1000</td>
-          </tr>
-          <tr>
-            <td>User</td>
-            <td>1000</td>
-          </tr>
-          <tr>
-            <td>User</td>
-            <td>1000</td>
-          </tr>
-          <tr>
-            <td>User</td>
-            <td>1000</td>
-          </tr>
-          <tr>
-            <td>User</td>
-            <td>1000</td>
-          </tr>
-          <tr>
-            <td>User</td>
-            <td>1000</td>
-          </tr>
-          <tr>
-            <td>User</td>
-            <td>1000</td>
+          <tr *ngFor="let user of topUsers">
+            <td>{{user.userName}}</td>
+            <td>{{user.commentCount}}</td>
           </tr>
         </table>
       </div>

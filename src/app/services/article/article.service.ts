@@ -1,9 +1,9 @@
 import {Injectable} from '@angular/core';
 import {RestService} from "../rest/rest.service";
 import {Observable} from "rxjs";
-import {CommentData} from "../../models/comment-data";
 import {Article} from "../../models/article";
 import {RestResponse} from "../../models/rest-response";
+import {GET_TOP_ARTICLE_URL} from "../../consts/url.const";
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +11,18 @@ import {RestResponse} from "../../models/rest-response";
 export class ArticleService {
 
   constructor(private restService: RestService) {
+  }
+
+  public getArticles(languageName: string): Observable<Article[]> {
+    return this.restService.getArticles(languageName);
+  }
+
+  public getTopArticles(languageName: string, articlesCount: number): Observable<Article[]> {
+    return this.restService.getTopArticles(languageName, articlesCount);
+  }
+
+  public searchArticles(query: string, tagNames: string[]): Observable<Article[]> {
+    return this.restService.searchArticles(query, tagNames);
   }
 
   public getArticleById(articleId: number): Observable<Article> {

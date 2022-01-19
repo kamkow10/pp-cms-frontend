@@ -1,0 +1,72 @@
+@import "src/css/colors";
+
+.article-search-form {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
+
+  .article-search-input-container {
+    margin-right: 1rem;
+    width: 300px;
+
+    .article-search-input {
+    }
+    .article-search-input-error {
+      position: absolute;
+    }
+  }
+
+  .article-search-button-container {
+    button {
+      height: 52px;
+      width: 200px;
+    }
+  }
+  .select-tags {
+    display: flex;
+
+    .tag {
+      background: #7EC13F;
+      color: #FFF;
+      border: 1px solid #ccc;
+      padding: 0.5rem;
+      position: relative;
+      margin-right: 1.5rem;
+
+      &:hover .delete-tag-icon {
+        position: absolute;
+        top: -9px;
+        right: -9px;
+        background: url("../../../../assets/close-button.svg");
+        $bg-size: 18px;
+        background-size: $bg-size;
+        width: $bg-size;
+        height: $bg-size;
+
+        &:hover {
+          cursor: pointer;
+        }
+      }
+    }
+
+    &-button {
+      font-size: 1.5rem;
+      min-width: 0;
+    }
+  }
+}
+
+.article-list {
+  padding: 1rem;
+
+  .article-list-row {
+    font-size: 1.5rem !important;
+    padding: 1rem;
+    border-bottom: 1px solid $line-separator;
+    display: flex;
+
+    .post-media img {
+      height: 200px;
+    }
+  }
+}

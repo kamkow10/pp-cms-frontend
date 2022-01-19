@@ -1,6 +1,7 @@
 import {UserData} from "./user-data";
 import {RestResponse} from "./rest-response";
 import {CommentData} from "./comment-data";
+import {Tag} from "./tag";
 
 export class Article extends RestResponse {
   id: number;
@@ -14,5 +15,5 @@ export class Article extends RestResponse {
   comments: CommentData[];
   date: string;
   language: any;
-  articleTags: any;
+  articleTags: Tag[];
 }

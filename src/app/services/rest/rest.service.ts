@@ -5,17 +5,27 @@ import {UserData} from "../../models/user-data";
 import {
   ADD_COMMENT_URL,
   USER_EDIT_EMAIL_URL,
-  FIND_USERS_URL, GET_ARTICLE_BY_COMMENT_ID_URL, GET_ARTICLE_BY_ID_URL,
+  FIND_USERS_URL,
+  GET_ARTICLE_BY_COMMENT_ID_URL,
+  GET_ARTICLE_BY_ID_URL,
   GET_USER_BY_ID_URL,
   GET_USER_COMMENTS_URL,
   LOGIN_URL,
-  REGISTER_URL, USER_EDIT_USERNAME_URL, USER_EDIT_PASSWORD_URL, LOGOUT_URL, EDIT_COMMENT_URL, DELETE_COMMENT_URL
+  REGISTER_URL,
+  USER_EDIT_USERNAME_URL,
+  USER_EDIT_PASSWORD_URL,
+  LOGOUT_URL,
+  EDIT_COMMENT_URL,
+  DELETE_COMMENT_URL,
+  GET_ARTICLE_URL, GET_USERS_URL, GET_TOP_ARTICLE_URL, GET_TOP_USERS_URL, GET_TAGS_URL, SEARCH_ARTICLES_URL
 } from "../../consts/url.const";
 import {LoginData} from "../../models/login-data";
 import {RegisterData} from "../../models/register-data";
 import {CommentData} from "../../models/comment-data";
 import {Article} from "../../models/article";
 import {RestResponse} from "../../models/rest-response";
+import {UserScore} from "../../models/user-score";
+import {Tag} from "../../models/tag";
 
 @Injectable({
   providedIn: 'root'
@@ -47,8 +57,30 @@ export class RestService {
     return this.httpClient.get<UserData>(GET_USER_BY_ID_URL + `/${id}`);
   }
 
+  public getUsers(): Observable<UserData[]> {
+    return this.httpClient.get<UserData[]>(GET_USERS_URL);
+  }
+
+  public getTopUsers(count: number): Observable<UserScore[]> {
+    return this.httpClient.get<UserScore[]>(GET_TOP_USERS_URL + `/${count}`);
+  }
+
   public getUserComments(userId: number): Observable<CommentData[]> {
     return this.httpClient.get<CommentData[]>(GET_USER_COMMENTS_URL + `/${userId}`);
+  }
+
+  public getArticles(languageName: string): Observable<Article[]> {
+    return this.httpClient.get<Article[]>(GET_ARTICLE_URL + `/${languageName}`);
+  }
+
+  public getTopArticles(languageName: string, articlesCount: number): Observable<Article[]> {
+    return this.httpClient.get<Article[]>(GET_TOP_ARTICLE_URL + `/${languageName}/${articlesCount}`);
+  }
+
+  public searchArticles(query: string, tagNames: string[]): Observable<Article[]> {
+    let requestBody: {name: string}[] = [];
+    tagNames.forEach(tagName => requestBody.push({name: tagName}));
+    return this.httpClient.post<Article[]>(SEARCH_ARTICLES_URL + `/${query}`, requestBody);
   }
 
   public getArticleById(articleId: number): Observable<Article> {
@@ -82,4 +114,9 @@ export class RestService {
   public editUserUsername(userName: string): Observable<RestResponse> {
     return this.httpClient.put<RestResponse>(USER_EDIT_USERNAME_URL, {userName});
   }
+
+  public getTags(languageName: string): Observable<Tag[]> {
+    return this.httpClient.get<Tag[]>(GET_TAGS_URL + `/${languageName}`);
+  }
+
 }

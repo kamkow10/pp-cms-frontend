@@ -1,6 +1,6 @@
 <app-navigation-bar [hideOnTop]="true"></app-navigation-bar>
-<app-slider></app-slider>
-<app-popular-articles></app-popular-articles>
-<app-facts></app-facts>
+<app-slider [latestArticles]="articles"></app-slider>
+<app-popular-articles [topArticles]="topArticles"></app-popular-articles>
+<app-facts [users]="users" [articles]="articles"></app-facts>
 <app-users-ranking></app-users-ranking>
 

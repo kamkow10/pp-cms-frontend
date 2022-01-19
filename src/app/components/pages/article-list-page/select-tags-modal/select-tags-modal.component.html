@@ -1,0 +1,12 @@
+<h2 mat-dialog-title>Wybierz tagi</h2>
+<mat-dialog-content class="mat-typography modal-form">
+  <p *ngFor="let tag of tags; let i = index">
+    <mat-checkbox [(ngModel)]="isTagSelected[i]">{{tag.name}}</mat-checkbox>
+  </p>
+  <p>
+    <mat-dialog-actions align="end">
+      <button mat-button mat-dialog-close>Anuluj</button>
+      <button (click)="selectTags()" mat-flat-button color="primary">Wybierz</button>
+    </mat-dialog-actions>
+  </p>
+</mat-dialog-content>

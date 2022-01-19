@@ -1,4 +1,5 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {Article} from "../../../../models/article";
 
 @Component({
   selector: 'app-popular-articles',
@@ -6,6 +7,7 @@ import {Component, OnInit} from '@angular/core';
   styleUrls: ['./popular-articles.component.scss']
 })
 export class PopularArticlesComponent implements OnInit {
+  @Input() public topArticles: Article[];
 
   constructor() {
   }

@@ -23,7 +23,7 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {MatSnackBarModule} from "@angular/material/snack-bar";
 import {AlertComponent} from './components/elements/alert/alert.component';
 import {RegisterModalComponent} from './components/elements/navigation-bar/register-modal/register-modal.component';
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { ArticlePageComponent } from './components/pages/article-page/article-page.component';
 import { ArticleListPageComponent } from './components/pages/article-list-page/article-list-page.component';
 import { UserListPageComponent } from './components/pages/user-list-page/user-list-page.component';
@@ -32,6 +32,8 @@ import { CommentComponent } from './components/elements/comment/comment.componen
 import { UserSettingsModalComponent } from './components/pages/user-profile-page/user-settings-modal/user-settings-modal.component';
 import {BasicAuthInterceptor} from "./interceptors/basic-auth.interceptor";
 import { DeleteCommentDialogComponent } from './components/elements/comment/delete-comment-dialog/delete-comment-dialog.component';
+import { SelectTagsModalComponent } from './components/pages/article-list-page/select-tags-modal/select-tags-modal.component';
+import {MatCheckboxModule} from "@angular/material/checkbox";
 
 @NgModule({
   declarations: [
@@ -53,6 +55,7 @@ import { DeleteCommentDialogComponent } from './components/elements/comment/dele
     CommentComponent,
     UserSettingsModalComponent,
     DeleteCommentDialogComponent,
+    SelectTagsModalComponent,
   ],
   imports: [
     BrowserModule,
@@ -68,7 +71,9 @@ import { DeleteCommentDialogComponent } from './components/elements/comment/dele
     MatButtonModule,
     MatSnackBarModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatCheckboxModule,
+    FormsModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: BasicAuthInterceptor, multi: true }

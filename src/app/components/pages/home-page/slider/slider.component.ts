@@ -1,4 +1,5 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {Article} from "../../../../models/article";
 
 @Component({
   selector: 'app-slider',
@@ -6,6 +7,7 @@ import {Component, OnInit} from '@angular/core';
   styleUrls: ['./slider.component.scss']
 })
 export class SliderComponent implements OnInit {
+  @Input() public latestArticles: Article[] = [];
 
   constructor() {
   }

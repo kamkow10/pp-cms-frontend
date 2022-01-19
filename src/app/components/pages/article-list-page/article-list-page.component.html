@@ -1,1 +1,41 @@
-<p>article-list-page works!</p>
+<app-navigation-bar></app-navigation-bar>
+<div class="page-content-container">
+  <form class="article-search-form" [formGroup]="articleSearchForm" (ngSubmit)="searchArticles()">
+    <div>
+      <mat-form-field class="article-search-input-container" appearance="fill">
+        <mat-label>Tytuł artykułu</mat-label>
+        <input class="article-search-input" formControlName="articleName" autocomplete="off" matInput>
+      </mat-form-field>
+      <mat-error class="article-search-input-error" *ngIf="articleName?.errors?.required && submitted && !isAnyTagSelected">
+        Pole jest wymagane
+      </mat-error>
+      <div class="select-tags">
+        <div class="tag" *ngFor="let tag of selectedTags">
+          <span>{{tag.name}}</span>
+          <div (click)="deleteSelectedTag(tag.id)" class="delete-tag-icon"></div>
+        </div>
+        <button type="button" (click)="openSelectTagsModal()" mat-raised-button class="select-tags-button">+</button>
+      </div>
+    </div>
+    <div class="article-search-button-container">
+      <button type="submit" mat-flat-button color="primary">Szukaj</button>
+    </div>
+  </form>
+  <div class="article-list">
+    <h2 class="bottom-border">Artykuły</h2>
+    <div class="article-list-row blog-post" *ngFor="let article of foundedArticles">
+      <div class="post-media">
+        <img src="../../../../../images/blog/blog3.jpg" alt="">
+      </div>
+      <div class="post-desc">
+        <h4>{{article.title}}</h4>
+        <h5>{{article.date}} {{article.comments.length}} Comments</h5>
+        <!--            <p>Wstęp do artykułu. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore,-->
+        <!--              dolorum, fugiat,-->
+        <!--              eligendi magni-->
+        <!--              quibusdam iure cupiditate ex voluptas unde</p>-->
+        <a routerLink="/article/{{article.id}}" class="btn btn-gray-border">CZYTAJ DALEJ</a>
+      </div>
+    </div>
+  </div>
+</div>
