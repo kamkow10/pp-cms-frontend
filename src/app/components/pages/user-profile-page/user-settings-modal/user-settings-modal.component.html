@@ -36,7 +36,7 @@
   </form>
 
   <form [formGroup]="changeUsernameForm" (ngSubmit)="changeUsername()">
-    <h2></h2>
+    <h2>{{'header.change-username' | translate}}</h2>
     <app-alert *ngIf="changeUsernameFormServerError" text="{{'message.unidentified-error' | translate}}" alertType="error"></app-alert>
     <app-alert *ngIf="changeUsernameFormSucceed" text="{{'message.username-change-success' | translate}}" alertType="success"></app-alert>
     <app-alert *ngIf="changeUsernameFormUsernameInUse" text="{{'message.username-in-use' | translate}}" alertType="error"></app-alert>
@@ -57,7 +57,7 @@
   </form>
 
   <form [formGroup]="changePasswordForm" (ngSubmit)="changePassword()">
-    <h2>Zmiana hasła</h2>
+    <h2>{{'header.change-password' | translate}}</h2>
     <app-alert *ngIf="changePasswordFormServerError" text="{{'message.unidentified-error' | translate}}" alertType="error"></app-alert>
     <app-alert *ngIf="changePasswordFormWrongOldPassword" text="{{'message.wrong-old-password' | translate}}" alertType="error"></app-alert>
     <app-alert *ngIf="changePasswordFormSucceed" text="{{'message.password-change-success' | translate}}" alertType="success"></app-alert>
