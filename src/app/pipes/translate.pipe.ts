@@ -14,7 +14,7 @@ export class TranslatePipe implements PipeTransform {
     if (foundedTranslation) {
       return foundedTranslation.alertName;
     } else {
-      return '';
+      return alertCode;
     }
   }
 
