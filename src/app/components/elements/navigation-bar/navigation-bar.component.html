@@ -19,19 +19,24 @@
         <div id="main-menu" class="collapse scroll n avbar-right">
           <ul class="nav">
 
-            <li [ngClass]="{'active': currentUrl.includes('home')}" routerLink="/home"><a>Strona główna</a></li>
+            <li [ngClass]="{'active': currentUrl.includes('home')}" routerLink="/home"><a>{{'navbar.home-page' | translate}}</a></li>
 
-            <li [ngClass]="{'active': currentUrl.includes('article')}"><a routerLink="/articles">Artykuły</a></li>
+            <li [ngClass]="{'active': currentUrl.includes('article')}"><a routerLink="/articles">{{'navbar.articles' | translate}}</a></li>
 
-            <li [ngClass]="{'active': currentUrl.includes('user')}"><a routerLink="/users">Użytkownicy</a></li>
+            <li [ngClass]="{'active': currentUrl.includes('user')}"><a routerLink="/users">{{'navbar.users' | translate}}</a></li>
 
-            <li *ngIf="!isLoggedIn" class="login" (click)="openLoginModal()"><a>Zaloguj</a></li>
+            <li *ngIf="!isLoggedIn" class="login" (click)="openLoginModal()"><a>{{'navbar.login' | translate}}</a></li>
 
-            <li *ngIf="!isLoggedIn" class="register" (click)="openRegisterModal()"><a>Zarejestruj</a></li>
+            <li *ngIf="!isLoggedIn" class="register" (click)="openRegisterModal()"><a>{{'navbar.register' | translate}}</a></li>
 
-            <li *ngIf="isCMSUser" class="cms" routerLink="/cms"><a>Panel administratora</a></li>
+            <li *ngIf="isCMSUser" class="cms" routerLink="/cms"><a>{{'navbar.cms' | translate}}</a></li>
 
-            <li *ngIf="isLoggedIn" class="logout" (click)="logout()"><a>Wyloguj</a></li>
+            <li *ngIf="isLoggedIn" class="logout" (click)="logout()"><a>{{'navbar.logout' | translate}}</a></li>
+
+            <li [matMenuTriggerFor]="langMenu"><a>{{'navbar.language' | translate}}</a></li>
+            <mat-menu #langMenu="matMenu">
+              <button mat-menu-item *ngFor="let lang of langs" (click)="setLanguage(lang.name)">{{lang.name | uppercase}}</button>
+            </mat-menu>
 
             <li *ngIf="isLoggedIn" class="user-profile" routerLink="/user/{{loggedUser?.id}}">
               <a>
@@ -41,7 +46,7 @@
             </li>
 
           </ul>
-        </div><!-- end main-menu -->
+        </div><!-- end main-langMenu -->
       </div>
     </div>
   </div>

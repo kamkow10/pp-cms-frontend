@@ -1,34 +1,34 @@
-<h2 mat-dialog-title>Logowanie</h2>
+<h2 mat-dialog-title>{{'modal.login.title' | translate}}</h2>
 <mat-dialog-content class="mat-typography modal-form">
-  <app-alert *ngIf="showMessageServerError" text="Wystąpił nieoczekiwany błąd" alertType="error"></app-alert>
-  <app-alert *ngIf="showMessageBadEmailOrPassword" text="Email lub hasło nieprawidłowe" alertType="error"></app-alert>
+  <app-alert *ngIf="showMessageServerError" text="{{'message.unidentified-error' | translate}}" alertType="error"></app-alert>
+  <app-alert *ngIf="showMessageBadEmailOrPassword" text="{{'message.wrong-login-data' | translate}}" alertType="error"></app-alert>
   <form [formGroup]="loginForm" (ngSubmit)="login()">
     <p>
       <mat-form-field class="full-width" appearance="fill">
-        <mat-label>Email</mat-label>
+        <mat-label>{{'label.email' | translate}}</mat-label>
         <input formControlName="email" autocomplete="off" matInput>
       </mat-form-field>
       <mat-error *ngIf="email?.errors?.required && submitted">
-        Pole jest wymagane
+        {{'validation.required' | translate}}
       </mat-error>
       <mat-error
         *ngIf="!email?.errors?.required && email?.errors?.email && submitted">
-        Nieprawidłowy email
+        {{'validation.email' | translate}}
       </mat-error>
     </p>
     <p>
       <mat-form-field class="full-width" appearance="fill">
-        <mat-label>Hasło</mat-label>
+        <mat-label>{{'label.password' | translate}}</mat-label>
         <input formControlName="password" [type]="'password'" autocomplete="off" matInput>
       </mat-form-field>
       <mat-error *ngIf="password?.errors?.required && submitted">
-        Pole jest wymagane
+        {{'validation.required' | translate}}
       </mat-error>
     </p>
     <p>
       <mat-dialog-actions align="end">
-        <button mat-button mat-dialog-close>Anuluj</button>
-        <button type="submit" mat-flat-button color="primary">Zaloguj</button>
+        <button mat-button mat-dialog-close>{{'button.cancel' | translate}}</button>
+        <button type="submit" mat-flat-button color="primary">{{'button.login' | translate}}</button>
       </mat-dialog-actions>
     </p>
   </form>

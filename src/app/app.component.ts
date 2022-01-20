@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
+import {TranslationService} from "./services/translation/translation.service";
 
 @Component({
   selector: 'app-root',
@@ -8,9 +9,10 @@ import {Router} from "@angular/router";
 })
 export class AppComponent implements OnInit {
 
-  constructor(private router: Router) {
+  constructor(private translationService: TranslationService) {
+    this.translationService.initTranslations();
   }
 
-  ngOnInit() {
+  async ngOnInit() {
   }
 }

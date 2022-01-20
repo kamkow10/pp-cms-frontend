@@ -1,10 +1,10 @@
-<h2 mat-dialog-title>Czy chcesz usunąć ten komentarz?</h2>
+<h2 mat-dialog-title>{{'modal.delete-comment-dialog.title' | translate}}</h2>
 <mat-dialog-content class="mat-typography modal-form">
-  <app-alert *ngIf="showMessageServerError" text="Wystąpił nieoczekiwany błąd" alertType="error"></app-alert>
+  <app-alert *ngIf="showMessageServerError" text="{{'message.unidentified-error' | translate}}" alertType="error"></app-alert>
   <p>
     <mat-dialog-actions align="end">
-      <button mat-button mat-dialog-close>Nie</button>
-      <button (click)="deleteComment()" mat-flat-button color="warn">Tak</button>
+      <button mat-button mat-dialog-close>{{'button.no' | translate}}</button>
+      <button (click)="deleteComment()" mat-flat-button color="warn">{{'button.yes' | translate}}</button>
     </mat-dialog-actions>
   </p>
 </mat-dialog-content>

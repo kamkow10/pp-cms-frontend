@@ -34,6 +34,8 @@ import {BasicAuthInterceptor} from "./interceptors/basic-auth.interceptor";
 import { DeleteCommentDialogComponent } from './components/elements/comment/delete-comment-dialog/delete-comment-dialog.component';
 import { SelectTagsModalComponent } from './components/pages/article-list-page/select-tags-modal/select-tags-modal.component';
 import {MatCheckboxModule} from "@angular/material/checkbox";
+import { TranslatePipe } from './pipes/translate.pipe';
+import {MatMenuModule} from "@angular/material/menu";
 
 @NgModule({
   declarations: [
@@ -56,25 +58,27 @@ import {MatCheckboxModule} from "@angular/material/checkbox";
     UserSettingsModalComponent,
     DeleteCommentDialogComponent,
     SelectTagsModalComponent,
+    TranslatePipe,
   ],
-  imports: [
-    BrowserModule,
-    RouterModule.forRoot(ROUTES, {
-      scrollPositionRestoration: 'top'
-    }),
-    BrowserAnimationsModule,
-    MatSidenavModule,
-    MatButtonToggleModule,
-    MatDialogModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatButtonModule,
-    MatSnackBarModule,
-    HttpClientModule,
-    ReactiveFormsModule,
-    MatCheckboxModule,
-    FormsModule
-  ],
+    imports: [
+        BrowserModule,
+        RouterModule.forRoot(ROUTES, {
+            scrollPositionRestoration: 'top'
+        }),
+        BrowserAnimationsModule,
+        MatSidenavModule,
+        MatButtonToggleModule,
+        MatDialogModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatButtonModule,
+        MatSnackBarModule,
+        HttpClientModule,
+        ReactiveFormsModule,
+        MatCheckboxModule,
+        FormsModule,
+        MatMenuModule
+    ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: BasicAuthInterceptor, multi: true }
   ],

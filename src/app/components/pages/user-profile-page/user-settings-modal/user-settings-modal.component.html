@@ -1,96 +1,96 @@
 <mat-dialog-content class="mat-typography modal-form">
 
   <form [formGroup]="changeEmailForm" (ngSubmit)="changeEmail()">
-    <h2>Zmiana adresu email</h2>
-    <app-alert *ngIf="changeEmailFormServerError" text="Wystąpił nieoczekiwany błąd" alertType="error"></app-alert>
-    <app-alert *ngIf="changeEmailFormSucceed" text="Udało się zmienić email" alertType="success"></app-alert>
-    <app-alert *ngIf="changeEmailFormEmailInUse" text="Istnieje już konto zarejestrowne na ten email"
+    <h2>{{'header.change-email' | translate}}</h2>
+    <app-alert *ngIf="changeEmailFormServerError" text="{{'message.unidentified-error' | translate}}" alertType="error"></app-alert>
+    <app-alert *ngIf="changeEmailFormSucceed" text="{{'message.email-change-success' | translate}}" alertType="success"></app-alert>
+    <app-alert *ngIf="changeEmailFormEmailInUse" text="{{'message.email-in-use' | translate}}"
                alertType="error"></app-alert>
     <p>
       <mat-form-field class="full-width" appearance="fill">
-        <mat-label>Nowy adres email</mat-label>
+        <mat-label>{{'label.new-email' | translate}}</mat-label>
         <input formControlName="newEmail" autocomplete="off" matInput>
       </mat-form-field>
       <mat-error *ngIf="newEmail?.errors?.required && changeEmailFormSubmitted">
-        Pole jest wymagane
+        {{'validation.required' | translate}}
       </mat-error>
       <mat-error
         *ngIf="!newEmail?.errors?.required && newEmail?.errors?.email && changeEmailFormSubmitted">
-        Nieprawidłowy email
+        {{'validation.email' | translate}}
       </mat-error>
     </p>
     <p>
       <mat-form-field class="full-width" appearance="fill">
-        <mat-label>Powtórz adres email</mat-label>
+        <mat-label>{{'label.email-confirm' | translate}}</mat-label>
         <input formControlName="newEmailConfirm" autocomplete="off" matInput>
       </mat-form-field>
       <mat-error *ngIf="newEmailConfirm?.errors?.required && changeEmailFormSubmitted">
-        Pole jest wymagane
+        {{'validation.required' | translate}}
       </mat-error>
     </p>
     <p>
       <mat-dialog-actions align="end">
-        <button type="submit" mat-flat-button color="primary">Zmień</button>
+        <button type="submit" mat-flat-button color="primary">{{'button.change' | translate}}</button>
       </mat-dialog-actions>
     </p>
   </form>
 
   <form [formGroup]="changeUsernameForm" (ngSubmit)="changeUsername()">
-    <h2>Zmiana nazwy użytkownika</h2>
-    <app-alert *ngIf="changeUsernameFormServerError" text="Wystąpił nieoczekiwany błąd" alertType="error"></app-alert>
-    <app-alert *ngIf="changeUsernameFormSucceed" text="Udało się zmienić nazwę użytkownika" alertType="success"></app-alert>
-    <app-alert *ngIf="changeUsernameFormUsernameInUse" text="Nazwa użytkownika zajęta" alertType="error"></app-alert>
+    <h2></h2>
+    <app-alert *ngIf="changeUsernameFormServerError" text="{{'message.unidentified-error' | translate}}" alertType="error"></app-alert>
+    <app-alert *ngIf="changeUsernameFormSucceed" text="{{'message.username-change-success' | translate}}" alertType="success"></app-alert>
+    <app-alert *ngIf="changeUsernameFormUsernameInUse" text="{{'message.username-in-use' | translate}}" alertType="error"></app-alert>
     <p>
       <mat-form-field class="full-width" appearance="fill">
-        <mat-label>Nowa nazwa użytkownika</mat-label>
+        <mat-label>{{'header.change-username' | translate}}</mat-label>
         <input formControlName="newUsername" autocomplete="off" matInput>
       </mat-form-field>
       <mat-error *ngIf="newUsername?.errors?.required && changeUsernameFormSubmitted">
-        Pole jest wymagane
+        {{'validation-required' | translate}}
       </mat-error>
     </p>
     <p>
       <mat-dialog-actions align="end">
-        <button type="submit" mat-flat-button color="primary">Zmień</button>
+        <button type="submit" mat-flat-button color="primary">{{'button.change' | translate}}</button>
       </mat-dialog-actions>
     </p>
   </form>
 
   <form [formGroup]="changePasswordForm" (ngSubmit)="changePassword()">
     <h2>Zmiana hasła</h2>
-    <app-alert *ngIf="changePasswordFormServerError" text="Wystąpił nieoczekiwany błąd" alertType="error"></app-alert>
-    <app-alert *ngIf="changePasswordFormWrongOldPassword" text="Nieprawidłowe stare hasło" alertType="error"></app-alert>
-    <app-alert *ngIf="changePasswordFormSucceed" text="Udało się zmienić hasło" alertType="success"></app-alert>
+    <app-alert *ngIf="changePasswordFormServerError" text="{{'message.unidentified-error' | translate}}" alertType="error"></app-alert>
+    <app-alert *ngIf="changePasswordFormWrongOldPassword" text="{{'message.wrong-old-password' | translate}}" alertType="error"></app-alert>
+    <app-alert *ngIf="changePasswordFormSucceed" text="{{'message.password-change-success' | translate}}" alertType="success"></app-alert>
     <p>
       <mat-form-field class="full-width" appearance="fill">
-        <mat-label>Stare hasło</mat-label>
+        <mat-label>{{'label.old-password' | translate}}</mat-label>
         <input type="password" formControlName="oldPassword" autocomplete="off" matInput>
       </mat-form-field>
       <mat-error *ngIf="oldPassword?.errors?.required && changePasswordFormSubmitted">
-        Pole jest wymagane
+        {{'validation.required' | translate}}
       </mat-error>
     </p>
     <p>
       <mat-form-field class="full-width" appearance="fill">
-        <mat-label>Nowe hasło</mat-label>
+        <mat-label>{{'label.new-password' | translate}}</mat-label>
         <input type="password" formControlName="newPassword" autocomplete="off" matInput>
       </mat-form-field>
       <mat-error *ngIf="newPassword?.errors?.required && changePasswordFormSubmitted">
-        Pole jest wymagane
+        {{'validation.required' | translate}}
       </mat-error>
     </p>
     <p>
       <mat-form-field class="full-width" appearance="fill">
-        <mat-label>Powtórz nowe hasło</mat-label>
+        <mat-label>{{'label.new-password-confirm' | translate}}</mat-label>
         <input type="password" formControlName="newPasswordConfirm" autocomplete="off" matInput>
       </mat-form-field>
       <mat-error *ngIf="newPasswordConfirm?.errors?.required && changePasswordFormSubmitted">
-        Pole jest wymagane
+        {{'validation.required' | translate}}
       </mat-error>
     </p>
     <p>
       <mat-dialog-actions align="end">
-        <button type="submit" mat-flat-button color="primary">Zmień</button>
+        <button type="submit" mat-flat-button color="primary">{{'button.change' | translate}}</button>
       </mat-dialog-actions>
     </p>
   </form>

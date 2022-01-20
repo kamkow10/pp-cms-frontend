@@ -3,7 +3,7 @@
     <div class="row">
 
       <div class="title-box text-center">
-        <h2 class="title">Najpopularniejsze w tym miesiącu</h2>
+        <h2 class="title">{{'home-page.most-popular-articles' | translate}}</h2>
       </div>
 
       <!-- Start Blog item #1-->
@@ -14,12 +14,12 @@
           </div>
           <div class="post-desc">
             <h4>{{article.title}}</h4>
-            <h5>{{article.date}} {{article.comments.length}} Comments</h5>
+            <h5>{{article.date}} {{article.comments.length}} {{'label.comments' | translate}}</h5>
 <!--            <p>Wstęp do artykułu. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore,-->
 <!--              dolorum, fugiat,-->
 <!--              eligendi magni-->
 <!--              quibusdam iure cupiditate ex voluptas unde</p>-->
-            <a routerLink="/article/{{article.id}}" class="btn btn-gray-border">CZYTAJ DALEJ</a>
+            <a routerLink="/article/{{article.id}}" class="btn btn-gray-border">{{'button.read-article' | translate}}</a>
           </div>
         </div>
       </div>

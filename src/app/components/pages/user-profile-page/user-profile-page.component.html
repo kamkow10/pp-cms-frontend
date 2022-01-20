@@ -5,13 +5,13 @@
     <div class="user-info-container">
       <div class="username">{{user?.userName}}</div>
       <div class="email">{{user?.userMail}}</div>
-      <div class="comments-count">Komentarze: {{user?.commentsCount}}</div>
+      <div class="comments-count">{{'label.comments' | translate}}: {{user?.commentsCount}}</div>
     </div>
     <div *ngIf="isLoggedUserProfile" class="settings-button-container">
-      <button (click)="openUserSettingsModal()" mat-stroked-button>Ustawienia</button>
+      <button (click)="openUserSettingsModal()" mat-stroked-button>{{'button.settings' | translate}}</button>
     </div>
   </div>
-  <h2 class="bottom-border">Komentarze użytkownika</h2>
+  <h2 class="bottom-border">{{'header.user-comments' | translate}}</h2>
   <div class="user-comment-list">
     <div class="comment-element" *ngFor="let comment of comments">
       <app-comment [comment]="comment" (commentChanged)="ngOnInit()" [showArticleTitle]="true"></app-comment>

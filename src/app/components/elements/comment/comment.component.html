@@ -5,8 +5,8 @@
       <div class="username">{{comment.user.userName}}</div>
       <a href="#" *ngIf="showArticleTitle" class="article-link">{{article?.title}}</a>
       <div *ngIf="isLoggedUserComment" class="manage-comment-options">
-        <button (click)="enterEditMode()" mat-stroked-button color="primary">Edytuj</button>
-        <button (click)="openDeleteCommentDialog()" mat-stroked-button color="warn">Usuń</button>
+        <button (click)="enterEditMode()" mat-stroked-button color="primary">{{'button.edit' | translate}}</button>
+        <button (click)="openDeleteCommentDialog()" mat-stroked-button color="warn">{{'button.delete' | translate}}</button>
       </div>
     </div>
     <div class="publish-date">{{comment.date}}</div>
@@ -15,17 +15,17 @@
         <div>
           <textarea formControlName="newCommentContent" class="form-control" rows="7"></textarea>
           <mat-error *ngIf="newCommentContent?.errors?.required && editModeSubmitted">
-            Pole jest wymagane
+            {{'validation.required' | translate}}
           </mat-error>
         </div>
         <div class="col-md-12 text-right">
-          <button type="submit" class="btn btn-gray-border">Edytuj komentarz</button>
+          <button type="submit" class="btn btn-gray-border">{{'button.edit-comment' | translate}}</button>
         </div>
       </form>
       <ng-template #commentContent>{{comment.content}}</ng-template>
     </div>
     <div class="alert-container" *ngIf="showMessageServerError">
-      <app-alert text="Wystąpił nieoczekiwany błąd" alertType="error"></app-alert>
+      <app-alert text="{{'message.unidentified-error' | translate}}" alertType="error"></app-alert>
     </div>
   </div>
 </div>

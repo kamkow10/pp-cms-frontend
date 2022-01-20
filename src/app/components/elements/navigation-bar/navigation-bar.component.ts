@@ -5,6 +5,8 @@ import {RegisterModalComponent} from "./register-modal/register-modal.component"
 import {UserService} from "../../../services/user/user.service";
 import {Router} from "@angular/router";
 import {UserData} from "../../../models/user-data";
+import {TranslationService} from "../../../services/translation/translation.service";
+import {Language} from "../../../models/language";
 
 @Component({
   selector: 'app-navigation-bar',
@@ -18,10 +20,13 @@ export class NavigationBarComponent implements OnInit, AfterViewInit {
   public loggedUser: UserData | null;
   public isCMSUser: boolean;
   public currentUrl: string;
+  public currentLang: string;
+  public langs: Language[];
 
   constructor(private matDialog: MatDialog,
               private userService: UserService,
-              private router: Router) {
+              private router: Router,
+              private translationService: TranslationService) {
   }
 
   ngOnInit(): void {
@@ -29,6 +34,10 @@ export class NavigationBarComponent implements OnInit, AfterViewInit {
     this.loggedUser = this.userService.userData;
     this.isCMSUser = false;
     this.currentUrl = this.router.url;
+    this.currentLang = this.translationService.currentLang;
+    this.translationService.getLanguages().subscribe(languages => {
+      this.langs = languages;
+    });
   }
 
   ngAfterViewInit() {
@@ -55,4 +64,7 @@ export class NavigationBarComponent implements OnInit, AfterViewInit {
     });
   }
 
+  public async setLanguage(languageName: string): Promise<void> {
+    await this.translationService.setLanguage(languageName);
+  }
 }

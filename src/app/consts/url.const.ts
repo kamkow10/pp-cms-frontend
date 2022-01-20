@@ -19,3 +19,5 @@ export const USER_EDIT_EMAIL_URL = BACKEND_URL + '/user/edit/mail';
 export const USER_EDIT_PASSWORD_URL = BACKEND_URL + '/user/edit/password';
 export const USER_EDIT_USERNAME_URL = BACKEND_URL + '/user/edit/username';
 export const GET_TAGS_URL = BACKEND_URL + '/tag/language';
+export const GET_LANGUAGES_URL = BACKEND_URL + '/languages';
+export const GET_TRANSLATIONS_URL = BACKEND_URL + '/alerts';

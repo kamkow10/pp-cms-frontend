@@ -8,7 +8,9 @@
           <div class="container">
             <div class="big">{{latestArticles ? latestArticles[0].title : ''}}</div>
 <!--            <div class="small">Tu będzie krótki opis artykułu</div>-->
-            <a routerLink="/article/{{latestArticles ? latestArticles[0].id : ''}}" class="middle btn btn-white">CZYTAJ DALEJ</a>
+            <a routerLink="/article/{{latestArticles ? latestArticles[0].id : ''}}" class="middle btn btn-white">
+              {{'button.read-article' | translate}}
+            </a>
           </div>
         </div>
         <img src="../../../../../images/slider/1.jpg" alt="">
@@ -19,7 +21,9 @@
           <div class="container">
             <div class="big">{{latestArticles ? latestArticles[1].title : ''}}</div>
             <!--            <div class="small">Tu będzie krótki opis artykułu</div>-->
-            <a routerLink="/article/{{latestArticles ? latestArticles[1].id : ''}}" class="middle btn btn-white">CZYTAJ DALEJ</a>
+            <a routerLink="/article/{{latestArticles ? latestArticles[1].id : ''}}" class="middle btn btn-white">
+              {{'button.read-article' | translate}}
+            </a>
           </div>
         </div>
         <img src="../../../../../images/slider/2.jpg" alt="">
@@ -30,7 +34,9 @@
           <div class="container">
             <div class="big">Tu będą najnowsze artykuły (to będzie tytuł)</div>
             <div class="small">Tu będzie krótki opis artykułu</div>
-            <a href="#works" class="middle btn btn-white">CZYTAJ DALEJ</a>
+            <a href="#works" class="middle btn btn-white">
+              {{'button.read-article' | translate}}
+            </a>
           </div>
         </div>
         <img src="../../../../../images/slider/3.jpg" alt="">

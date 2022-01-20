@@ -3,11 +3,11 @@
   <form class="article-search-form" [formGroup]="articleSearchForm" (ngSubmit)="searchArticles()">
     <div>
       <mat-form-field class="article-search-input-container" appearance="fill">
-        <mat-label>Tytuł artykułu</mat-label>
+        <mat-label>{{'label.article-name' | translate}}</mat-label>
         <input class="article-search-input" formControlName="articleName" autocomplete="off" matInput>
       </mat-form-field>
       <mat-error class="article-search-input-error" *ngIf="articleName?.errors?.required && submitted && !isAnyTagSelected">
-        Pole jest wymagane
+        {{'validation.required' | translate}}
       </mat-error>
       <div class="select-tags">
         <div class="tag" *ngFor="let tag of selectedTags">
@@ -18,23 +18,23 @@
       </div>
     </div>
     <div class="article-search-button-container">
-      <button type="submit" mat-flat-button color="primary">Szukaj</button>
+      <button type="submit" mat-flat-button color="primary">{{'button.search' | translate}}</button>
     </div>
   </form>
   <div class="article-list">
-    <h2 class="bottom-border">Artykuły</h2>
+    <h2 class="bottom-border">{{'header.articles' | translate}}</h2>
     <div class="article-list-row blog-post" *ngFor="let article of foundedArticles">
       <div class="post-media">
         <img src="../../../../../images/blog/blog3.jpg" alt="">
       </div>
       <div class="post-desc">
         <h4>{{article.title}}</h4>
-        <h5>{{article.date}} {{article.comments.length}} Comments</h5>
+        <h5>{{article.date}} {{article.comments.length}} {{'label.comments' | translate}}</h5>
         <!--            <p>Wstęp do artykułu. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore,-->
         <!--              dolorum, fugiat,-->
         <!--              eligendi magni-->
         <!--              quibusdam iure cupiditate ex voluptas unde</p>-->
-        <a routerLink="/article/{{article.id}}" class="btn btn-gray-border">CZYTAJ DALEJ</a>
+        <a routerLink="/article/{{article.id}}" class="btn btn-gray-border">{{'button.read-article' | translate}}</a>
       </div>
     </div>
   </div>

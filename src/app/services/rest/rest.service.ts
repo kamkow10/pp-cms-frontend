@@ -17,7 +17,13 @@ import {
   LOGOUT_URL,
   EDIT_COMMENT_URL,
   DELETE_COMMENT_URL,
-  GET_ARTICLE_URL, GET_USERS_URL, GET_TOP_ARTICLE_URL, GET_TOP_USERS_URL, GET_TAGS_URL, SEARCH_ARTICLES_URL
+  GET_ARTICLE_URL,
+  GET_USERS_URL,
+  GET_TOP_ARTICLE_URL,
+  GET_TOP_USERS_URL,
+  GET_TAGS_URL,
+  SEARCH_ARTICLES_URL,
+  GET_LANGUAGES_URL, GET_TRANSLATIONS_URL
 } from "../../consts/url.const";
 import {LoginData} from "../../models/login-data";
 import {RegisterData} from "../../models/register-data";
@@ -26,6 +32,8 @@ import {Article} from "../../models/article";
 import {RestResponse} from "../../models/rest-response";
 import {UserScore} from "../../models/user-score";
 import {Tag} from "../../models/tag";
+import {Language} from "../../models/language";
+import {Translation} from "../../models/translation";
 
 @Injectable({
   providedIn: 'root'
@@ -117,6 +125,14 @@ export class RestService {
 
   public getTags(languageName: string): Observable<Tag[]> {
     return this.httpClient.get<Tag[]>(GET_TAGS_URL + `/${languageName}`);
+  }
+
+  public getLanguages(): Observable<Language[]> {
+    return this.httpClient.get<Language[]>(GET_LANGUAGES_URL);
+  }
+
+  public getTranslations(languageName: string): Observable<Translation[]> {
+    return this.httpClient.get<Translation[]>(GET_TRANSLATIONS_URL + `/${languageName}`);
   }
 
 }

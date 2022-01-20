@@ -1,70 +1,70 @@
-<h2 mat-dialog-title>Rejestraca</h2>
+<h2 mat-dialog-title>{{'modal.register.title' | translate}}</h2>
 <mat-dialog-content class="mat-typography modal-form">
-  <app-alert *ngIf="showMessageServerError" text="Wystąpił nieoczekiwany błąd" alertType="error"></app-alert>
-  <app-alert *ngIf="showMessageNicknameInUse" text="Nazwa użytkownika jest zajęta" alertType="error"></app-alert>
-  <app-alert *ngIf="showMessageEmailInUse" text="Istnieje już konto zarejestrowne na ten email" alertType="error"></app-alert>
+  <app-alert *ngIf="showMessageServerError" text="{{'message.unidentified-error' | translate}}" alertType="error"></app-alert>
+  <app-alert *ngIf="showMessageNicknameInUse" text="{{'message.username-in-use' | translate}}" alertType="error"></app-alert>
+  <app-alert *ngIf="showMessageEmailInUse" text="{{'message.email-in-use' | translate}}" alertType="error"></app-alert>
   <form [formGroup]="registerForm" (ngSubmit)="register()">
     <p>
       <mat-form-field class="full-width" appearance="fill">
-        <mat-label>Nazwa użytkownika</mat-label>
+        <mat-label>{{'label.username' | translate}}</mat-label>
         <input formControlName="nickname" autocomplete="off" matInput>
       </mat-form-field>
       <mat-error *ngIf="nickname?.errors?.required && submitted">
-        Pole jest wymagane
+        {{'validation.required' | translate}}
       </mat-error>
     </p>
     <p>
       <mat-form-field class="full-width" appearance="fill">
-        <mat-label>Email</mat-label>
+        <mat-label>{{'label.email' | translate}}</mat-label>
         <input formControlName="email" autocomplete="off" matInput>
       </mat-form-field>
       <mat-error *ngIf="email?.errors?.required && submitted">
-        Pole jest wymagane
+        {{'validation.required' | translate}}
       </mat-error>
       <mat-error
         *ngIf="!email?.errors?.required && email?.errors?.email && submitted">
-        Nieprawidłowy email
+        {{'validation.email' | translate}}
       </mat-error>
     </p>
     <p>
       <mat-form-field class="full-width" appearance="fill">
-        <mat-label>Powtórz email</mat-label>
+        <mat-label>{{'label.email-confirm' | translate}}</mat-label>
         <input formControlName="emailConfirm" autocomplete="off" matInput>
       </mat-form-field>
       <mat-error *ngIf="emailConfirm?.errors?.required && submitted">
-        Pole jest wymagane
+        {{'validation.required' | translate}}
       </mat-error>
       <mat-error
         *ngIf="!emailConfirm?.errors?.required && emailConfirm?.errors?.confirm && submitted">
-        Źle powtórzono email
+        {{'validation.email-wrong-confirm' | translate}}
       </mat-error>
     </p>
     <p>
       <mat-form-field class="full-width" appearance="fill">
-        <mat-label>Hasło</mat-label>
+        <mat-label>{{'label.password' | translate}}</mat-label>
         <input formControlName="password" [type]="'password'" autocomplete="off" matInput>
       </mat-form-field>
       <mat-error *ngIf="password?.errors?.required && submitted">
-        Pole jest wymagane
+        {{'validation.required' | translate}}
       </mat-error>
     </p>
     <p>
       <mat-form-field class="full-width" appearance="fill">
-        <mat-label>Powtórz hasło</mat-label>
+        <mat-label>{{'label.password-confirm' | translate}}</mat-label>
         <input formControlName="passwordConfirm" [type]="'password'" autocomplete="off" matInput>
       </mat-form-field>
       <mat-error *ngIf="passwordConfirm?.errors?.required && submitted">
-        Pole jest wymagane
+        {{'validation.required' | translate}}
       </mat-error>
       <mat-error
         *ngIf="!passwordConfirm?.errors?.required && passwordConfirm?.errors?.confirm && submitted">
-        Źle powtórzono hasło
+        {{'validation.password-wrong-confirm' | translate}}
       </mat-error>
     </p>
     <p>
       <mat-dialog-actions align="end">
-        <button mat-button mat-dialog-close>Anuluj</button>
-        <button type="submit" mat-flat-button color="primary">Zarejestruj</button>
+        <button mat-button mat-dialog-close>{{'button.cancel' | translate}}</button>
+        <button type="submit" mat-flat-button color="primary">{{'button.register' | translate}}</button>
       </mat-dialog-actions>
     </p>
   </form>

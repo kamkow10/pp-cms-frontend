@@ -30,7 +30,7 @@
 
           <!-- Comment list -->
           <div class="comment-list">
-            <h3>{{article.comments.length}} Komentarzy</h3>
+            <h3>{{article.comments.length}} {{'label.comments' | translate}}</h3>
             <div class="comment-list">
               <div class="comment-element" *ngFor="let comment of article.comments">
                 <app-comment [comment]="comment" (commentChanged)="ngOnInit()"></app-comment>
@@ -41,20 +41,20 @@
 
           <!-- Comment Section -->
           <div *ngIf="loggedIn" class="comments-section">
-            <h3>Zostaw komentarz</h3>
+            <h3>{{'header.leave-comment' | translate}}</h3>
             <div class="comment-form">
               <form method="post">
                 <div class="row">
                   <form [formGroup]="addCommentForm" (ngSubmit)="addComment()">
                     <div class="col-md-12">
-                      <app-alert *ngIf="showMessageServerError" text="Wystąpił nieoczekiwany błąd" alertType="error"></app-alert>
+                      <app-alert *ngIf="showMessageServerError" text="{{'message.unidentified-error' | translate}}" alertType="error"></app-alert>
                       <textarea formControlName="newComment" class="form-control" rows="7"></textarea>
                       <mat-error *ngIf="newComment?.errors?.required && submitted">
-                        Pole jest wymagane
+                        {{'validation.required' | translate}}
                       </mat-error>
                     </div>
                     <div class="col-md-12 text-right">
-                      <button type="submit" class="btn btn-gray-border">Dodaj komentarz</button>
+                      <button type="submit" class="btn btn-gray-border">{{'button.add-comment' | translate}}</button>
                     </div>
                   </form>
                 </div>
@@ -80,7 +80,7 @@
 
         <!--Start popular Post -->
         <div class="widget-main">
-          <h4>Popularne</h4>
+          <h4>{{'header.popular' | translate}}</h4>
           <div *ngFor="let article of topArticles" class="sidebar-widget clearfix">
             <a href="/article/{{article.id}}"><img src="images/blog/blog1.jpg" alt=""></a>
             <p class="sidebar-widget-title"><a href="/article/{{article.id}}">
