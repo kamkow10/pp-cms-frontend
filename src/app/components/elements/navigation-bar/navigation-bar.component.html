@@ -35,7 +35,9 @@
 
             <li [matMenuTriggerFor]="langMenu"><a>{{'navbar.language' | translate}}</a></li>
             <mat-menu #langMenu="matMenu">
-              <button mat-menu-item *ngFor="let lang of langs" (click)="setLanguage(lang.name)">{{lang.name | uppercase}}</button>
+              <button [ngClass]="{'bolded': lang.name == currentLang}" mat-menu-item *ngFor="let lang of langs" (click)="setLanguage(lang.name)">
+                {{lang.name | uppercase}}
+              </button>
             </mat-menu>
 
             <li *ngIf="isLoggedIn" class="user-profile" routerLink="/user/{{loggedUser?.id}}">
