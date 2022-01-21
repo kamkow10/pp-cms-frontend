@@ -6,6 +6,7 @@ import {MatDialog} from "@angular/material/dialog";
 import {SelectTagsModalComponent} from "./select-tags-modal/select-tags-modal.component";
 import {Tag} from "../../../models/tag";
 import {TagService} from "../../../services/tag/tag.service";
+import {TranslationService} from "../../../services/translation/translation.service";
 
 @Component({
   selector: 'app-article-list-page',
@@ -28,15 +29,16 @@ export class ArticleListPageComponent implements OnInit {
   constructor(private fb: FormBuilder,
               private articleService: ArticleService,
               private matDialog: MatDialog,
-              private tagService: TagService) {
+              private tagService: TagService,
+              private translationService: TranslationService) {
   }
 
   ngOnInit(): void {
-    this.articleService.getArticles('polish').subscribe(articles => {
+    this.articleService.getArticles(this.translationService.currentLang).subscribe(articles => {
       this.foundedArticles = articles;
     }, () => {
     });
-    this.tagService.getTags('polish').subscribe(tags => {
+    this.tagService.getTags(this.translationService.currentLang).subscribe(tags => {
       this.tags = tags;
     });
   }
@@ -47,7 +49,7 @@ export class ArticleListPageComponent implements OnInit {
       return;
     }
     let selectedTagNames = this.isAnyTagSelected ? this.selectedTags.map(tag => tag.name) : [];
-    this.articleService.searchArticles('polish', this.articleName?.value, selectedTagNames).subscribe(articles => {
+    this.articleService.searchArticles(this.translationService.currentLang, this.articleName?.value, selectedTagNames).subscribe(articles => {
       this.foundedArticles = articles;
       this.submitted = false;
     }, () => {});

@@ -3,6 +3,7 @@ import {MatDialog} from "@angular/material/dialog";
 import {FormBuilder} from "@angular/forms";
 import {Tag} from "../../../../models/tag";
 import {TagService} from "../../../../services/tag/tag.service";
+import {TranslationService} from "../../../../services/translation/translation.service";
 
 @Component({
   selector: 'app-select-tags-modal',
@@ -15,11 +16,12 @@ export class SelectTagsModalComponent implements OnInit {
 
   constructor(private matDialog: MatDialog,
               private fb: FormBuilder,
-              private tagService: TagService) {
+              private tagService: TagService,
+              private translationService: TranslationService) {
   }
 
   ngOnInit(): void {
-    this.tagService.getTags('polish').subscribe(tags => {
+    this.tagService.getTags(this.translationService.currentLang).subscribe(tags => {
       this.tags = tags;
       this.tags.forEach(() => this.isTagSelected.push(false))
     });

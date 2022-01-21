@@ -5,6 +5,7 @@ import {Article} from "../../../models/article";
 import {AbstractControl, FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {UserService} from "../../../services/user/user.service";
 import {ERROR_OK} from "../../../consts/error.const";
+import {TranslationService} from "../../../services/translation/translation.service";
 
 @Component({
   selector: 'app-article-page',
@@ -22,7 +23,8 @@ export class ArticlePageComponent implements OnInit {
   constructor(private route: ActivatedRoute,
               private articleService: ArticleService,
               private fb: FormBuilder,
-              private userService: UserService) {
+              private userService: UserService,
+              private translationService: TranslationService) {
   }
 
   ngOnInit(): void {
@@ -38,7 +40,7 @@ export class ArticlePageComponent implements OnInit {
     this.articleService.getArticleById(articleId).subscribe((article) => {
       this.article = article;
     }, () => {});
-    this.articleService.getTopArticles('polish', 3).subscribe(topArticles => {
+    this.articleService.getTopArticles(this.translationService.currentLang, 3).subscribe(topArticles => {
       this.topArticles = topArticles;
     }, () => {});
   }

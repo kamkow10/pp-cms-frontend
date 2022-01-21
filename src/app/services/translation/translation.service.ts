@@ -10,6 +10,7 @@ import {Translation} from "../../models/translation";
 export class TranslationService {
   public currentLang: string;
   public translations: Translation[];
+  public readonly defaultLanguage = 'polish';
 
   constructor(private restService: RestService) {
     if (localStorage.getItem('lang')) {
@@ -22,8 +23,8 @@ export class TranslationService {
 
   public async initTranslations(): Promise<void> {
     if (this.translations === undefined) {
-      let translations = await this.getTranslations('polish').toPromise();
-      localStorage.setItem('lang', 'polish');
+      let translations = await this.getTranslations(this.defaultLanguage).toPromise();
+      localStorage.setItem('lang', this.defaultLanguage);
       localStorage.setItem('translations', JSON.stringify(translations));
       window.location.href = '#home';
     }

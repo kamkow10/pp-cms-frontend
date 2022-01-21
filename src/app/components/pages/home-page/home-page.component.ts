@@ -3,6 +3,7 @@ import {ArticleService} from "../../../services/article/article.service";
 import {UsersService} from "../../../services/users/users.service";
 import {Article} from "../../../models/article";
 import {UserData} from "../../../models/user-data";
+import {TranslationService} from "../../../services/translation/translation.service";
 
 @Component({
   selector: 'app-home-page',
@@ -15,14 +16,15 @@ export class HomePageComponent implements OnInit {
   public users: UserData[];
 
   constructor(private articleService: ArticleService,
-              private usersService: UsersService) {
+              private usersService: UsersService,
+              private translationService: TranslationService) {
   }
 
   ngOnInit(): void {
-    this.articleService.getArticles('polish').subscribe(articles => {
+    this.articleService.getArticles(this.translationService.currentLang).subscribe(articles => {
       this.articles = articles;
     }, () => {});
-    this.articleService.getTopArticles('polish', 3).subscribe(topArticles => {
+    this.articleService.getTopArticles(this.translationService.currentLang, 3).subscribe(topArticles => {
       this.topArticles = topArticles;
     }, () => {});
     this.usersService.getUsers().subscribe(users => {
