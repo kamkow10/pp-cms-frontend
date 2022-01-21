@@ -3,7 +3,7 @@
   <div class="comment-content-container">
     <div class="main-info-container">
       <div class="username">{{comment.user.userName}}</div>
-      <a href="#" *ngIf="showArticleTitle" class="article-link">{{article?.title}}</a>
+      <a routerLink="/article/{{article?.id}}" *ngIf="showArticleTitle" class="article-link">{{article?.title}}</a>
       <div *ngIf="isLoggedUserComment" class="manage-comment-options">
         <button (click)="enterEditMode()" mat-stroked-button color="primary">{{'button.edit' | translate}}</button>
         <button (click)="openDeleteCommentDialog()" mat-stroked-button color="warn">{{'button.delete' | translate}}</button>
