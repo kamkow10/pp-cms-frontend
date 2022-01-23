@@ -36,6 +36,16 @@ import { SelectTagsModalComponent } from './components/pages/article-list-page/s
 import {MatCheckboxModule} from "@angular/material/checkbox";
 import { TranslatePipe } from './pipes/translate.pipe';
 import {MatMenuModule} from "@angular/material/menu";
+import { CmsMyArticlesComponent } from './components/pages/cms-page/cms-my-articles/cms-my-articles.component';
+import { CmsArticlesComponent } from './components/pages/cms-page/cms-articles/cms-articles.component';
+import { CmsUsersComponent } from './components/pages/cms-page/cms-users/cms-users.component';
+import { CmsAdministrationUsersComponent } from './components/pages/cms-page/cms-administration-users/cms-administration-users.component';
+import { CmsTagsComponent } from './components/pages/cms-page/cms-tags/cms-tags.component';
+import { CmsLanguagesComponent } from './components/pages/cms-page/cms-languages/cms-languages.component';
+import { CmsSecurityComponent } from './components/pages/cms-page/cms-security/cms-security.component';
+import {MatTableModule} from "@angular/material/table";
+import { CreateArticleModalComponent } from './components/pages/cms-page/cms-my-articles/create-article-modal/create-article-modal.component';
+import {MatSelectModule} from "@angular/material/select";
 
 @NgModule({
   declarations: [
@@ -59,6 +69,14 @@ import {MatMenuModule} from "@angular/material/menu";
     DeleteCommentDialogComponent,
     SelectTagsModalComponent,
     TranslatePipe,
+    CmsMyArticlesComponent,
+    CmsArticlesComponent,
+    CmsUsersComponent,
+    CmsAdministrationUsersComponent,
+    CmsTagsComponent,
+    CmsLanguagesComponent,
+    CmsSecurityComponent,
+    CreateArticleModalComponent,
   ],
     imports: [
         BrowserModule,
@@ -77,7 +95,9 @@ import {MatMenuModule} from "@angular/material/menu";
         ReactiveFormsModule,
         MatCheckboxModule,
         FormsModule,
-        MatMenuModule
+        MatMenuModule,
+        MatTableModule,
+        MatSelectModule
     ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: BasicAuthInterceptor, multi: true }

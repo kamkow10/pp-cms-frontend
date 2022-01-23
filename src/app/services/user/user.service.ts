@@ -5,6 +5,8 @@ import {Observable} from "rxjs";
 import {UserData} from "../../models/user-data";
 import {RegisterData} from "../../models/register-data";
 import {RestResponse} from "../../models/rest-response";
+import {Privilege} from "../../models/privilege";
+import {PRIVILEGES} from "../../consts/privilege.const";
 
 @Injectable({
   providedIn: 'root'
@@ -42,5 +44,12 @@ export class UserService {
 
   public isLoggedIn(): boolean {
     return this.userData != null;
+  }
+
+  public hasPrivilege(privilegeId: number): boolean {
+    if (this.userData) {
+      return this.userData.roles.some(role => role.privileges.some(privilege => privilege.id == privilegeId));
+    }
+    return false;
   }
 }

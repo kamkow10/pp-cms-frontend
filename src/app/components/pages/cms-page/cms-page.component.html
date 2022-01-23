@@ -1,53 +1,21 @@
-<div class="cms-top-bar">
-  <header id="header">
-    <div class="container">
-      <div class="row">
-        <div class="col-sm-12">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-menu">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="fa fa-bars"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <!--Start Logo -->
-          <div class="logo-nav">
-            <a href="../../../../index.html">
-              <img src="../../../../images/logo.png" alt="Company logo"/>
-            </a>
-          </div>
-          <!--End Logo -->
-          <div class="clear-toggle"></div>
-          <div id="main-menu" class="collapse scroll n avbar-right">
-            <ul class="nav">
-
-              <li class="active"><a href="#home">Strona główna</a></li>
-
-              <li><a href="#about">Artykuły</a></li>
-
-            </ul>
-          </div><!-- end main-menu -->
-        </div>
-      </div>
-    </div>
-  </header>
-</div>
+<app-navigation-bar></app-navigation-bar>
 <div class="cms-page">
   <div class="cms-sidebar">
     <mat-sidenav-container>
       <mat-sidenav>Start</mat-sidenav>
-      <mat-button-toggle-group name="cms-navigation">
-        <mat-button-toggle checked="true" value="bold">Dashboard</mat-button-toggle>
-        <mat-button-toggle value="italic">My articles</mat-button-toggle>
-        <mat-button-toggle value="underline">Articles</mat-button-toggle>
-        <mat-button-toggle value="underline">Users</mat-button-toggle>
-        <mat-button-toggle value="underline">Administration users</mat-button-toggle>
-        <mat-button-toggle value="underline">Tags</mat-button-toggle>
-        <mat-button-toggle value="underline">Languages</mat-button-toggle>
-        <mat-button-toggle value="underline">Security</mat-button-toggle>
+      <mat-button-toggle-group [(ngModel)]="selectedBoard" name="cms-navigation">
+        <mat-button-toggle value="dashboard">Dashboard</mat-button-toggle>
+        <mat-button-toggle value="myArticles">My articles</mat-button-toggle>
+        <mat-button-toggle value="articles">Articles</mat-button-toggle>
+        <mat-button-toggle value="users">Users</mat-button-toggle>
+        <mat-button-toggle value="administrationUsers">Administration users</mat-button-toggle>
+        <mat-button-toggle value="tags">Tags</mat-button-toggle>
+        <mat-button-toggle value="languages">Languages</mat-button-toggle>
+        <mat-button-toggle value="security">Security</mat-button-toggle>
       </mat-button-toggle-group>
     </mat-sidenav-container>
   </div>
-  <div class="cms-page-content">
-
+  <div class="cms-page-content" [ngSwitch]="selectedBoard">
+    <app-cms-my-articles *ngSwitchCase="'myArticles'"></app-cms-my-articles>
   </div>
 </div>

@@ -17,13 +17,13 @@ import {
   LOGOUT_URL,
   EDIT_COMMENT_URL,
   DELETE_COMMENT_URL,
-  GET_ARTICLE_URL,
+  GET_ARTICLES_URL,
   GET_USERS_URL,
   GET_TOP_ARTICLE_URL,
   GET_TOP_USERS_URL,
   GET_TAGS_URL,
   SEARCH_ARTICLES_URL,
-  GET_LANGUAGES_URL, GET_TRANSLATIONS_URL
+  GET_LANGUAGES_URL, GET_TRANSLATIONS_URL, GET_USER_ARTICLES, GET_ALL_ARTICLES
 } from "../../consts/url.const";
 import {LoginData} from "../../models/login-data";
 import {RegisterData} from "../../models/register-data";
@@ -78,7 +78,7 @@ export class RestService {
   }
 
   public getArticles(languageName: string): Observable<Article[]> {
-    return this.httpClient.get<Article[]>(GET_ARTICLE_URL + `/${languageName}`);
+    return this.httpClient.get<Article[]>(GET_ARTICLES_URL + `/${languageName}`);
   }
 
   public getTopArticles(languageName: string, articlesCount: number): Observable<Article[]> {
@@ -133,6 +133,14 @@ export class RestService {
 
   public getTranslations(languageName: string): Observable<Translation[]> {
     return this.httpClient.get<Translation[]>(GET_TRANSLATIONS_URL + `/${languageName}`);
+  }
+
+  public getUserArticles(): Observable<Article[]> {
+    return this.httpClient.get<Article[]>(GET_USER_ARTICLES);
+  }
+
+  public getAllArticles(): Observable<Article[]> {
+    return this.httpClient.get<Article[]>(GET_ALL_ARTICLES);
   }
 
 }

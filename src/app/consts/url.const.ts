@@ -7,7 +7,7 @@ export const GET_USER_BY_ID_URL = BACKEND_URL + '/user/findbyid';
 export const GET_USERS_URL = BACKEND_URL + '/user/getusers';
 export const GET_TOP_USERS_URL = BACKEND_URL + '/user/find/topCommenter';
 export const GET_USER_COMMENTS_URL = BACKEND_URL + '/comments/find/user';
-export const GET_ARTICLE_URL = BACKEND_URL + '/articles';
+export const GET_ARTICLES_URL = BACKEND_URL + '/articles';
 export const GET_TOP_ARTICLE_URL = BACKEND_URL + '/articles/top';
 export const SEARCH_ARTICLES_URL = BACKEND_URL + '/articles';
 export const GET_ARTICLE_BY_ID_URL = BACKEND_URL + '/articles/get';
@@ -21,3 +21,6 @@ export const USER_EDIT_USERNAME_URL = BACKEND_URL + '/user/edit/username';
 export const GET_TAGS_URL = BACKEND_URL + '/tag/language';
 export const GET_LANGUAGES_URL = BACKEND_URL + '/languages';
 export const GET_TRANSLATIONS_URL = BACKEND_URL + '/alerts';
+
+export const GET_USER_ARTICLES = BACKEND_URL + '/articles/cms/findbyuser';
+export const GET_ALL_ARTICLES = BACKEND_URL + '/articles/cms/findall';

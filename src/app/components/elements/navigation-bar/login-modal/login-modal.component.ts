@@ -27,9 +27,7 @@ export class LoginModalComponent implements OnInit {
 
   constructor(private userService: UserService,
               private matDialog: MatDialog,
-              private fb: FormBuilder,
-              private snackBar: MatSnackBar,
-              private router: Router) {
+              private fb: FormBuilder) {
   }
 
   ngOnInit(): void {

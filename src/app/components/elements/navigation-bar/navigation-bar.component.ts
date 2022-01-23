@@ -7,6 +7,7 @@ import {Router} from "@angular/router";
 import {UserData} from "../../../models/user-data";
 import {TranslationService} from "../../../services/translation/translation.service";
 import {Language} from "../../../models/language";
+import {PRIVILEGES} from "../../../consts/privilege.const";
 
 @Component({
   selector: 'app-navigation-bar',
@@ -20,6 +21,7 @@ export class NavigationBarComponent implements OnInit, AfterViewInit {
   public loggedUser: UserData | null;
   public isCMSUser: boolean;
   public currentUrl: string;
+  public isCMSMode: boolean;
   public currentLang: string;
   public langs: Language[];
 
@@ -32,8 +34,9 @@ export class NavigationBarComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
     this.isLoggedIn = this.userService.isLoggedIn();
     this.loggedUser = this.userService.userData;
-    this.isCMSUser = false;
+    this.isCMSUser = this.userService.hasPrivilege(PRIVILEGES.ADMIN_PANEL);
     this.currentUrl = this.router.url;
+    this.isCMSMode = this.currentUrl.includes('cms');
     this.currentLang = this.translationService.currentLang;
     this.translationService.getLanguages().subscribe(languages => {
       this.langs = languages;
@@ -56,7 +59,6 @@ export class NavigationBarComponent implements OnInit, AfterViewInit {
 
   public logout(): void {
     this.userService.logout().subscribe(() => {
-      this.userService.userData = null;
       localStorage.clear();
       window.location.href = '#home';
     }, (error) => {

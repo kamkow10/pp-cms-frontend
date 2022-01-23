@@ -60,3 +60,40 @@ h2 {
     border-bottom: 2px solid $line-separator;
   }
 }
+
+
+.cms-table {
+  margin-bottom: 5rem;
+  position: relative;
+
+  .cms-table-title {
+    margin-bottom: 2rem;
+    font-size: 1.5rem;
+  }
+
+  .cms-table-add-button {
+    position: absolute;
+    top: -0.75rem;
+    right: 0;
+    background-color: #e9fbe9;
+  }
+
+  table {
+    width: 100%;
+
+    thead {
+      background-color: #6c6c6c;
+    }
+
+    th.mat-header-cell {
+      color: white;
+    }
+  }
+}
+
+.cms-table.unpublished-articles thead {
+  background-color: #84663f;
+}
+.cms-table.published-articles thead {
+  background-color: #4e843f;
+}

@@ -1,4 +1,4 @@
-<header id="header" #header>
+<header id="header" #header [ngClass]="{'cms': isCMSMode}">
   <div class="container">
     <div class="row">
       <div class="col-sm-12">
@@ -18,22 +18,23 @@
         <div class="clear-toggle"></div>
         <div id="main-menu" class="collapse scroll n avbar-right">
           <ul class="nav">
+            <ng-template [ngIf]="!isCMSMode">
+              <li [ngClass]="{'active': currentUrl.includes('home')}" routerLink="/home"><a>{{'navbar.home-page' | translate}}</a></li>
 
-            <li [ngClass]="{'active': currentUrl.includes('home')}" routerLink="/home"><a>{{'navbar.home-page' | translate}}</a></li>
+              <li [ngClass]="{'active': currentUrl.includes('article')}"><a routerLink="/articles">{{'navbar.articles' | translate}}</a></li>
 
-            <li [ngClass]="{'active': currentUrl.includes('article')}"><a routerLink="/articles">{{'navbar.articles' | translate}}</a></li>
+              <li [ngClass]="{'active': currentUrl.includes('user')}"><a routerLink="/users">{{'navbar.users' | translate}}</a></li>
 
-            <li [ngClass]="{'active': currentUrl.includes('user')}"><a routerLink="/users">{{'navbar.users' | translate}}</a></li>
+              <li *ngIf="!isLoggedIn" class="login" (click)="openLoginModal()"><a>{{'navbar.login' | translate}}</a></li>
 
-            <li *ngIf="!isLoggedIn" class="login" (click)="openLoginModal()"><a>{{'navbar.login' | translate}}</a></li>
+              <li *ngIf="!isLoggedIn" class="register" (click)="openRegisterModal()"><a>{{'navbar.register' | translate}}</a></li>
 
-            <li *ngIf="!isLoggedIn" class="register" (click)="openRegisterModal()"><a>{{'navbar.register' | translate}}</a></li>
-
-            <li *ngIf="isCMSUser" class="cms" routerLink="/cms"><a>{{'navbar.cms' | translate}}</a></li>
+              <li *ngIf="isCMSUser" class="cms" routerLink="/cms"><a>{{'navbar.cms' | translate}}</a></li>
+            </ng-template>
 
             <li *ngIf="isLoggedIn" class="logout" (click)="logout()"><a>{{'navbar.logout' | translate}}</a></li>
 
-            <li [matMenuTriggerFor]="langMenu"><a>{{'navbar.language' | translate}}</a></li>
+            <li *ngIf="!isCMSMode" [matMenuTriggerFor]="langMenu"><a>{{'navbar.language' | translate}}</a></li>
             <mat-menu #langMenu="matMenu">
               <button [ngClass]="{'bolded': lang.name == currentLang}" mat-menu-item *ngFor="let lang of langs" (click)="setLanguage(lang.name)">
                 {{lang.name | uppercase}}

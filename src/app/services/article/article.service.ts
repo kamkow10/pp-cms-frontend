@@ -44,4 +44,12 @@ export class ArticleService {
   public deleteComment(commentId: number): Observable<RestResponse> {
     return this.restService.deleteComment(commentId);
   }
+
+  public getUserArticles(): Observable<Article[]> {
+    return this.restService.getUserArticles();
+  }
+
+  public getAllArticles(): Observable<Article[]> {
+    return this.restService.getAllArticles();
+  }
 }

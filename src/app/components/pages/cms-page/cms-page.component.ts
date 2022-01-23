@@ -6,6 +6,7 @@ import {Component, OnInit} from '@angular/core';
   styleUrls: ['./cms-page.component.scss']
 })
 export class CmsPageComponent implements OnInit {
+  public selectedBoard = 'dashboard';
 
   constructor() {
   }
