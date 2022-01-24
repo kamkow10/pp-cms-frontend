@@ -60,7 +60,7 @@ export class NavigationBarComponent implements OnInit, AfterViewInit {
   public logout(): void {
     this.userService.logout().subscribe(() => {
       localStorage.clear();
-      window.location.href = '#home';
+      window.location.href = '';
     }, (error) => {
       console.log(error);
     });

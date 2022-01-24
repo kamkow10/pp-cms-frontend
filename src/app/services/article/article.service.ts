@@ -3,7 +3,8 @@ import {RestService} from "../rest/rest.service";
 import {Observable} from "rxjs";
 import {Article} from "../../models/article";
 import {RestResponse} from "../../models/rest-response";
-import {GET_TOP_ARTICLE_URL} from "../../consts/url.const";
+import {CREATE_ARTICLE_URL, DELETE_ARTICLE_URL, EDIT_ARTICLE_URL, GET_TOP_ARTICLE_URL} from "../../consts/url.const";
+import {CreateArticleData} from "../../models/createArticleData";
 
 @Injectable({
   providedIn: 'root'
@@ -51,5 +52,17 @@ export class ArticleService {
 
   public getAllArticles(): Observable<Article[]> {
     return this.restService.getAllArticles();
+  }
+
+  public createArticle(createArticleData: CreateArticleData): Observable<RestResponse> {
+    return this.restService.createArticle(createArticleData);
+  }
+
+  public editArticle(createArticleData: CreateArticleData): Observable<RestResponse> {
+    return this.restService.editArticle(createArticleData);
+  }
+
+  public deleteArticle(articleId: number): Observable<RestResponse> {
+    return this.restService.deleteArticle(articleId);
   }
 }

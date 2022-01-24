@@ -42,7 +42,7 @@ export class LoginModalComponent implements OnInit {
     const loginData = this.getLoginData();
     this.userService.login(loginData).subscribe((userData) => {
       localStorage.setItem('user', JSON.stringify(userData));
-      window.location.href = '#home';
+      window.location.href = '';
       this.matDialog.closeAll();
     }, (error) => {
       if (error.status == 401) {

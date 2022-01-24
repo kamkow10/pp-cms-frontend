@@ -24,3 +24,6 @@ export const GET_TRANSLATIONS_URL = BACKEND_URL + '/alerts';
 
 export const GET_USER_ARTICLES = BACKEND_URL + '/articles/cms/findbyuser';
 export const GET_ALL_ARTICLES = BACKEND_URL + '/articles/cms/findall';
+export const CREATE_ARTICLE_URL = BACKEND_URL + '/articles/add';
+export const EDIT_ARTICLE_URL = BACKEND_URL + '/articles/edit';
+export const DELETE_ARTICLE_URL = BACKEND_URL + '/articles/delete';

@@ -97,3 +97,46 @@ h2 {
 .cms-table.published-articles thead {
   background-color: #4e843f;
 }
+
+.tags-container {
+  margin-bottom: 1rem;
+  display: flex;
+
+  .mat-checkbox {
+    margin: 0 1rem 1rem 0;
+  }
+}
+
+.cell-with-options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .options {
+    display: flex;
+
+    * {
+      margin-right: 0.2rem;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+
+    $option-bg-size: 24px;
+
+    &-edit {
+      background: url("./assets/pen.svg");
+      background-size: $option-bg-size;
+      width: $option-bg-size;
+      height: $option-bg-size;
+    }
+
+    &-delete {
+      background: url("./assets/basket.svg");
+      background-size: $option-bg-size;
+      width: $option-bg-size;
+      height: $option-bg-size;
+    }
+  }
+}

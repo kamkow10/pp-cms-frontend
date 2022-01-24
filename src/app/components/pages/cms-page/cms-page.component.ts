@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-cms-page',
@@ -8,7 +9,11 @@ import {Component, OnInit} from '@angular/core';
 export class CmsPageComponent implements OnInit {
   public selectedBoard = 'dashboard';
 
-  constructor() {
+  constructor(private route: ActivatedRoute) {
+    const boardNameInUrl = this.route.snapshot.params.boardName;
+    if (boardNameInUrl) {
+      this.selectedBoard = boardNameInUrl;
+    }
   }
 
   ngOnInit(): void {

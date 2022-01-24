@@ -23,7 +23,13 @@ import {
   GET_TOP_USERS_URL,
   GET_TAGS_URL,
   SEARCH_ARTICLES_URL,
-  GET_LANGUAGES_URL, GET_TRANSLATIONS_URL, GET_USER_ARTICLES, GET_ALL_ARTICLES
+  GET_LANGUAGES_URL,
+  GET_TRANSLATIONS_URL,
+  GET_USER_ARTICLES,
+  CREATE_ARTICLE_URL,
+  GET_ALL_ARTICLES,
+  EDIT_ARTICLE_URL,
+  DELETE_ARTICLE_URL
 } from "../../consts/url.const";
 import {LoginData} from "../../models/login-data";
 import {RegisterData} from "../../models/register-data";
@@ -34,6 +40,7 @@ import {UserScore} from "../../models/user-score";
 import {Tag} from "../../models/tag";
 import {Language} from "../../models/language";
 import {Translation} from "../../models/translation";
+import {CreateArticleData} from "../../models/createArticleData";
 
 @Injectable({
   providedIn: 'root'
@@ -141,6 +148,18 @@ export class RestService {
 
   public getAllArticles(): Observable<Article[]> {
     return this.httpClient.get<Article[]>(GET_ALL_ARTICLES);
+  }
+
+  public createArticle(createArticleData: CreateArticleData): Observable<RestResponse> {
+    return this.httpClient.post<RestResponse>(CREATE_ARTICLE_URL, createArticleData);
+  }
+
+  public editArticle(createArticleData: CreateArticleData): Observable<RestResponse> {
+    return this.httpClient.put<RestResponse>(EDIT_ARTICLE_URL, createArticleData);
+  }
+
+  public deleteArticle(articleId: number): Observable<RestResponse> {
+    return this.httpClient.delete<RestResponse>(DELETE_ARTICLE_URL + `/${articleId}`);
   }
 
 }

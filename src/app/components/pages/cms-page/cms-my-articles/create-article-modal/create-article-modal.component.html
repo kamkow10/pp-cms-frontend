@@ -1,16 +1,12 @@
-<h2 mat-dialog-title>Article creator</h2>
+<h2 mat-dialog-title>{{editMode ? 'Editing article' : 'Article creator'}}</h2>
 <mat-dialog-content class="mat-typography modal-form">
-  <app-alert *ngIf="showMessageServerError" text="{{'message.unidentified-error' | translate}}"
-             alertType="error"></app-alert>
-  <form [formGroup]="createArticleForm">
+  <app-alert *ngIf="showMessageServerError" text="Unidentified server error" alertType="error"></app-alert>
+  <form [formGroup]="createArticleForm" (ngSubmit)="editMode ? editArticle() : createArticle()">
     <p>
       <mat-form-field class="full-width" appearance="fill">
         <mat-label>Title</mat-label>
         <input formControlName="title" autocomplete="off" matInput>
       </mat-form-field>
-      <mat-error *ngIf="title?.errors?.required && submitted">
-        Field is required
-      </mat-error>
     </p>
     <p>
       <mat-form-field appearance="fill">
@@ -21,26 +17,24 @@
           </mat-option>
         </mat-select>
       </mat-form-field>
-      <mat-error *ngIf="language?.errors?.required && submitted">
-        Field is required
-      </mat-error>
     </p>
-    <div class="tags-container">
-      <mat-checkbox formArrayName="tags" *ngFor="let tag of tags?.controls; let i = index">{{languageTags[i].name}}</mat-checkbox>
+    <div formArrayName="tags"  class="tags-container">
+      <mat-checkbox *ngFor="let tag of tags?.controls; let i = index" [formControlName]="i">
+        {{languageTags[i].name}}
+      </mat-checkbox>
     </div>
     <p>
       <mat-form-field class="full-width" appearance="fill">
         <mat-label>Article content</mat-label>
         <textarea matInput formControlName="content"></textarea>
       </mat-form-field>
-      <mat-error *ngIf="content?.errors?.required && submitted">
-        Field is required
-      </mat-error>
     </p>
     <p>
       <mat-dialog-actions align="end">
-        <button mat-button mat-dialog-close>{{'button.cancel' | translate}}</button>
-        <button type="submit" mat-flat-button color="primary">{{'button.login' | translate}}</button>
+        <button mat-button mat-dialog-close>Cancel</button>
+        <button [disabled]="!formValid" type="submit" mat-flat-button color="primary">
+          {{editMode ? 'Edit' : 'Create'}}
+        </button>
       </mat-dialog-actions>
     </p>
   </form>

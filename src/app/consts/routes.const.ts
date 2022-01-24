@@ -9,6 +9,7 @@ import {ArticleListPageComponent} from "../components/pages/article-list-page/ar
 export const ROUTES: Routes = [
   {path: 'home', component: HomePageComponent},
   {path: 'cms', component: CmsPageComponent},
+  {path: 'cms/:boardName', component: CmsPageComponent},
   {path: 'article/:id', component: ArticlePageComponent},
   {path: 'articles', component: ArticleListPageComponent},
   {path: 'users', component: UserListPageComponent},

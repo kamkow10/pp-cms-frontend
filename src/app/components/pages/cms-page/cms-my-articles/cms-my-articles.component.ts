@@ -31,4 +31,14 @@ export class CmsMyArticlesComponent implements OnInit {
     this.matDialog.open(CreateArticleModalComponent, {width: '50%'});
   }
 
+  public editArticle(id: number): void {
+    this.matDialog.open(CreateArticleModalComponent, {width: '50%', data: {editingArticleId: id}});
+  }
+
+  public deleteArticle(id: number): void {
+    this.articleService.deleteArticle(id).subscribe(() => {
+      window.location.href = 'cms/myArticles';
+    })
+  }
+
 }

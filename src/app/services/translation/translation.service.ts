@@ -26,7 +26,7 @@ export class TranslationService {
       let translations = await this.getTranslations(this.defaultLanguage).toPromise();
       localStorage.setItem('lang', this.defaultLanguage);
       localStorage.setItem('translations', JSON.stringify(translations));
-      window.location.href = '#home';
+      window.location.href = '';
     }
   }
 
@@ -35,7 +35,7 @@ export class TranslationService {
       let translations = await this.getTranslations(languageName).toPromise();
       localStorage.setItem('lang', languageName);
       localStorage.setItem('translations', JSON.stringify(translations));
-      window.location.href = '#home';
+      window.location.href = '';
     }
   }
 
