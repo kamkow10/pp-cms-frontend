@@ -78,7 +78,6 @@ import { EditUserModalComponent } from './components/pages/cms-page/cms-users/ed
     CmsLanguagesComponent,
     CmsSecurityComponent,
     CreateArticleModalComponent,
-    EditCmsUserModalComponent,
     EditUserModalComponent,
   ],
     imports: [

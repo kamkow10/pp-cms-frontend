@@ -3,6 +3,7 @@ import {AbstractControl, FormBuilder, Validators} from "@angular/forms";
 import {ERROR_EMAIL_IN_USE, ERROR_NICKNAME_IN_USE, ERROR_OK} from "../../../../../consts/error.const";
 import {UsersService} from "../../../../../services/users/users.service";
 import {MAT_DIALOG_DATA} from "@angular/material/dialog";
+import {Role} from "../../../../../models/role";
 
 @Component({
   selector: 'app-edit-user-modal',
@@ -19,6 +20,12 @@ export class EditUserModalComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.usersService.getUserData(this.editingUserId).subscribe(userData => {
+      this.role?.setValue(userData.roles[0].name);
+    })
+    this.usersService.getRoles().subscribe(roles => {
+      this.roles = roles;
+    })
   }
 
   // Email form -----------------------------------------------------
@@ -103,42 +110,29 @@ export class EditUserModalComponent implements OnInit {
 
   // Role form -----------------------------------------------------
 
-  public changeEmailForm = this.fb.group({
-    newEmail: ['', [Validators.required, Validators.email]]
-  }, {
-    updateOn: 'submit'
+  public changeRoleForm = this.fb.group({
+    'role': ['']
   });
-  public changeEmailFormSubmitted = false;
-  public changeEmailFormSucceed = false;
-  public changeEmailFormEmailInUse = false;
-  public changeEmailFormServerError = false;
+  public changeRoleFormSucceed = false;
+  public changeRoleFormServerError = false;
+  public roles: Role[];
 
-  public changeEmail(): void {
-    this.changeEmailFormSubmitted = true;
-    this.changeEmailFormSucceed = false;
-    this.changeEmailFormEmailInUse = false;
-    this.changeEmailFormServerError = false;
-    if (this.changeEmailForm.invalid) {
-      return;
-    }
-    this.usersService.editCmsUserMail(this.editingUserId, this.newEmail?.value).subscribe((response) => {
+  public changeRole(): void {
+    this.changeRoleFormSucceed = false;
+    this.changeRoleFormServerError = false;
+    this.usersService.editCmsUserRole(this.editingUserId, this.role?.value).subscribe((response) => {
       if (response.error != ERROR_OK) {
-        if (response.error == ERROR_EMAIL_IN_USE) {
-          this.changeEmailFormEmailInUse = true;
-        } else {
-          this.changeEmailFormServerError = true;
-        }
+        this.changeRoleFormServerError = true;
       } else {
-        this.changeEmailFormSubmitted = false;
-        this.changeEmailFormSucceed = true;
+        this.changeRoleFormSucceed = true;
       }
     }, () => {
-      this.changeEmailFormServerError = true;
+      this.changeRoleFormServerError = true;
     });
   }
 
-  get newEmail(): AbstractControl | null {
-    return this.changeEmailForm.get('newEmail');
+  get role(): AbstractControl | null {
+    return this.changeRoleForm.get('role');
   }
 
 }

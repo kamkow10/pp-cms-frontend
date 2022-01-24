@@ -33,7 +33,7 @@ import {
   CHANGE_ARTICLE_PUBLISH_STATUS_URL,
   DELETE_USER_URL,
   EDIT_CMS_USER_MAIL_URL,
-  EDIT_CMS_USER_USERNAME_URL, EDIT_CMS_USER_ROLE_URL
+  EDIT_CMS_USER_USERNAME_URL, EDIT_CMS_USER_ROLE_URL, GET_ROLES_URL, CREATE_TAG_URL
 } from "../../consts/url.const";
 import {LoginData} from "../../models/login-data";
 import {RegisterData} from "../../models/register-data";
@@ -45,6 +45,7 @@ import {Tag} from "../../models/tag";
 import {Language} from "../../models/language";
 import {Translation} from "../../models/translation";
 import {CreateArticleData} from "../../models/createArticleData";
+import {Role} from "../../models/role";
 
 @Injectable({
   providedIn: 'root'
@@ -187,6 +188,14 @@ export class RestService {
 
   public deleteUser(userId: number): Observable<RestResponse> {
     return this.httpClient.delete<RestResponse>(DELETE_USER_URL + `/${userId}`);
+  }
+
+  public getRoles(): Observable<Role[]> {
+    return this.httpClient.get<Role[]>(GET_ROLES_URL);
+  }
+
+  public createTag(name: string, language: string): Observable<RestResponse> {
+    return this.httpClient.post<RestResponse>(CREATE_TAG_URL, {name, language});
   }
 
 }

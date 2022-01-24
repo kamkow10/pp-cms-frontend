@@ -5,12 +5,8 @@ import {UserData} from "../../models/user-data";
 import {CommentData} from "../../models/comment-data";
 import {UserScore} from "../../models/user-score";
 import {RestResponse} from "../../models/rest-response";
-import {
-  DELETE_USER_URL,
-  EDIT_CMS_USER_MAIL_URL,
-  EDIT_CMS_USER_ROLE_URL,
-  EDIT_CMS_USER_USERNAME_URL
-} from "../../consts/url.const";
+import {Role} from "../../models/role";
+import {CREATE_TAG_URL, GET_ROLES_URL} from "../../consts/url.const";
 
 @Injectable({
   providedIn: 'root'
@@ -54,5 +50,13 @@ export class UsersService {
 
   public deleteUser(userId: number): Observable<RestResponse> {
     return this.restService.deleteUser(userId);
+  }
+
+  public getRoles(): Observable<Role[]> {
+    return this.restService.getRoles();
+  }
+
+  public createTag(name: string, language: string): Observable<RestResponse> {
+    return this.restService.createTag(name, language);
   }
 }

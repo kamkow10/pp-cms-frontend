@@ -32,3 +32,5 @@ export const EDIT_CMS_USER_MAIL_URL = BACKEND_URL + '/user/edit/changeMail';
 export const EDIT_CMS_USER_USERNAME_URL = BACKEND_URL + '/user/edit/changeNickname';
 export const EDIT_CMS_USER_ROLE_URL = BACKEND_URL + '/user/edit/role';
 export const DELETE_USER_URL = BACKEND_URL + '/user/delete';
+export const GET_ROLES_URL = BACKEND_URL + '/cms/role/all';
+export const CREATE_TAG_URL = BACKEND_URL + '/tag/add';
