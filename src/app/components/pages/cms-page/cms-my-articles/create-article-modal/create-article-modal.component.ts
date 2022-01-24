@@ -7,7 +7,7 @@ import {TagService} from "../../../../../services/tag/tag.service";
 import {ArticleService} from "../../../../../services/article/article.service";
 import {CreateArticleData} from "../../../../../models/createArticleData";
 import {ERROR_OK} from "../../../../../consts/error.const";
-import {MAT_DIALOG_DATA} from "@angular/material/dialog";
+import {MAT_DIALOG_DATA, MatDialog} from "@angular/material/dialog";
 import {Article} from "../../../../../models/article";
 
 @Component({
@@ -34,6 +34,7 @@ export class CreateArticleModalComponent implements OnInit {
               private translationService: TranslationService,
               private tagService: TagService,
               private articleService: ArticleService,
+              private matDialog: MatDialog,
               @Inject(MAT_DIALOG_DATA) public data: {editingArticleId: number}) {
     this.editMode = this.data != null;
   }
@@ -73,7 +74,7 @@ export class CreateArticleModalComponent implements OnInit {
       if (response.error != ERROR_OK) {
         this.showMessageServerError = true;
       } else {
-        window.location.href = 'cms/myArticles';
+        this.matDialog.closeAll();
       }
     }, () => {
       this.showMessageServerError = true;
@@ -93,7 +94,7 @@ export class CreateArticleModalComponent implements OnInit {
       if (response.error != ERROR_OK) {
         this.showMessageServerError = true;
       } else {
-        window.location.href = 'cms/myArticles';
+        this.matDialog.closeAll();
       }
     }, () => {
       this.showMessageServerError = true;

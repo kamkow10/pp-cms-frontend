@@ -114,6 +114,7 @@ h2 {
 
   .options {
     display: flex;
+    align-items: center;
 
     * {
       margin-right: 0.2rem;
@@ -137,6 +138,16 @@ h2 {
       background-size: $option-bg-size;
       width: $option-bg-size;
       height: $option-bg-size;
+    }
+
+    &-publish {
+      background-color: #e9fbe9;
+      margin-right: 0.5rem;
+    }
+
+    &-unpublish {
+      background-color: #fbfbe9;
+      margin-right: 0.5rem;
     }
   }
 }

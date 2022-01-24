@@ -65,4 +65,8 @@ export class ArticleService {
   public deleteArticle(articleId: number): Observable<RestResponse> {
     return this.restService.deleteArticle(articleId);
   }
+
+  public changeArticlePublishStatus(articleId: number, publishStatus: string): Observable<RestResponse> {
+    return this.restService.changeArticlePublishStatus(articleId, publishStatus);
+  }
 }

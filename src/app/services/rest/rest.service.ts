@@ -29,7 +29,7 @@ import {
   CREATE_ARTICLE_URL,
   GET_ALL_ARTICLES,
   EDIT_ARTICLE_URL,
-  DELETE_ARTICLE_URL
+  DELETE_ARTICLE_URL, CHANGE_ARTICLE_PUBLISH_STATUS_URL
 } from "../../consts/url.const";
 import {LoginData} from "../../models/login-data";
 import {RegisterData} from "../../models/register-data";
@@ -160,6 +160,13 @@ export class RestService {
 
   public deleteArticle(articleId: number): Observable<RestResponse> {
     return this.httpClient.delete<RestResponse>(DELETE_ARTICLE_URL + `/${articleId}`);
+  }
+
+  public changeArticlePublishStatus(articleId: number, publishStatus: string): Observable<RestResponse> {
+    return this.httpClient.put<RestResponse>(CHANGE_ARTICLE_PUBLISH_STATUS_URL, {
+      id: articleId,
+      status: publishStatus
+    });
   }
 
 }

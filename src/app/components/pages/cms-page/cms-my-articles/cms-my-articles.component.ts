@@ -28,16 +28,20 @@ export class CmsMyArticlesComponent implements OnInit {
   }
 
   public openCreateArticleModal(): void {
-    this.matDialog.open(CreateArticleModalComponent, {width: '50%'});
+    this.matDialog.open(CreateArticleModalComponent, {width: '50%'}).afterClosed().subscribe(() => {
+      this.ngOnInit();
+    });
   }
 
   public editArticle(id: number): void {
-    this.matDialog.open(CreateArticleModalComponent, {width: '50%', data: {editingArticleId: id}});
+    this.matDialog.open(CreateArticleModalComponent, {width: '50%', data: {editingArticleId: id}}).afterClosed().subscribe(() => {
+      this.ngOnInit();
+    });
   }
 
   public deleteArticle(id: number): void {
     this.articleService.deleteArticle(id).subscribe(() => {
-      window.location.href = 'cms/myArticles';
+      this.ngOnInit();
     })
   }
 

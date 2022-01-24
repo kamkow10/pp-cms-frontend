@@ -27,3 +27,4 @@ export const GET_ALL_ARTICLES = BACKEND_URL + '/articles/cms/findall';
 export const CREATE_ARTICLE_URL = BACKEND_URL + '/articles/add';
 export const EDIT_ARTICLE_URL = BACKEND_URL + '/articles/edit';
 export const DELETE_ARTICLE_URL = BACKEND_URL + '/articles/delete';
+export const CHANGE_ARTICLE_PUBLISH_STATUS_URL = BACKEND_URL + '/articles/publish';
