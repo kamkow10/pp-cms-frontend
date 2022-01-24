@@ -1,0 +1,49 @@
+<mat-dialog-content class="mat-typography modal-form">
+
+  <form [formGroup]="changeEmailForm" (ngSubmit)="changeEmail()">
+    <h2>Change email</h2>
+    <app-alert *ngIf="changeEmailFormServerError" text="Unidentified server error" alertType="error"></app-alert>
+    <app-alert *ngIf="changeEmailFormSucceed" text="Email changed" alertType="success"></app-alert>
+    <app-alert *ngIf="changeEmailFormEmailInUse" text="Email already in use" alertType="error"></app-alert>
+    <p>
+      <mat-form-field class="full-width" appearance="fill">
+        <mat-label>New email</mat-label>
+        <input formControlName="newEmail" autocomplete="off" matInput>
+      </mat-form-field>
+      <mat-error *ngIf="newEmail?.errors?.required && changeEmailFormSubmitted">
+        Field is required
+      </mat-error>
+      <mat-error
+        *ngIf="!newEmail?.errors?.required && newEmail?.errors?.email && changeEmailFormSubmitted">
+        Bad email
+      </mat-error>
+    </p>
+    <p>
+      <mat-dialog-actions align="end">
+        <button type="submit" mat-flat-button color="primary">Change</button>
+      </mat-dialog-actions>
+    </p>
+  </form>
+
+  <form [formGroup]="changeUsernameForm" (ngSubmit)="changeUsername()">
+    <h2>Change username</h2>
+    <app-alert *ngIf="changeUsernameFormServerError" text="Unidentified server error" alertType="error"></app-alert>
+    <app-alert *ngIf="changeUsernameFormSucceed" text="Username changed" alertType="success"></app-alert>
+    <app-alert *ngIf="changeUsernameFormUsernameInUse" text="Username already in use" alertType="error"></app-alert>
+    <p>
+      <mat-form-field class="full-width" appearance="fill">
+        <mat-label>New username</mat-label>
+        <input formControlName="newUsername" autocomplete="off" matInput>
+      </mat-form-field>
+      <mat-error *ngIf="newUsername?.errors?.required && changeUsernameFormSubmitted">
+        Field is required
+      </mat-error>
+    </p>
+    <p>
+      <mat-dialog-actions align="end">
+        <button type="submit" mat-flat-button color="primary">Change</button>
+      </mat-dialog-actions>
+    </p>
+  </form>
+</mat-dialog-content>
+

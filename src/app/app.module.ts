@@ -30,7 +30,7 @@ import { UserListPageComponent } from './components/pages/user-list-page/user-li
 import { UserProfilePageComponent } from './components/pages/user-profile-page/user-profile-page.component';
 import { CommentComponent } from './components/elements/comment/comment.component';
 import { UserSettingsModalComponent } from './components/pages/user-profile-page/user-settings-modal/user-settings-modal.component';
-import {BasicAuthInterceptor} from "./interceptors/basic-auth.interceptor";
+import {CredentialsInterceptor} from "./interceptors/credentials.interceptor";
 import { DeleteCommentDialogComponent } from './components/elements/comment/delete-comment-dialog/delete-comment-dialog.component';
 import { SelectTagsModalComponent } from './components/pages/article-list-page/select-tags-modal/select-tags-modal.component';
 import {MatCheckboxModule} from "@angular/material/checkbox";
@@ -46,6 +46,7 @@ import { CmsSecurityComponent } from './components/pages/cms-page/cms-security/c
 import {MatTableModule} from "@angular/material/table";
 import { CreateArticleModalComponent } from './components/pages/cms-page/cms-my-articles/create-article-modal/create-article-modal.component';
 import {MatSelectModule} from "@angular/material/select";
+import { EditUserModalComponent } from './components/pages/cms-page/cms-users/edit-user-modal/edit-user-modal.component';
 
 @NgModule({
   declarations: [
@@ -77,6 +78,8 @@ import {MatSelectModule} from "@angular/material/select";
     CmsLanguagesComponent,
     CmsSecurityComponent,
     CreateArticleModalComponent,
+    EditCmsUserModalComponent,
+    EditUserModalComponent,
   ],
     imports: [
         BrowserModule,
@@ -100,7 +103,7 @@ import {MatSelectModule} from "@angular/material/select";
         MatSelectModule
     ],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: BasicAuthInterceptor, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: CredentialsInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]
 })

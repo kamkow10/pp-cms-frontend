@@ -29,7 +29,11 @@ import {
   CREATE_ARTICLE_URL,
   GET_ALL_ARTICLES,
   EDIT_ARTICLE_URL,
-  DELETE_ARTICLE_URL, CHANGE_ARTICLE_PUBLISH_STATUS_URL
+  DELETE_ARTICLE_URL,
+  CHANGE_ARTICLE_PUBLISH_STATUS_URL,
+  DELETE_USER_URL,
+  EDIT_CMS_USER_MAIL_URL,
+  EDIT_CMS_USER_USERNAME_URL, EDIT_CMS_USER_ROLE_URL
 } from "../../consts/url.const";
 import {LoginData} from "../../models/login-data";
 import {RegisterData} from "../../models/register-data";
@@ -167,6 +171,22 @@ export class RestService {
       id: articleId,
       status: publishStatus
     });
+  }
+
+  public editCmsUserMail(userId: number, userMail: string): Observable<RestResponse> {
+    return this.httpClient.put<RestResponse>(EDIT_CMS_USER_MAIL_URL, {userId, userMail});
+  }
+
+  public editCmsUserUsername(userId: number, userName: string): Observable<RestResponse> {
+    return this.httpClient.put<RestResponse>(EDIT_CMS_USER_USERNAME_URL, {userId, userName});
+  }
+
+  public editCmsUserRole(userID: number, roleName: string): Observable<RestResponse> {
+    return this.httpClient.put<RestResponse>(EDIT_CMS_USER_ROLE_URL, {userID, roleName});
+  }
+
+  public deleteUser(userId: number): Observable<RestResponse> {
+    return this.httpClient.delete<RestResponse>(DELETE_USER_URL + `/${userId}`);
   }
 
 }

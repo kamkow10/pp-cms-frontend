@@ -28,3 +28,7 @@ export const CREATE_ARTICLE_URL = BACKEND_URL + '/articles/add';
 export const EDIT_ARTICLE_URL = BACKEND_URL + '/articles/edit';
 export const DELETE_ARTICLE_URL = BACKEND_URL + '/articles/delete';
 export const CHANGE_ARTICLE_PUBLISH_STATUS_URL = BACKEND_URL + '/articles/publish';
+export const EDIT_CMS_USER_MAIL_URL = BACKEND_URL + '/user/edit/changeMail';
+export const EDIT_CMS_USER_USERNAME_URL = BACKEND_URL + '/user/edit/changeNickname';
+export const EDIT_CMS_USER_ROLE_URL = BACKEND_URL + '/user/edit/role';
+export const DELETE_USER_URL = BACKEND_URL + '/user/delete';

@@ -3,7 +3,7 @@ import {HttpEvent, HttpHandler, HttpInterceptor, HttpRequest} from '@angular/com
 import {Observable} from 'rxjs';
 
 @Injectable()
-export class BasicAuthInterceptor implements HttpInterceptor {
+export class CredentialsInterceptor implements HttpInterceptor {
 
   constructor() {
   }

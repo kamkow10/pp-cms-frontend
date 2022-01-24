@@ -3,7 +3,7 @@ import {UserService} from "../../../../services/user/user.service";
 import {MatDialog} from "@angular/material/dialog";
 import {RegisterData} from "../../../../models/register-data";
 import {AbstractControl, FormBuilder, Validators} from "@angular/forms";
-import {confirmValidator} from "../../../../validators/register-validatiors";
+import {confirmValidator} from "../../../../validators/custom-validatiors";
 import {ERROR_EMAIL_IN_USE, ERROR_NICKNAME_IN_USE, ERROR_OK} from "../../../../consts/error.const";
 import {MatSnackBar} from "@angular/material/snack-bar";
 
