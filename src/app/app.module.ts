@@ -47,6 +47,7 @@ import {MatTableModule} from "@angular/material/table";
 import { CreateArticleModalComponent } from './components/pages/cms-page/cms-my-articles/create-article-modal/create-article-modal.component';
 import {MatSelectModule} from "@angular/material/select";
 import { EditUserModalComponent } from './components/pages/cms-page/cms-users/edit-user-modal/edit-user-modal.component';
+import { CreateTagModalComponent } from './components/pages/cms-page/cms-tags/create-tag-modal/create-tag-modal.component';
 
 @NgModule({
   declarations: [
@@ -79,6 +80,7 @@ import { EditUserModalComponent } from './components/pages/cms-page/cms-users/ed
     CmsSecurityComponent,
     CreateArticleModalComponent,
     EditUserModalComponent,
+    CreateTagModalComponent,
   ],
     imports: [
         BrowserModule,

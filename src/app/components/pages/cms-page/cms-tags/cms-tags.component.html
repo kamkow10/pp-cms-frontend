@@ -1,1 +1,40 @@
-<p>cms-tags works!</p>
+<h2>Tags</h2>
+
+<div class="language-select-container">
+  <mat-form-field appearance="fill">
+    <mat-label>Language</mat-label>
+    <mat-select [(ngModel)]="selectedLanguage" (ngModelChange)="updateTagsTable()">
+      <mat-option *ngFor="let lang of languages" [value]="lang.name">
+        {{lang.languageCode}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+
+<div class="cms-table tags">
+  <button mat-stroked-button class="cms-table-add-button" (click)="createTag()">Create new tag</button>
+  <table mat-table [dataSource]="tags" class="mat-elevation-z8">
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef> ID </th>
+      <td mat-cell *matCellDef="let tag"> {{tag.id}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef> Name </th>
+      <td mat-cell *matCellDef="let tag">
+        <div class="cell-with-options">
+          <div>{{tag.name}}</div>
+          <div class="options">
+            <div (click)="editTag(tag.id)" class="options-edit"></div>
+            <div (click)="deleteTag(tag.id)" class="options-delete"></div>
+          </div>
+        </div>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="tagsDisplayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: tagsDisplayedColumns;"></tr>
+  </table>
+</div>
+
+

@@ -34,4 +34,7 @@ export const EDIT_CMS_USER_ROLE_URL = BACKEND_URL + '/user/edit/role';
 export const DELETE_USER_URL = BACKEND_URL + '/user/delete';
 export const GET_ROLES_URL = BACKEND_URL + '/cms/role/all';
 export const CREATE_TAG_URL = BACKEND_URL + '/tag/add';
+export const EDIT_TAG_URL = BACKEND_URL + '/tag/modify';
+export const DELETE_TAG_URL = BACKEND_URL + '/tag/remove';
+export const GET_TAG_BY_ID_URL = BACKEND_URL + '/tag';
 export const GET_CMS_USERS_URL = BACKEND_URL + '/user/cms/users';
