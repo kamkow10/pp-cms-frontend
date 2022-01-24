@@ -6,7 +6,7 @@ import {CommentData} from "../../models/comment-data";
 import {UserScore} from "../../models/user-score";
 import {RestResponse} from "../../models/rest-response";
 import {Role} from "../../models/role";
-import {CREATE_TAG_URL, GET_ROLES_URL} from "../../consts/url.const";
+import {GET_CMS_USERS_URL} from "../../consts/url.const";
 
 @Injectable({
   providedIn: 'root'
@@ -56,7 +56,7 @@ export class UsersService {
     return this.restService.getRoles();
   }
 
-  public createTag(name: string, language: string): Observable<RestResponse> {
-    return this.restService.createTag(name, language);
+  public getCmsUsers(): Observable<UserData[]> {
+    return this.restService.getCmsUsers();
   }
 }

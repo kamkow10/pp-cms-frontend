@@ -33,7 +33,7 @@ import {
   CHANGE_ARTICLE_PUBLISH_STATUS_URL,
   DELETE_USER_URL,
   EDIT_CMS_USER_MAIL_URL,
-  EDIT_CMS_USER_USERNAME_URL, EDIT_CMS_USER_ROLE_URL, GET_ROLES_URL, CREATE_TAG_URL
+  EDIT_CMS_USER_USERNAME_URL, EDIT_CMS_USER_ROLE_URL, GET_ROLES_URL, CREATE_TAG_URL, GET_CMS_USERS_URL
 } from "../../consts/url.const";
 import {LoginData} from "../../models/login-data";
 import {RegisterData} from "../../models/register-data";
@@ -196,6 +196,10 @@ export class RestService {
 
   public createTag(name: string, language: string): Observable<RestResponse> {
     return this.httpClient.post<RestResponse>(CREATE_TAG_URL, {name, language});
+  }
+
+  public getCmsUsers(): Observable<UserData[]> {
+    return this.httpClient.get<UserData[]>(GET_CMS_USERS_URL);
   }
 
 }
