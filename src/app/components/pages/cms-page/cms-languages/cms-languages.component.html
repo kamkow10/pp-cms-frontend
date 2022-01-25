@@ -2,27 +2,26 @@
 
 <div class="cms-table languages">
   <div class="cms-table-title">Languages</div>
-  <div class="cms-table-"></div>
   <button mat-stroked-button class="cms-table-add-button" (click)="createLanguage()">Create new language</button>
   <table mat-table [dataSource]="languages" class="mat-elevation-z8">
     <ng-container matColumnDef="id">
-      <th mat-header-cell *matHeaderCellDef> ID </th>
+      <th mat-header-cell *matHeaderCellDef> ID</th>
       <td mat-cell *matCellDef="let lang"> {{lang.id}} </td>
     </ng-container>
 
     <ng-container matColumnDef="code">
-      <th mat-header-cell *matHeaderCellDef> Code </th>
+      <th mat-header-cell *matHeaderCellDef> Code</th>
       <td mat-cell *matCellDef="let lang"> {{lang.languageCode}} </td>
     </ng-container>
 
     <ng-container matColumnDef="name">
-      <th mat-header-cell *matHeaderCellDef> Name </th>
+      <th mat-header-cell *matHeaderCellDef> Name</th>
       <td mat-cell *matCellDef="let lang">
         <div class="cell-with-options">
           <div>{{lang.name}}</div>
           <div class="options">
             <div (click)="editLanguage(lang.id)" class="options-edit"></div>
-            <div (click)="deleteLanguage(lang.id)" class="options-delete"></div>
+            <div *ngIf="languages.indexOf(lang) != 0" (click)="deleteLanguage(lang.id)" class="options-delete"></div>
           </div>
         </div>
       </td>
@@ -30,6 +29,53 @@
 
     <tr mat-header-row *matHeaderRowDef="languagesDisplayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: languagesDisplayedColumns;"></tr>
+  </table>
+</div>
+
+<div class="cms-table translations" *ngIf="translationTableReady">
+  <div class="cms-table-title">Translations</div>
+  <button mat-stroked-button (click)="createTranslation()" class="cms-table-add-button">Create new translation</button>
+  <table mat-table [dataSource]="translationsTableData" class="mat-elevation-z8">
+    <ng-container matColumnDef="alertCode">
+      <th mat-header-cell *matHeaderCellDef> Alert code</th>
+      <td mat-cell *matCellDef="let alertCodeTranslations"> {{alertCodeTranslations.alertCode}} </td>
+    </ng-container>
+
+    <ng-container *ngFor="let lang of languages; let i = index">
+      <ng-container [matColumnDef]="lang.name">
+        <th mat-header-cell *matHeaderCellDef> {{lang.languageCode}} </th>
+        <td mat-cell *matCellDef="let alertCodeTranslations">
+          <div *ngIf="i == 0 else notOriginalLanguage" class="cell-with-options">
+            <div>{{alertCodeTranslations.translations[0].alertName}}</div>
+            <div class="options">
+              <div (click)="editTranslation(alertCodeTranslations.translations[0].id)" class="options-edit"></div>
+              <div (click)="deleteTranslation(alertCodeTranslations.translations[0].id)" class="options-delete"></div>
+            </div>
+          </div>
+          <ng-template #notOriginalLanguage>
+            <div *ngIf="alertCodeTranslations.translations[i].id === undefined else existingTranslation"
+                 class="cell-with-options">
+              <div style="color: red"> No translation</div>
+              <div class="options">
+                <!--              <div (click)="changeTranslationForLanguage(null)" class="options-edit"></div>-->
+              </div>
+            </div>
+            <ng-template #existingTranslation>
+              <div class="cell-with-options">
+                <div>{{alertCodeTranslations.translations[i].alertName}}</div>
+                <div class="options">
+                  <!--                <div (click)="changeTranslationForLanguage(alertCodeTranslations.translations[i].id)"-->
+                  <!--                     class="options-edit"></div>-->
+                </div>
+              </div>
+            </ng-template>
+          </ng-template>
+        </td>
+      </ng-container>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="translationsDisplayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: translationsDisplayedColumns;"></tr>
   </table>
 </div>
 

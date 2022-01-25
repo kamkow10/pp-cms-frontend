@@ -39,7 +39,17 @@ import {
   CREATE_TAG_URL,
   GET_CMS_USERS_URL,
   EDIT_TAG_URL,
-  DELETE_TAG_URL, GET_TAG_BY_ID_URL, CREATE_LANGUAGE_URL, EDIT_LANGUAGE_URL, DELETE_LANGUAGE_URL, GET_LANGUAGE_BY_ID_URL
+  DELETE_TAG_URL,
+  GET_TAG_BY_ID_URL,
+  CREATE_LANGUAGE_URL,
+  EDIT_LANGUAGE_URL,
+  DELETE_LANGUAGE_URL,
+  GET_LANGUAGE_BY_ID_URL,
+  ADD_TRANSLATION_FOR_LANGUAGE_URL,
+  GET_ALL_TRANSLATIONS_URL,
+  CREATE_TRANSLATION_URL,
+  EDIT_TRANSLATION_URL,
+  DELETE_TRANSLATION_URL, CHANGE_TRANSLATION_FOR_LANGUAGE_URL, GET_TRANSLATION_BY_ID_URL
 } from "../../consts/url.const";
 import {LoginData} from "../../models/login-data";
 import {RegisterData} from "../../models/register-data";
@@ -234,6 +244,34 @@ export class RestService {
 
   public getLanguage(id: number): Observable<Language> {
     return this.httpClient.get<Language>(GET_LANGUAGE_BY_ID_URL + `/${id}`);
+  }
+
+  public addTranslationForLanguage(alertName: string, alertCode: string, language: string): Observable<RestResponse> {
+    return this.httpClient.post<RestResponse>(ADD_TRANSLATION_FOR_LANGUAGE_URL, {alertName, alertCode, language});
+  }
+
+  public changeTranslationForLanguage(id: number, alertName: string): Observable<RestResponse> {
+    return this.httpClient.put<RestResponse>(CHANGE_TRANSLATION_FOR_LANGUAGE_URL, {id, alertName});
+  }
+
+  public getAllTranslations(): Observable<Translation[]> {
+    return this.httpClient.get<Translation[]>(GET_ALL_TRANSLATIONS_URL);
+  }
+
+  public createTranslation(alertName: string, alertCode: string): Observable<RestResponse> {
+    return this.httpClient.post<RestResponse>(CREATE_TRANSLATION_URL, {alertName, alertCode});
+  }
+
+  public editTranslation(id: number, alertName: string, alertCode: string): Observable<RestResponse> {
+    return this.httpClient.put<RestResponse>(EDIT_TRANSLATION_URL, {id, alertName, alertCode});
+  }
+
+  public deleteTranslation(id: number): Observable<RestResponse> {
+    return this.httpClient.delete<RestResponse>(DELETE_TRANSLATION_URL + `/${id}`);
+  }
+
+  public getTranslation(id: number): Observable<{alertCode: Translation}> {
+    return this.httpClient.get<{alertCode: Translation}>(GET_TRANSLATION_BY_ID_URL + `/${id}`);
   }
 
 }

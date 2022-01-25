@@ -5,10 +5,11 @@ import {Observable} from "rxjs";
 import {Translation} from "../../models/translation";
 import {RestResponse} from "../../models/rest-response";
 import {
-  CREATE_LANGUAGE_URL,
-  DELETE_LANGUAGE_URL,
-  EDIT_LANGUAGE_URL,
-  GET_LANGUAGE_BY_ID_URL
+  ADD_TRANSLATION_FOR_LANGUAGE_URL, CHANGE_TRANSLATION_FOR_LANGUAGE_URL,
+  CREATE_LANGUAGE_URL, CREATE_TRANSLATION_URL,
+  DELETE_LANGUAGE_URL, DELETE_TRANSLATION_URL,
+  EDIT_LANGUAGE_URL, EDIT_TRANSLATION_URL, GET_ALL_TRANSLATIONS_URL,
+  GET_LANGUAGE_BY_ID_URL, GET_TRANSLATION_BY_ID_URL
 } from "../../consts/url.const";
 
 @Injectable({
@@ -40,7 +41,7 @@ export class TranslationService {
     return this.restService.getLanguages();
   }
 
-  public getTranslations(languageName: string): Observable<any> {
+  public getTranslations(languageName: string): Observable<Translation[]> {
     return this.restService.getTranslations(languageName);
   }
 
@@ -58,5 +59,33 @@ export class TranslationService {
 
   public getLanguage(id: number): Observable<Language> {
     return this.restService.getLanguage(id);
+  }
+
+  public addTranslationForLanguage(alertName: string, alertCode: string, language: string): Observable<RestResponse> {
+    return this.restService.addTranslationForLanguage(alertName, alertCode, language);
+  }
+
+  public changeTranslationForLanguage(id: number, alertName: string): Observable<RestResponse> {
+    return this.restService.changeTranslationForLanguage(id, alertName);
+  }
+
+  public getAllTranslations(): Observable<Translation[]> {
+    return this.restService.getAllTranslations();
+  }
+
+  public createTranslation(alertName: string, alertCode: string): Observable<RestResponse> {
+    return this.restService.createTranslation(alertName, alertCode);
+  }
+
+  public editTranslation(id: number, alertName: string, alertCode: string): Observable<RestResponse> {
+    return this.restService.editTranslation(id, alertName, alertCode);
+  }
+
+  public deleteTranslation(id: number): Observable<RestResponse> {
+    return this.restService.deleteTranslation(id);
+  }
+
+  public getTranslation(id: number): Observable<{alertCode: Translation}> {
+    return this.restService.getTranslation(id);
   }
 }
