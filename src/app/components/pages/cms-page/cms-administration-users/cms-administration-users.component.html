@@ -20,7 +20,7 @@
     <ng-container matColumnDef="role">
       <th mat-header-cell *matHeaderCellDef> Role </th>
       <td mat-cell *matCellDef="let user">
-        <div *ngIf="hasAccessToModifyCmsUsers" class="cell-with-options">
+        <div class="cell-with-options">
           <div>{{user.roles[0].name}}</div>
           <div class="options">
             <div (click)="editUser(user.id)" class="options-edit"></div>

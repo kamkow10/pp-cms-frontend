@@ -7,10 +7,9 @@
         <mat-button-toggle value="myArticles">My articles</mat-button-toggle>
         <mat-button-toggle *ngIf="hasAccessToReadAllArticles" value="articles">Articles</mat-button-toggle>
         <mat-button-toggle value="users">Users</mat-button-toggle>
-        <mat-button-toggle value="administrationUsers">Administration users</mat-button-toggle>
+        <mat-button-toggle *ngIf="hasAccessToModifyCmsUsers" value="administrationUsers">Administration users</mat-button-toggle>
         <mat-button-toggle value="tags">Tags</mat-button-toggle>
-        <mat-button-toggle value="languages">Languages</mat-button-toggle>
-        <mat-button-toggle value="security">Security</mat-button-toggle>
+        <mat-button-toggle *ngIf="hasAccessToModifyCmsUsers" value="languages">Languages</mat-button-toggle>
       </mat-button-toggle-group>
     </mat-sidenav-container>
   </div>

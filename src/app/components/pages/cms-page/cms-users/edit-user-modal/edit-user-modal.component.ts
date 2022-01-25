@@ -4,6 +4,8 @@ import {ERROR_EMAIL_IN_USE, ERROR_NICKNAME_IN_USE, ERROR_OK} from "../../../../.
 import {UsersService} from "../../../../../services/users/users.service";
 import {MAT_DIALOG_DATA} from "@angular/material/dialog";
 import {Role} from "../../../../../models/role";
+import {UserService} from "../../../../../services/user/user.service";
+import {PRIVILEGES} from "../../../../../consts/privilege.const";
 
 @Component({
   selector: 'app-edit-user-modal',
@@ -15,8 +17,10 @@ export class EditUserModalComponent implements OnInit {
 
   constructor(private fb: FormBuilder,
               private usersService: UsersService,
+              private userService: UserService,
               @Inject(MAT_DIALOG_DATA) public data: {editingUserId: number}) {
     this.editingUserId = this.data.editingUserId;
+    this.hasAccessToEditRoles = this.userService.hasPrivilege(PRIVILEGES.EDIT_USER_ROLE);
   }
 
   ngOnInit(): void {
@@ -116,6 +120,8 @@ export class EditUserModalComponent implements OnInit {
   public changeRoleFormSucceed = false;
   public changeRoleFormServerError = false;
   public roles: Role[];
+
+  public hasAccessToEditRoles: boolean;
 
   public changeRole(): void {
     this.changeRoleFormSucceed = false;

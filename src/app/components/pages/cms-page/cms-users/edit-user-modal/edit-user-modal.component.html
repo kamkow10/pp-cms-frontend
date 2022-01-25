@@ -46,7 +46,7 @@
     </p>
   </form>
 
-  <form [formGroup]="changeRoleForm" (ngSubmit)="changeRole()">
+  <form *ngIf="hasAccessToEditRoles" [formGroup]="changeRoleForm" (ngSubmit)="changeRole()">
     <h2>Change role</h2>
     <app-alert *ngIf="changeRoleFormServerError" text="Unidentified server error" alertType="error"></app-alert>
     <app-alert *ngIf="changeRoleFormSucceed" text="Role changed" alertType="success"></app-alert>

@@ -3,6 +3,8 @@ import {Article} from "../../../../models/article";
 import {ArticleService} from "../../../../services/article/article.service";
 import {MatDialog} from "@angular/material/dialog";
 import {CreateArticleModalComponent} from "./create-article-modal/create-article-modal.component";
+import {UserService} from "../../../../services/user/user.service";
+import {PRIVILEGES} from "../../../../consts/privilege.const";
 
 @Component({
   selector: 'app-cms-my-articles',
@@ -16,8 +18,12 @@ export class CmsMyArticlesComponent implements OnInit {
   public publishedArticles: Article[];
   public publishArticlesDisplayedColumns = ['id', 'title', 'publishDate', 'language', 'views'];
 
+  public hasAccessToDeleteOwnArticle: boolean;
+
   constructor(private articleService: ArticleService,
+              private userService: UserService,
               private matDialog: MatDialog) {
+    this.hasAccessToDeleteOwnArticle = this.userService.hasPrivilege(PRIVILEGES.REMOVE_ARTICLE);
   }
 
   ngOnInit(): void {

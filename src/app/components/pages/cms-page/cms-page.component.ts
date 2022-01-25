@@ -11,8 +11,10 @@ import {PRIVILEGES} from "../../../consts/privilege.const";
 export class CmsPageComponent implements OnInit {
   public selectedBoard = 'myArticles';
   public hasAccessToReadAllArticles: boolean;
+  public hasAccessToModifyCmsUsers: boolean;
 
   constructor(private userService: UserService) {
+    this.hasAccessToModifyCmsUsers = this.userService.hasPrivilege(PRIVILEGES.ADMIN_USERS_PRIVILEGE_ACCESS);
     this.hasAccessToReadAllArticles = this.userService.hasPrivilege(PRIVILEGES.READ_CMS_USERS);
   }
 

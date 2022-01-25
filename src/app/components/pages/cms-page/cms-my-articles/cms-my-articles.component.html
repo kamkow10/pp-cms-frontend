@@ -21,7 +21,7 @@
           <div>{{article.language.languageCode}}</div>
           <div class="options">
             <div (click)="editArticle(article.id)" class="options-edit"></div>
-            <div (click)="deleteArticle(article.id)" class="options-delete"></div>
+            <div *ngIf="hasAccessToDeleteOwnArticle" (click)="deleteArticle(article.id)" class="options-delete"></div>
           </div>
         </div>
       </td>
