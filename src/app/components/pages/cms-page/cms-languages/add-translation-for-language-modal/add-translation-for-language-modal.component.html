@@ -1,0 +1,21 @@
+<h2 mat-dialog-title>{{editMode ? 'Editing translation' : 'Create translation'}}</h2>
+<mat-dialog-content class="mat-typography modal-form">
+  <app-alert *ngIf="showMessageServerError" text="Unidentified server error" alertType="error"></app-alert>
+  <p>
+    <mat-form-field class="full-width" appearance="fill">
+      <mat-label>Translation for {{editingLanguageName | uppercase}}</mat-label>
+      <input [(ngModel)]="alertName" autocomplete="off" matInput>
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-dialog-actions align="end">
+      <button mat-button mat-dialog-close>Cancel</button>
+      <button (click)="editMode ? editTranslation() : createTranslation()"
+              [disabled]="alertName.length == 0"
+              type="submit" mat-flat-button color="primary">
+        {{editMode ? 'Edit' : 'Create'}}
+      </button>
+    </mat-dialog-actions>
+  </p>
+</mat-dialog-content>
+
