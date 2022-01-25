@@ -38,3 +38,7 @@ export const EDIT_TAG_URL = BACKEND_URL + '/tag/modify';
 export const DELETE_TAG_URL = BACKEND_URL + '/tag/remove';
 export const GET_TAG_BY_ID_URL = BACKEND_URL + '/tag';
 export const GET_CMS_USERS_URL = BACKEND_URL + '/user/cms/users';
+export const CREATE_LANGUAGE_URL = BACKEND_URL + '/language/add';
+export const EDIT_LANGUAGE_URL = BACKEND_URL + '/language/edit';
+export const DELETE_LANGUAGE_URL = BACKEND_URL + '/language/remove';
+export const GET_LANGUAGE_BY_ID_URL = BACKEND_URL + '/language/id';

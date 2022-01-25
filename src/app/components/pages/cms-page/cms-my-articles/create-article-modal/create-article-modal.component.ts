@@ -18,7 +18,7 @@ import {Article} from "../../../../../models/article";
 export class CreateArticleModalComponent implements OnInit {
   public createArticleForm = this.fb.group({
     'title': [''],
-    'language': ['english'],
+    'language': [''],
     'tags': new FormArray([]),
     'content': ['']
   })

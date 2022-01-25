@@ -39,7 +39,7 @@ import {
   CREATE_TAG_URL,
   GET_CMS_USERS_URL,
   EDIT_TAG_URL,
-  DELETE_TAG_URL, GET_TAG_BY_ID_URL
+  DELETE_TAG_URL, GET_TAG_BY_ID_URL, CREATE_LANGUAGE_URL, EDIT_LANGUAGE_URL, DELETE_LANGUAGE_URL, GET_LANGUAGE_BY_ID_URL
 } from "../../consts/url.const";
 import {LoginData} from "../../models/login-data";
 import {RegisterData} from "../../models/register-data";
@@ -218,6 +218,22 @@ export class RestService {
 
   public getCmsUsers(): Observable<UserData[]> {
     return this.httpClient.get<UserData[]>(GET_CMS_USERS_URL);
+  }
+
+  public createLanguage(name: string, languageCode: string): Observable<RestResponse> {
+    return this.httpClient.post<RestResponse>(CREATE_LANGUAGE_URL, {name, languageCode});
+  }
+
+  public editLanguage(id: number, name: string, languageCode: string): Observable<RestResponse> {
+    return this.httpClient.put<RestResponse>(EDIT_LANGUAGE_URL, {id, name, languageCode});
+  }
+
+  public deleteLanguage(id: number): Observable<RestResponse> {
+    return this.httpClient.delete<RestResponse>(DELETE_LANGUAGE_URL + `/${id}`);
+  }
+
+  public getLanguage(id: number): Observable<Language> {
+    return this.httpClient.get<Language>(GET_LANGUAGE_BY_ID_URL + `/${id}`);
   }
 
 }

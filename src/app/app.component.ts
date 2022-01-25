@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {Router} from "@angular/router";
 import {TranslationService} from "./services/translation/translation.service";
 
 @Component({
@@ -10,9 +9,19 @@ import {TranslationService} from "./services/translation/translation.service";
 export class AppComponent implements OnInit {
 
   constructor(private translationService: TranslationService) {
-    this.translationService.initTranslations();
+    if (this.translationService.currentLang === undefined) {
+      this.setDefaultLanguage();
+    } else {
+      this.translationService.setLanguage(this.translationService.currentLang);
+    }
   }
 
-  async ngOnInit() {
+  ngOnInit() {
+  }
+
+  public setDefaultLanguage(): void {
+    this.translationService.getLanguages().subscribe(languages => {
+      this.translationService.setLanguage(languages[0].name);
+    })
   }
 }

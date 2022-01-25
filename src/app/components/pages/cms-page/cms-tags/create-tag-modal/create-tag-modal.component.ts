@@ -24,9 +24,7 @@ export class CreateTagModalComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if (!this.editMode) {
-
-    } else {
+    if (this.editMode) {
       this.tagService.getTag(this.data.editingTagId).subscribe(tag => {
         this.editingTag = tag;
         this.tagName = tag.name;

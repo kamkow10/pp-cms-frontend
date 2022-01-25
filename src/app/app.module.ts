@@ -48,6 +48,7 @@ import { CreateArticleModalComponent } from './components/pages/cms-page/cms-my-
 import {MatSelectModule} from "@angular/material/select";
 import { EditUserModalComponent } from './components/pages/cms-page/cms-users/edit-user-modal/edit-user-modal.component';
 import { CreateTagModalComponent } from './components/pages/cms-page/cms-tags/create-tag-modal/create-tag-modal.component';
+import { CreateLanguageModalComponent } from './components/pages/cms-page/cms-languages/create-language-modal/create-language-modal.component';
 
 @NgModule({
   declarations: [
@@ -81,6 +82,7 @@ import { CreateTagModalComponent } from './components/pages/cms-page/cms-tags/cr
     CreateArticleModalComponent,
     EditUserModalComponent,
     CreateTagModalComponent,
+    CreateLanguageModalComponent,
   ],
     imports: [
         BrowserModule,
