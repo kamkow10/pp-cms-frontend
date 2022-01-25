@@ -2,7 +2,9 @@
 
 <div class="cms-table languages">
   <div class="cms-table-title">Languages</div>
-  <button mat-stroked-button class="cms-table-add-button" (click)="createLanguage()">Create new language</button>
+  <button *ngIf="hasAccessToAddLanguage" mat-stroked-button class="cms-table-add-button" (click)="createLanguage()">
+    Create new language
+  </button>
   <table mat-table [dataSource]="languages" class="mat-elevation-z8">
     <ng-container matColumnDef="id">
       <th mat-header-cell *matHeaderCellDef> ID</th>
@@ -20,8 +22,9 @@
         <div class="cell-with-options">
           <div>{{lang.name}}</div>
           <div class="options">
-            <div (click)="editLanguage(lang.id)" class="options-edit"></div>
-            <div *ngIf="languages.indexOf(lang) != 0" (click)="deleteLanguage(lang.id)" class="options-delete"></div>
+            <div *ngIf="hasAccessToEditLanguage" (click)="editLanguage(lang.id)" class="options-edit"></div>
+            <div *ngIf="languages.indexOf(lang) != 0 && hasAccessToDeleteLanguage" (click)="deleteLanguage(lang.id)"
+                 class="options-delete"></div>
           </div>
         </div>
       </td>
@@ -34,7 +37,9 @@
 
 <div class="cms-table translations" *ngIf="translationTableReady">
   <div class="cms-table-title">Translations</div>
-  <button mat-stroked-button (click)="createTranslation()" class="cms-table-add-button">Create new translation</button>
+  <button *ngIf="hasAccessToModifyTranslations" mat-stroked-button (click)="createTranslation()"
+          class="cms-table-add-button">Create new translation
+  </button>
   <table mat-table [dataSource]="translationsTableData" class="mat-elevation-z8">
     <ng-container matColumnDef="alertCode">
       <th mat-header-cell *matHeaderCellDef> Alert code</th>
@@ -45,30 +50,33 @@
       <ng-container [matColumnDef]="lang.name">
         <th mat-header-cell *matHeaderCellDef> {{lang.languageCode}} </th>
         <td mat-cell *matCellDef="let alertCodeTranslations">
-          <div *ngIf="i == 0 else notOriginalLanguage" class="cell-with-options">
-            <div>{{alertCodeTranslations.translations[0].alertName}}</div>
-            <div class="options">
-              <div (click)="editTranslation(alertCodeTranslations.translations[0].id)" class="options-edit"></div>
-              <div (click)="deleteTranslation(alertCodeTranslations.translations[0].id)" class="options-delete"></div>
-            </div>
-          </div>
-          <ng-template #notOriginalLanguage>
-            <div *ngIf="alertCodeTranslations.translations[i].id === undefined else existingTranslation"
-                 class="cell-with-options">
-              <div style="color: red"> No translation</div>
+          <ng-template [ngIf]="hasAccessToModifyTranslations">
+            <div *ngIf="i == 0 else notOriginalLanguage" class="cell-with-options">
+              <div>{{alertCodeTranslations.translations[0].alertName}}</div>
               <div class="options">
-                <div (click)="addTranslationForLanguage(alertCodeTranslations.alertCode, lang.name)"
-                     class="options-edit"></div>
+                <div (click)="editTranslation(alertCodeTranslations.translations[0].id)" class="options-edit"></div>
+                <div (click)="deleteTranslation(alertCodeTranslations.translations[0].id)" class="options-delete"></div>
               </div>
             </div>
-            <ng-template #existingTranslation>
-              <div class="cell-with-options">
-                <div>{{alertCodeTranslations.translations[i].alertName}}</div>
+            <ng-template #notOriginalLanguage>
+              <div *ngIf="alertCodeTranslations.translations[i].id === undefined else existingTranslation"
+                   class="cell-with-options">
+                <div style="color: red"> No translation</div>
                 <div class="options">
-                  <div (click)="changeTranslationForLanguage(alertCodeTranslations.translations[i].id, alertCodeTranslations.alertCode, lang.name)"
+                  <div (click)="addTranslationForLanguage(alertCodeTranslations.alertCode, lang.name)"
                        class="options-edit"></div>
                 </div>
               </div>
+              <ng-template #existingTranslation>
+                <div class="cell-with-options">
+                  <div>{{alertCodeTranslations.translations[i].alertName}}</div>
+                  <div class="options">
+                    <div
+                      (click)="changeTranslationForLanguage(alertCodeTranslations.translations[i].id, alertCodeTranslations.alertCode, lang.name)"
+                      class="options-edit"></div>
+                  </div>
+                </div>
+              </ng-template>
             </ng-template>
           </ng-template>
         </td>

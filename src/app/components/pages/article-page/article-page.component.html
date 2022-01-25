@@ -15,7 +15,7 @@
           <div class="post-meta">
             <ul class="list-inline">
               <li><a href="#"><i class="fa fa-calendar"></i>{{article.date}}</a> </li>
-              <li><a href="#"><i class="fa fa-user"></i>{{article.user.userName}}</a></li>
+              <li><a routerLink="/user/{{article.user.id}}"><i class="fa fa-user"></i>{{article.user.userName}}</a></li>
               <li><a href="#"><i class="fa fa-comments"></i>{{article.comments.length}}</a> </li>
             </ul>
           </div>
@@ -73,7 +73,7 @@
         <div class="widget-main">
           <h4>{{'header.tags' | translate}}</h4>
           <div class="tags">
-            <a *ngFor="let tag of article.articleTags" href="">{{tag.name}}</a>
+            <div class="tags-text" *ngFor="let tag of article.articleTags" href="">{{tag.name}}</div>
           </div>
         </div>
         <!-- /Tags -->

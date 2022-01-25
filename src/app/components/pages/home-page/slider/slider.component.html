@@ -32,9 +32,9 @@
       <li class="third">
         <div class="slider-text-wrapper">
           <div class="container">
-            <div class="big">Tu będą najnowsze artykuły (to będzie tytuł)</div>
-            <div class="small">Tu będzie krótki opis artykułu</div>
-            <a href="#works" class="middle btn btn-white">
+            <div class="big">{{latestArticles ? latestArticles[2].title : ''}}</div>
+<!--            <div class="small">Tu będzie krótki opis artykułu</div>-->
+            <a routerLink="/article/{{latestArticles ? latestArticles[2].id : ''}}" class="middle btn btn-white">
               {{'button.read-article' | translate}}
             </a>
           </div>

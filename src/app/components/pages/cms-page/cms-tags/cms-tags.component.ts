@@ -5,6 +5,8 @@ import {TagService} from "../../../../services/tag/tag.service";
 import {Language} from "../../../../models/language";
 import {TranslationService} from "../../../../services/translation/translation.service";
 import {CreateTagModalComponent} from "./create-tag-modal/create-tag-modal.component";
+import {UserService} from "../../../../services/user/user.service";
+import {PRIVILEGES} from "../../../../consts/privilege.const";
 
 @Component({
   selector: 'app-cms-tags',
@@ -15,11 +17,18 @@ export class CmsTagsComponent implements OnInit {
   public tags: Tag[];
   public languages: Language[];
   public selectedLanguage: string;
-  public tagsDisplayedColumns = ['id', 'name']
+  public tagsDisplayedColumns = ['id', 'name'];
+  public hasAccessToAddTag: boolean;
+  public hasAccessToEditTag: boolean;
+  public hasAccessToDeleteTag: boolean;
 
   constructor(private tagService: TagService,
               private matDialog: MatDialog,
+              private userService: UserService,
               private translationService: TranslationService) {
+    this.hasAccessToAddTag = this.userService.hasPrivilege(PRIVILEGES.ADD_TAGS_CMS);
+    this.hasAccessToEditTag = this.userService.hasPrivilege(PRIVILEGES.EDIT_TAG);
+    this.hasAccessToDeleteTag = this.userService.hasPrivilege(PRIVILEGES.REMOVE_TAGS);
   }
 
   ngOnInit(): void {

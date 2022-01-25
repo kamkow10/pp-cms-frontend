@@ -12,7 +12,7 @@
 </div>
 
 <div class="cms-table tags">
-  <button mat-stroked-button class="cms-table-add-button" (click)="createTag()">Create new tag</button>
+  <button *ngIf="hasAccessToAddTag" mat-stroked-button class="cms-table-add-button" (click)="createTag()">Create new tag</button>
   <table mat-table [dataSource]="tags" class="mat-elevation-z8">
     <ng-container matColumnDef="id">
       <th mat-header-cell *matHeaderCellDef> ID </th>
@@ -25,8 +25,8 @@
         <div class="cell-with-options">
           <div>{{tag.name}}</div>
           <div class="options">
-            <div (click)="editTag(tag.id)" class="options-edit"></div>
-            <div (click)="deleteTag(tag.id)" class="options-delete"></div>
+            <div *ngIf="hasAccessToEditTag" (click)="editTag(tag.id)" class="options-edit"></div>
+            <div *ngIf="hasAccessToDeleteTag" (click)="deleteTag(tag.id)" class="options-delete"></div>
           </div>
         </div>
       </td>

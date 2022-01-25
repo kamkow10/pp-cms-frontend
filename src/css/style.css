@@ -2726,7 +2726,7 @@ li.comment ol.comment-sub {
   display: inline-block;
 }
 
-.tags a {
+.tags .tags-text {
   float: left;
   padding: 10px 7px;
   font-size: 13px;
@@ -2742,7 +2742,7 @@ li.comment ol.comment-sub {
   transition: all 0.7s ease-in-out;
 }
 
-.tags a:hover {
+.tags .tags-text:hover {
   background: #7EC13F;
   color: #FFF;
   border: 1px solid #ccc;

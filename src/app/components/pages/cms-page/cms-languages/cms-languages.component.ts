@@ -5,6 +5,8 @@ import {MatDialog} from "@angular/material/dialog";
 import {CreateLanguageModalComponent} from "./create-language-modal/create-language-modal.component";
 import {CreateTranslationModalComponent} from "./create-translation-modal/create-translation-modal.component";
 import {AddTranslationForLanguageModalComponent} from "./add-translation-for-language-modal/add-translation-for-language-modal.component";
+import {UserService} from "../../../../services/user/user.service";
+import {PRIVILEGES} from "../../../../consts/privilege.const";
 
 @Component({
   selector: 'app-cms-languages',
@@ -20,9 +22,18 @@ export class CmsLanguagesComponent implements OnInit {
     translations: { alertName: string | undefined, id: number | undefined }[]
   }[];
   public translationTableReady = false;
+  public hasAccessToAddLanguage: boolean;
+  public hasAccessToEditLanguage: boolean;
+  public hasAccessToDeleteLanguage: boolean;
+  public hasAccessToModifyTranslations: boolean;
 
   constructor(private translationService: TranslationService,
+              private userService: UserService,
               private matDialog: MatDialog) {
+    this.hasAccessToAddLanguage = this.userService.hasPrivilege(PRIVILEGES.ADD_LANGUAGE);
+    this.hasAccessToEditLanguage = this.userService.hasPrivilege(PRIVILEGES.EDIT_LANGUAGE);
+    this.hasAccessToDeleteLanguage = this.userService.hasPrivilege(PRIVILEGES.REMOVE_LANGUAGE);
+    this.hasAccessToModifyTranslations = this.userService.hasPrivilege(PRIVILEGES.ADD_TRANSLATION);
   }
 
   async ngOnInit(): Promise<void> {

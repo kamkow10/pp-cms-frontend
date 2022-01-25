@@ -4,9 +4,8 @@
     <mat-sidenav-container>
       <mat-sidenav>Start</mat-sidenav>
       <mat-button-toggle-group [(ngModel)]="selectedBoard" name="cms-navigation">
-        <mat-button-toggle value="dashboard">Dashboard</mat-button-toggle>
         <mat-button-toggle value="myArticles">My articles</mat-button-toggle>
-        <mat-button-toggle value="articles">Articles</mat-button-toggle>
+        <mat-button-toggle *ngIf="hasAccessToReadAllArticles" value="articles">Articles</mat-button-toggle>
         <mat-button-toggle value="users">Users</mat-button-toggle>
         <mat-button-toggle value="administrationUsers">Administration users</mat-button-toggle>
         <mat-button-toggle value="tags">Tags</mat-button-toggle>

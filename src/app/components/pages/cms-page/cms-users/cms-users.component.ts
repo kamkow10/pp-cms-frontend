@@ -3,6 +3,8 @@ import {UsersService} from "../../../../services/users/users.service";
 import {UserData} from "../../../../models/user-data";
 import {MatDialog} from "@angular/material/dialog";
 import {EditUserModalComponent} from "./edit-user-modal/edit-user-modal.component";
+import {UserService} from "../../../../services/user/user.service";
+import {PRIVILEGES} from "../../../../consts/privilege.const";
 
 @Component({
   selector: 'app-cms-users',
@@ -12,9 +14,12 @@ import {EditUserModalComponent} from "./edit-user-modal/edit-user-modal.componen
 export class CmsUsersComponent implements OnInit {
   public users: UserData[];
   public usersDisplayedColumns = ['id', 'username', 'email']
+  public hasAccessToEditUsers: boolean;
 
   constructor(private usersService: UsersService,
+              private userService: UserService,
               private matDialog: MatDialog) {
+    this.hasAccessToEditUsers = this.userService.hasPrivilege(PRIVILEGES.EDIT_CMS_USER);
   }
 
   ngOnInit(): void {

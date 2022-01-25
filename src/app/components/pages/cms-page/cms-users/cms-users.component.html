@@ -18,8 +18,8 @@
         <div class="cell-with-options">
           <div>{{user.userMail}}</div>
           <div class="options">
-            <div (click)="editUser(user.id)" class="options-edit"></div>
-            <div (click)="deleteUser(user.id)" class="options-delete"></div>
+            <div *ngIf="hasAccessToEditUsers" (click)="editUser(user.id)" class="options-edit"></div>
+            <div *ngIf="hasAccessToEditUsers" (click)="deleteUser(user.id)" class="options-delete"></div>
           </div>
         </div>
       </td>

@@ -8,6 +8,7 @@ import {MatDialog} from "@angular/material/dialog";
 import {DeleteCommentDialogComponent} from "./delete-comment-dialog/delete-comment-dialog.component";
 import {ERROR_OK} from "../../../consts/error.const";
 import {AbstractControl, FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {PRIVILEGES} from "../../../consts/privilege.const";
 
 @Component({
   selector: 'app-comment',
@@ -19,7 +20,7 @@ export class CommentComponent implements OnInit {
   @Input() public showArticleTitle = false;
   @Output() public commentChanged = new EventEmitter<any>();
   public article: Article;
-  public isLoggedUserComment: boolean;
+  public hasUserAccessToModifyComment: boolean;
   public showMessageServerError = false;
   public isEditModeOn = false;
   public editCommentForm: FormGroup;
@@ -37,7 +38,8 @@ export class CommentComponent implements OnInit {
         this.article = article;
       }, () => {});
     }
-    this.isLoggedUserComment = this.comment.user.id == this.userService.userData?.id;
+    this.hasUserAccessToModifyComment = this.comment.user.id == this.userService.userData?.id ||
+      this.userService.hasPrivilege(PRIVILEGES.EDIT_COMMENT);
   }
 
   public openDeleteCommentDialog(): void {
