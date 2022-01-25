@@ -2,7 +2,7 @@ import {Component, Inject, OnInit} from '@angular/core';
 import {Translation} from "../../../../../models/translation";
 import {TranslationService} from "../../../../../services/translation/translation.service";
 import {MAT_DIALOG_DATA, MatDialog} from "@angular/material/dialog";
-import {ERROR_ALERT_CODE_IN_USE, ERROR_OK} from "../../../../../consts/error.const";
+import {ERROR_OK} from "../../../../../consts/error.const";
 
 @Component({
   selector: 'app-add-translation-for-language-modal',
@@ -11,38 +11,34 @@ import {ERROR_ALERT_CODE_IN_USE, ERROR_OK} from "../../../../../consts/error.con
 })
 export class AddTranslationForLanguageModalComponent implements OnInit {
   public showMessageServerError = false;
-  public showMessageAlertCodeInUse = false;
   public alertName = '';
+  public editingAlertCode: string;
   public editingLanguageName: string;
 
   public editMode = false;
-  public editingTranslation: Translation;
+  public editingTranslationId: number;
 
   constructor(private translationService: TranslationService,
               private matDialog: MatDialog,
-              @Inject(MAT_DIALOG_DATA) public data: {editingTranslationId: number}) {
-    this.editMode = this.data != null;
+              @Inject(MAT_DIALOG_DATA) public data: { editingTranslationId: number, alertCode: string, language: string }) {
+    this.editMode = this.data.editingTranslationId != null;
+    this.editingAlertCode = this.data.alertCode;
+    this.editingLanguageName = this.data.language;
   }
 
   ngOnInit(): void {
-    this.translationService.getLanguages().subscribe(languages => this.mainLanguage = languages[0].name)
     if (this.editMode) {
-      this.translationService.getTranslation(this.data.editingTranslationId).subscribe(result => {
-        this.editingTranslation = result.alertCode;
-        this.alertCode = this.editingTranslation.alertCode;
-        this.alertName = this.editingTranslation.alertName;
+      this.editingTranslationId = this.data.editingTranslationId;
+      this.translationService.getTranslation(this.editingTranslationId).subscribe(response => {
+        this.alertName = response.errorTranslation;
       });
     }
   }
 
-  public createTranslation(): void {
-    this.translationService.createTranslation(this.alertName, this.alertCode).subscribe(response => {
+  public addTranslationForLanguage(): void {
+    this.translationService.addTranslationForLanguage(this.alertName, this.editingAlertCode, this.editingLanguageName).subscribe(response => {
       if (response.error != ERROR_OK) {
-        if (response.error == ERROR_ALERT_CODE_IN_USE) {
-          this.showMessageAlertCodeInUse = true;
-        } else {
-          this.showMessageServerError = true;
-        }
+        this.showMessageServerError = true;
       } else {
         this.matDialog.closeAll();
       }
@@ -51,14 +47,10 @@ export class AddTranslationForLanguageModalComponent implements OnInit {
     })
   }
 
-  public editTranslation(): void {
-    this.translationService.editTranslation(this.editingTranslation.id, this.alertName, this.alertCode).subscribe(response => {
+  public editTranslationForLanguage(): void {
+    this.translationService.changeTranslationForLanguage(this.editingTranslationId, this.alertName).subscribe(response => {
       if (response.error != ERROR_OK) {
-        if (response.error == ERROR_ALERT_CODE_IN_USE) {
-          this.showMessageAlertCodeInUse = true;
-        } else {
-          this.showMessageServerError = true;
-        }
+        this.showMessageServerError = true;
       } else {
         this.matDialog.closeAll();
       }

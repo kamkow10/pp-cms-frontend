@@ -49,7 +49,7 @@ import {
   GET_ALL_TRANSLATIONS_URL,
   CREATE_TRANSLATION_URL,
   EDIT_TRANSLATION_URL,
-  DELETE_TRANSLATION_URL, CHANGE_TRANSLATION_FOR_LANGUAGE_URL, GET_TRANSLATION_BY_ID_URL
+  DELETE_TRANSLATION_URL, CHANGE_TRANSLATION_FOR_LANGUAGE_URL, GET_TRANSLATION_BY_ID_URL, GET_MAIN_TRANSLATION_BY_ID_URL
 } from "../../consts/url.const";
 import {LoginData} from "../../models/login-data";
 import {RegisterData} from "../../models/register-data";
@@ -270,8 +270,12 @@ export class RestService {
     return this.httpClient.delete<RestResponse>(DELETE_TRANSLATION_URL + `/${id}`);
   }
 
-  public getTranslation(id: number): Observable<{alertCode: Translation}> {
-    return this.httpClient.get<{alertCode: Translation}>(GET_TRANSLATION_BY_ID_URL + `/${id}`);
+  public getTranslation(id: number): Observable<{errorTranslation: string}> {
+    return this.httpClient.get<{errorTranslation: string}>(GET_TRANSLATION_BY_ID_URL + `/${id}`);
+  }
+
+  public getMainTranslation(id: number): Observable<Translation> {
+    return this.httpClient.get<Translation>(GET_MAIN_TRANSLATION_BY_ID_URL + `/${id}`);
   }
 
 }

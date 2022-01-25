@@ -57,15 +57,16 @@
                  class="cell-with-options">
               <div style="color: red"> No translation</div>
               <div class="options">
-                <!--              <div (click)="changeTranslationForLanguage(null)" class="options-edit"></div>-->
+                <div (click)="addTranslationForLanguage(alertCodeTranslations.alertCode, lang.name)"
+                     class="options-edit"></div>
               </div>
             </div>
             <ng-template #existingTranslation>
               <div class="cell-with-options">
                 <div>{{alertCodeTranslations.translations[i].alertName}}</div>
                 <div class="options">
-                  <!--                <div (click)="changeTranslationForLanguage(alertCodeTranslations.translations[i].id)"-->
-                  <!--                     class="options-edit"></div>-->
+                  <div (click)="changeTranslationForLanguage(alertCodeTranslations.translations[i].id, alertCodeTranslations.alertCode, lang.name)"
+                       class="options-edit"></div>
                 </div>
               </div>
             </ng-template>

@@ -85,7 +85,11 @@ export class TranslationService {
     return this.restService.deleteTranslation(id);
   }
 
-  public getTranslation(id: number): Observable<{alertCode: Translation}> {
+  public getTranslation(id: number): Observable<{errorTranslation: string}> {
     return this.restService.getTranslation(id);
+  }
+
+  public getMainTranslation(id: number): Observable<Translation> {
+    return this.restService.getMainTranslation(id);
   }
 }

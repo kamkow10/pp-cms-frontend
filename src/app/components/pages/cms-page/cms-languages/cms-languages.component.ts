@@ -4,6 +4,7 @@ import {TranslationService} from "../../../../services/translation/translation.s
 import {MatDialog} from "@angular/material/dialog";
 import {CreateLanguageModalComponent} from "./create-language-modal/create-language-modal.component";
 import {CreateTranslationModalComponent} from "./create-translation-modal/create-translation-modal.component";
+import {AddTranslationForLanguageModalComponent} from "./add-translation-for-language-modal/add-translation-for-language-modal.component";
 
 @Component({
   selector: 'app-cms-languages',
@@ -93,6 +94,33 @@ export class CmsLanguagesComponent implements OnInit {
 
   public deleteTranslation(id: number): void {
     this.translationService.deleteTranslation(id).subscribe(() => {
+      this.ngOnInit();
+    })
+  }
+
+  public addTranslationForLanguage(alertCode: string, languageName: string): void {
+    this.matDialog.open(AddTranslationForLanguageModalComponent,
+      {
+        width: '30%',
+        data: {
+          alertCode: alertCode,
+          language: languageName
+        }
+      }).afterClosed().subscribe(() => {
+      this.ngOnInit();
+    })
+  }
+
+  public changeTranslationForLanguage(id: string, alertCode: string, languageName: string): void {
+    this.matDialog.open(AddTranslationForLanguageModalComponent,
+      {
+        width: '30%',
+        data: {
+          editingTranslationId: id,
+          alertCode: alertCode,
+          language: languageName
+        }
+      }).afterClosed().subscribe(() => {
       this.ngOnInit();
     })
   }

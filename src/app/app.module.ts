@@ -50,6 +50,7 @@ import { EditUserModalComponent } from './components/pages/cms-page/cms-users/ed
 import { CreateTagModalComponent } from './components/pages/cms-page/cms-tags/create-tag-modal/create-tag-modal.component';
 import { CreateLanguageModalComponent } from './components/pages/cms-page/cms-languages/create-language-modal/create-language-modal.component';
 import { CreateTranslationModalComponent } from './components/pages/cms-page/cms-languages/create-translation-modal/create-translation-modal.component';
+import { AddTranslationForLanguageModalComponent } from './components/pages/cms-page/cms-languages/add-translation-for-language-modal/add-translation-for-language-modal.component';
 
 @NgModule({
   declarations: [
@@ -85,6 +86,7 @@ import { CreateTranslationModalComponent } from './components/pages/cms-page/cms
     CreateTagModalComponent,
     CreateLanguageModalComponent,
     CreateTranslationModalComponent,
+    AddTranslationForLanguageModalComponent,
   ],
     imports: [
         BrowserModule,

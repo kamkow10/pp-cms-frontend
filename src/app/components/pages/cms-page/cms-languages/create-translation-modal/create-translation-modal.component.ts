@@ -1,8 +1,7 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import {Language} from "../../../../../models/language";
 import {TranslationService} from "../../../../../services/translation/translation.service";
 import {MAT_DIALOG_DATA, MatDialog} from "@angular/material/dialog";
-import {ERROR_ALERT_CODE_IN_USE, ERROR_LANGUAGE_ALREADY_EXISTS, ERROR_OK} from "../../../../../consts/error.const";
+import {ERROR_ALERT_CODE_IN_USE, ERROR_OK} from "../../../../../consts/error.const";
 import {Translation} from "../../../../../models/translation";
 
 @Component({
@@ -29,8 +28,8 @@ export class CreateTranslationModalComponent implements OnInit {
   ngOnInit(): void {
     this.translationService.getLanguages().subscribe(languages => this.mainLanguage = languages[0].name)
     if (this.editMode) {
-      this.translationService.getTranslation(this.data.editingTranslationId).subscribe(result => {
-        this.editingTranslation = result.alertCode;
+      this.translationService.getMainTranslation(this.data.editingTranslationId).subscribe(translation => {
+        this.editingTranslation = translation;
         this.alertCode = this.editingTranslation.alertCode;
         this.alertName = this.editingTranslation.alertName;
       });

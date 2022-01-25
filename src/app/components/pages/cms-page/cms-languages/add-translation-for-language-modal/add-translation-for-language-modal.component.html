@@ -10,7 +10,7 @@
   <p>
     <mat-dialog-actions align="end">
       <button mat-button mat-dialog-close>Cancel</button>
-      <button (click)="editMode ? editTranslation() : createTranslation()"
+      <button (click)="editMode ? editTranslationForLanguage() : addTranslationForLanguage()"
               [disabled]="alertName.length == 0"
               type="submit" mat-flat-button color="primary">
         {{editMode ? 'Edit' : 'Create'}}
